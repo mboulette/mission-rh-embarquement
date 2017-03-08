@@ -338,3 +338,19 @@ label .card {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffeb9316', GradientType=0);
     background-repeat: repeat-x;
 }
+
+
+.terms {
+  padding: 15px;
+  height:350px;
+  overflow: scroll;
+  overflow-x: auto;
+}
+
+.decharge {
+  display: block;
+}
+
+.decharge h4 {
+  margin-top: 0;
+}

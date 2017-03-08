@@ -46,6 +46,7 @@ class profile
                 'lastname' => $_POST['lastname'],
                 'birthday' => $_POST['birthday'].' 00:00:00',
                 'gender' => $_POST['gender'],
+                'date_terms' => $_POST['decharge'],
                 'completed' => '1'
             );
 

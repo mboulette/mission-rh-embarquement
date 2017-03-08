@@ -346,16 +346,27 @@ $(function() {
 
     $('#form_profile').on('submit', function(event){
 
+		$('.alert-decharge').addClass('hidden');
+
     	if ( $('#profil_attachments').fileinput('getFilesCount') != 0 ) {
 	    	event.preventDefault();
 	    	event.stopPropagation();
-    	
-	    	$('#modal-attachements').modal('show');
+    	  	$('#modal-attachements').modal('show');
     	}
 
 		$('#gender').val('M');
 		if ($('#gender-x').is(':checked')) $('#gender').val('F');
 
+		if (!$('#decharge').is(':checked')) {
+	    	event.preventDefault();
+	    	event.stopPropagation();
+			$('.alert-decharge').removeClass('hidden');
+		}
+
+    });
+
+    $(document).on('click', '#decharge', function(event) {
+    	$(this).parents('label').find('i').toggleClass('hidden');
     });
 
 
