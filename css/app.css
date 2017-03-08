@@ -1,14 +1,15 @@
-html {
-  background-color: #000; 
-}
 
-body {
+html {
 	background-color: #000;
 	background: url(../img/bg-space.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}
+
+body {
+  background-color: transparent;
 }
 
 label.required::after {
@@ -81,7 +82,7 @@ label.required::after {
 
 
 .bg-icon {
-	color: #337ab7;
+	color: #f0ad4e;
 	font-size: 444px !important;
 	opacity: 0.1;
 	position: absolute;
@@ -120,9 +121,9 @@ label .card {
 }
 
 .card:hover, .card.active {
-	border: 1px solid #337ab7;
-	color: #265a88;
-	background-color: #e6eef7;
+	border: 1px solid #e38d13;
+	color: #e38d13;
+	background-color: #fcf8e3;
 	cursor: pointer;
 }
 
@@ -199,7 +200,7 @@ label .card {
 }
 
 .bs-placeholder {
-  color: #337ab7 !important;
+  color: #000 !important;
   font-weight: bold;
 }
 
@@ -266,13 +267,14 @@ label .card {
 .ribbon-default span::before {border-left-color: #9b9b9b; border-top-color: #9b9b9b;}
 .ribbon-default span::after {border-right-color: #9b9b9b; border-top-color: #9b9b9b;}
 
-.ribbon-active span {background: linear-gradient(#2989d8 0%, #1e5799 100%);}
-.ribbon-active span::before {border-left-color: #1e5799; border-top-color: #1e5799;}
-.ribbon-active span::after {border-right-color: #1e5799; border-top-color: #1e5799;}
+.ribbon-active span {background: linear-gradient(#f0ad4e 0%, #ba7c25 100%);}
+.ribbon-active span::before {border-left-color: #ba7c25; border-top-color: #ba7c25;}
+.ribbon-active span::after {border-right-color: #ba7c25; border-top-color: #ba7c25;}
 
-.card.active .ribbon span {background: linear-gradient(#2989d8 0%, #1e5799 100%);}
-.card.active .ribbon span::before {border-left-color: #1e5799; border-top-color: #1e5799;}
-.card.active .ribbon span::after {border-right-color: #1e5799; border-top-color: #1e5799;}
+
+.card.active .ribbon span {background: linear-gradient(#f0ad4e 0%, #ba7c25 100%);}
+.card.active .ribbon span::before {border-left-color: #ba7c25; border-top-color: #ba7c25;}
+.card.active .ribbonspan::after {border-right-color: #ba7c25; border-top-color: #ba7c25;}
 
 .fa-cc-american_express:before {
   content: "\f1f3";
@@ -297,7 +299,7 @@ label .card {
 }
 
 .home-step:hover {
-  color : #337ab7;
+  color : #f0ad4e;
 }
 
 
@@ -314,7 +316,7 @@ label .card {
 }
 
 .table-hover>tbody>tr:hover {
-  background-color: #d9edf7;
+  background-color: #fcf8e3;
   /*font-weight: bold;*/
 }
 
@@ -324,4 +326,15 @@ label .card {
 
 .table .sort-order {
   cursor: pointer; 
+}
+
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+    background-color: #eb9316;
+    background-image: -webkit-linear-gradient(top,#f0ad4e 0,#eb9316 100%);
+    background-image: -o-linear-gradient(top,#f0ad4e 0,#eb9316 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f0ad4e),to(#eb9316));
+    background-image: linear-gradient(to bottom,#f0ad4e 0,#eb9316 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffeb9316', GradientType=0);
+    background-repeat: repeat-x;
 }

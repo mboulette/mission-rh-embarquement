@@ -28,7 +28,7 @@
 								<?php foreach ($list as $current) { ?>
 								<tr class='action'>
 									<th>
-										<button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $current['id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
+										<button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $current['id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
 									</th>
 									<?php
 									foreach ($columns as $column_name => $field_name) {

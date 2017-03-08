@@ -74,7 +74,7 @@
 					<input type="hidden" id="id_events" name="id_events" value="<?php echo $events['id']; ?>">
 					<input type="hidden" id="submitaction" name="submitaction" value="save">
 					<a href='/inscriptions/admin/events' class="btn btn-default btn-lg backlink">Annuler</a>
-					<button id="save-events" type="submit" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-events" type="submit" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 			
 			</form>

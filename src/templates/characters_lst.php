@@ -43,10 +43,10 @@
 												<input type="hidden" name="id_character" value="<?php echo $char['id']; ?>">
 												<?php if ($char['level'] == 0) { ?>
 													
-													<button type="submit" class="btn btn-primary hidden-xs"><i class="fa fa-pencil"></i> &nbsp;Modifier</button>
+													<button type="submit" class="btn btn-warning hidden-xs"><i class="fa fa-pencil"></i> &nbsp;Modifier</button>
 													<button data-id="<?php echo $char['id']; ?>" type="button" class="btn btn-default delete_character hidden-xs"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
 
-													<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs-block"><i class="fa fa-pencil"></i> &nbsp;Modifier</button>
+													<button type="submit" class="btn btn-warning btn-block btn-lg visible-xs-block"><i class="fa fa-pencil"></i> &nbsp;Modifier</button>
 													<button data-id="<?php echo $char['id']; ?>" type="button" class="btn btn-default delete_character btn-block btn-lg visible-xs-block"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
 												<?php } else { ?>
 													<button type="submit" class="btn btn-default"><i class="fa fa-search "></i> &nbsp;Détails</button>
@@ -57,7 +57,7 @@
 										
 									</div>
 									<div class="row">
-										<div class="col-sm-9 text-right pull-right text-info hidden-xs">Date de création : <?php echo $char['date_created']; ?></div>
+										<div class="col-sm-9 text-right pull-right text-warning hidden-xs">Date de création : <?php echo $char['date_created']; ?></div>
 									</div>
 									<div class="ribbon"><span>Niveau <?php echo $char['level']; ?></span></div>
 								</form>
@@ -71,7 +71,7 @@
 							<form action="/inscriptions/characters/edit" method="post">
 								<input type="hidden" name="id_character" value="0">
 
-								<button type="submit" class="btn btn-primary btn-block">
+								<button type="submit" class="btn btn-warning btn-block">
 									<i class="fa fa-user-plus" style="font-size:300%;"></i>
 									<div>Nouveau personnage</div>
 								</button>
@@ -109,7 +109,7 @@
       </div>
       <div class="modal-footer">
 	    <button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-	    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
+	    <button type="button" data-dismiss="modal" class="btn btn-warning" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

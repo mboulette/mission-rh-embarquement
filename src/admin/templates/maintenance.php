@@ -11,14 +11,14 @@
 
 				<div class="panel-body">
 
-					<div class="alert alert-info" role="alert">
+					<div class="alert alert-warning" role="alert">
 						En cas de problèmes, vous pouvez choisir d'arrêter le système pour les joueurs et/ou pour les administrateurs.
 					</div>
 
 					<div class="form-group">
 						<label for="lock_players-x" class="col-sm-3 control-label required">Joueurs</label>
 						<div class="col-sm-2">
-							<input type="checkbox" class="form-control" id="lock_players-x" name="lock_players-x" data-toggle="toggle" data-onstyle="danger" data-offstyle="primary" data-on="Arrêté" data-off="Fonctionnel" <?php if ($maintenance['lock_players']) echo 'checked'; ?>>
+							<input type="checkbox" class="form-control" id="lock_players-x" name="lock_players-x" data-toggle="toggle" data-onstyle="danger" data-on="Arrêté" data-off="Fonctionnel" <?php if ($maintenance['lock_players']) echo 'checked'; ?>>
 							<input type="hidden" id="lock_players" name="lock_players" value="<?php echo $maintenance['lock_players']; ?>">
 						</div>
 					</div>
@@ -26,7 +26,7 @@
 					<div class="form-group">
 						<label for="lock_admins-x" class="col-sm-3 control-label required">Administrateurs</label>
 						<div class="col-sm-2">
-							<input type="checkbox" class="form-control" id="lock_admins-x" name="lock_admins-x" data-toggle="toggle" data-onstyle="danger" data-offstyle="primary" data-on="Arrêté" data-off="Fonctionnel" <?php if ($maintenance['lock_admins']) echo 'checked'; ?>>
+							<input type="checkbox" class="form-control" id="lock_admins-x" name="lock_admins-x" data-toggle="toggle" data-onstyle="danger" data-on="Arrêté" data-off="Fonctionnel" <?php if ($maintenance['lock_admins']) echo 'checked'; ?>>
 							<input type="hidden" id="lock_admins" name="lock_admins" value="<?php echo $maintenance['lock_admins']; ?>">
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 
 				</div>
 				<div class="panel-footer text-right">
-					<button id="save-maintenance" type="submit" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-maintenance" type="submit" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 			
 			</form>

@@ -74,9 +74,9 @@
 						<label for="characters_attachments" class="col-sm-3 control-label">Joindre des documents</label>
 						<div class="col-sm-8">
 						
-							<div class="alert alert-info" role="alert">
+							<div class="alert alert-warning" role="alert">
 								<p>Vous pouvez joindre à votre personnage des document d'historique, des descriptions ou tous autres informations que vous jugez pertinantes d'être partager avec les scénaristes.</p>
-								<p>Nous acceptons les fichiers .PDF, .DOC, .DOCX ou .ODF</p>
+								<p>Nous acceptons les documents .PDF, .DOC, .DOCX, .ODF ou les images .JPG, .PNG</p>
 							</div>
 
 							<div id="files_lst" class="list-group">
@@ -98,7 +98,7 @@
 
 
 					<a href='/inscriptions/admin/characters' class="btn btn-default btn-lg backlink">Annuler</a>
-					<button id="save-character" type="submit" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-character" type="submit" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 			</form>		
 			
@@ -150,7 +150,7 @@
       </div>
       <div class="modal-footer">
 	    <button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-	    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
+	    <button type="button" data-dismiss="modal" class="btn btn-warning" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

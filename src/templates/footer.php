@@ -1,1 +1,1 @@
-<p class="text-center copyright"><?php echo date('Y'); ?> © Abeas Corpus  &nbsp;/ &nbsp;<a href='mailto:boulettem@gmail.com'>Miguel Boulette</a></p>
+<p class="text-center copyright"><?php echo date('Y'); ?> © Abeas Corpus  &nbsp;/ &nbsp;<a style="color:#f0ad4e" href='mailto:boulettem@gmail.com'>Miguel Boulette</a></p>

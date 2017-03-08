@@ -11,13 +11,13 @@
 				<div class="form-horizontal">
 
 					<div class="hidden-xs">
-						<a href="/inscriptions/admin/characters" class="btn btn-primary backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
+						<a href="/inscriptions/admin/characters" class="btn btn-warning backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
 						<button class="btn btn-danger tool" data-modal="modal-delete" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 						
 						<?php if ($character['dead'] == 0) { ?>
-							<button class="btn btn-warning tool" data-modal="modal-kill"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
+							<button class="btn btn-primary tool" data-modal="modal-kill"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
 						<?php } else { ?>
-							<button class="btn btn-warning tool" data-modal="modal-unkill"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
+							<button class="btn btn-primary tool" data-modal="modal-unkill"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
 						<?php } ?>					
 
 						<button class="btn btn-default tool" data-modal="modal-levelup"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up</button>
@@ -25,7 +25,7 @@
 
 						<hr />
 
-						<div class="alert alert-info alert-dismissible" role="alert">
+						<div class="alert alert-warning alert-dismissible" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
 							<p><strong><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste :</strong> Ce bouton permet de retourner à la liste des personnages</p>
 							<p><strong><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer :</strong> Ce bouton permet de supprimer complètement le personnage. C'est essentiellement pour supprimer des spamers, ou des tests de certains clients. Vous ne pouvez pas supprimer des personnages qui ont déjà participé à des évènements.</p>
@@ -39,13 +39,13 @@
 
 					<div class="visible-xs-block">
 
-						<a href="/inscriptions/admin/characters" class="btn btn-primary btn-lg btn-block" style="margin: 3px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
+						<a href="/inscriptions/admin/characters" class="btn btn-warning btn-lg btn-block" style="margin: 3px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
 						<button class="btn btn-danger btn-lg btn-block tool" data-modal="modal-delete" style="margin: 3px;" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 						
 						<?php if ($character['dead'] == 0) { ?>
-							<button class="btn btn-warning btn-lg btn-block tool" data-modal="modal-kill" style="margin: 3px;"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
+							<button class="btn btn-primary btn-lg btn-block tool" data-modal="modal-kill" style="margin: 3px;"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
 						<?php } else { ?>
-							<button class="btn btn-warning btn-lg btn-block tool" data-modal="modal-unkill" style="margin: 3px;"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
+							<button class="btn btn-primary btn-lg btn-block tool" data-modal="modal-unkill" style="margin: 3px;"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
 						<?php } ?>					
 
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-levelup" style="margin: 3px;"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up</button>
@@ -137,7 +137,7 @@
 
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						
-						<div class="panel panel-primary">
+						<div class="panel panel-warning">
 							<div class="panel-heading" role="tab" id="headingOne">
 								<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 									<i class="fa fa-user-circle"></i>&nbsp;
@@ -156,14 +156,14 @@
 												<input type="hidden" name="submitaction" value="display">
 												<input type="hidden" name="id" value="<?php echo $player['id']; ?>">
 												<h3 style="margin-top:5px;"><?php echo $player['firstname']; ?> <?php echo $player['lastname']; ?>
-													<button class=" btn btn-primary btn-xs" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
+													<button class=" btn btn-warning btn-xs" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
 												</h3>
 											</form>
 
 											
 											<table>
 
-												<tr><th style="text-align: left; padding-right:20px;">Courriel<th><td><a href="mailto:<?php echo $player['email']; ?>"><?php echo $player['email']; ?></a><td></tr>
+												<tr><th style="text-align: left; padding-right:20px;">Courriel<th><td><a class="text-warning" href="mailto:<?php echo $player['email']; ?>"><?php echo $player['email']; ?></a><td></tr>
 												<tr><th style="text-align: left; padding-right:20px;">Date de naissance<th><td>
 													<?php
 													$d = new DateTime($player['birthday']);
@@ -186,7 +186,7 @@
 							</div>
 						</div>
 
-						<div class="panel panel-primary">
+						<div class="panel panel-warning">
 							<div class="panel-heading" role="tab" id="heading3">
 								<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
 									<i class="glyphicon glyphicon-paperclip"></i>&nbsp;
@@ -213,7 +213,7 @@
 												<tbody>
 													<?php foreach ($files as $file) { ?>
 													<tr class='action'>
-														<td><button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="0" data-action="<?php echo $file['path']; ?>" data-toggle="tooltip" title="Télécharger"><i class='fa fa-download'></i></button></td>
+														<td><button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="0" data-action="<?php echo $file['path']; ?>" data-toggle="tooltip" title="Télécharger"><i class='fa fa-download'></i></button></td>
 														<td><strong><?php echo str_cut($file['name'], 60); ?></strong></td>
 														<td><?php echo str_cut($file['type'], 60); ?></td>
 														<td><?php echo str_cut($file['size'], 60); ?></td>
@@ -232,7 +232,7 @@
 						</div>
 
 
-						<div class="panel panel-primary">
+						<div class="panel panel-warning">
 
 							<div class="panel-heading" role="tab" id="heading2">
 								<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
@@ -261,7 +261,7 @@
 												<tbody>
 													<?php foreach ($inscriptions as $event) { ?>
 													<tr class='action'>
-														<td><button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $event['inscription_id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button></td>
+														<td><button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $event['inscription_id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button></td>
 														<td><strong><?php echo substr($event['date_event'], 0, 10); ?></strong></td>
 														<td><?php echo str_cut($event['name'], 60); ?></td>
 														<td><?php echo str_cut($event['synopsis'], 60); ?></td>
@@ -321,7 +321,7 @@
 			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
 		</form>
       </div>
     </div><!-- /.modal-content -->
@@ -347,7 +347,7 @@
 			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
 		</form>
       </div>
     </div><!-- /.modal-content -->
@@ -372,7 +372,7 @@
 			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
 		</form>
       </div>
     </div><!-- /.modal-content -->
@@ -398,7 +398,7 @@
 			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up</button>
 		</form>
       </div>
     </div><!-- /.modal-content -->
@@ -425,7 +425,7 @@
 			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
 		</form>
       </div>
     </div><!-- /.modal-content -->

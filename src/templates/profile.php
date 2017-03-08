@@ -24,7 +24,7 @@
 						    </button> 
 						    <div class="crop"> 
 						        <div id="upload-demo"></div> 
-						        <button class="btn btn-primary btn-sm upload-result"><i class="fa fa-check"></i> &nbsp;Accepter</button> 
+						        <button class="btn btn-warning btn-sm upload-result"><i class="fa fa-check"></i> &nbsp;Accepter</button> 
 						        <button class="btn btn-default btn-sm upload-cancel"><i class="fa fa-times"></i> &nbsp;Annuler</button> 
 						    </div> 
 						    <textarea id="base64_picture" name="avatar" class="hidden"></textarea>
@@ -47,26 +47,26 @@
 							<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom de famille" required maxlength="40" value="<?php echo $_SESSION['player']['lastname']; ?>">
 						</div>
 					</div>
+
+
 					<div class="form-group">
-						<label for="birthday" class="col-sm-3 control-label">Date de naissance</label>
-						<div class="col-sm-3">
+						<label for="birthday_picker" class="col-sm-3 control-label">Date de naissance</label>
+						<div class="col-sm-4 col-lg-3">
 							<div class="input-group">
-								<input type="text" class="form-control" id="birthday" name="birthday" placeholder="AAAA-MM-JJ" required maxlength="10" data-date-format="yyyy-mm-dd" value="<?php echo substr($_SESSION['player']['birthday'], 0, 10); ?>">
-								<label for="birthday" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></label>
+								<input type="text" class="form-control" id="birthday_picker" name="birthday_picker" placeholder="AAAA-MM-JJ" required maxlength="10" value="<?php echo substr($_SESSION['player']['birthday'], 0, 10); ?>">
+								<label for="birthday_picker" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></label>
 							</div>
+
+							<input type="hidden" class="form-control" id="birthday" name="birthday"value="<?php echo substr($_SESSION['player']['birthday'], 0, 10); ?>">
 						</div>
 					</div>
+
+
 					<div class="form-group">
-						<label for="gender" class="col-sm-3 control-label">Sexe</label>
-						<div class="col-sm-8">
-							<label class="radio-inline">
-								<input type="radio" name="gender" value="M" <?php if ($_SESSION['player']['gender'] == "M") echo 'checked'; ?> required>
-								<i class="fa fa-mars"></i> Masculin
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="gender" value="F" <?php if ($_SESSION['player']['gender'] == "F") echo 'checked'; ?> required>
-								<i class="fa fa-venus"></i> Féminin
-							</label>
+						<label for="gender-x" class="col-sm-3 control-label required">Sexe</label>
+						<div class="col-sm-3">
+							<input type="checkbox" class="form-control" id="gender-x" name="gender-x" data-toggle="toggle" data-onstyle="warning" data-off="<i class='fa fa-mars'></i> Masculin" data-on="<i class='fa fa-venus'></i> Féminin" <?php if ($_SESSION['player']['gender'] == "F") echo 'checked'; ?>>
+							<input type="hidden" id="gender" name="gender" value="<?php echo $_SESSION['player']['gender']; ?>">
 						</div>
 					</div>
 
@@ -96,9 +96,9 @@
 						<label for="profil_attachments" class="col-sm-3 control-label">Joindre des documents</label>
 						<div class="col-sm-8">
 			            
-							<div class="alert alert-info" role="alert">
+							<div class="alert alert-warning" role="alert">
 								<p>Vous pouvez joindre à votre profil la Décharge de responsabilité, l'Autorisation parentale ou tous autres informations que vous jugez pertinantes d'être partager avec l'organisation.</p>
-								<p>Nous acceptons les fichiers .PDF, .DOC, .DOCX ou .ODF</p>
+								<p>Nous acceptons les documents .PDF, .DOC, .DOCX, .ODF ou les images .JPG, .PNG</p>
 							</div>
 
 			            	<div id="files_lst" class="list-group">
@@ -114,7 +114,7 @@
 				</div>
 				<div class="panel-footer text-right">
 					<input type="hidden" id="id_player" name="id_player" value="<?php echo $_SESSION['player']['id']; ?>">
-					<button id="save-profile" type="submit" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-profile" type="submit" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 			
 			</form>
@@ -186,7 +186,7 @@
       </div>
       <div class="modal-footer">
 	    <button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-	    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
+	    <button type="button" data-dismiss="modal" class="btn btn-warning" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

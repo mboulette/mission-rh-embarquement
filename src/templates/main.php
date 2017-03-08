@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="/inscriptions/css/datepicker.css">
     <link rel="stylesheet" href="/inscriptions/css/daterangepicker.css" />
     <link rel="stylesheet" href="/inscriptions/css/fileinput.min.css">
     <link rel="stylesheet" href="/inscriptions/css/app.css">
@@ -43,7 +42,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Le javascript est désactivé!</strong> &nbsp;
         <p>Cette application utilise le Javascript et les Cookies pour fonctionner. Nous sommes désolé que votre situation ne le permet pas, mais vous pouriez obtenir des résultats inatendus.</p>
-        <a href="http://www.enable-javascript.com/fr/" target="_blank">Voici les instructions pour activer le Javascript dans les navigateurs les plus commun.</a>
+        <a class="text-danger" href="http://www.enable-javascript.com/fr/" target="_blank">Voici les instructions pour activer le Javascript dans les navigateurs les plus commun.</a>
     </div>
     </noscript>
 
@@ -52,7 +51,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Les Cookies sont désactivés!</strong> &nbsp;
         <p>Cette application utilise le Javascript et les Cookies pour fonctionner. Nous sommes désolé que votre situation ne le permet pas, mais vous pouriez obtenir des résultats inatendus.</p>
-        <a href="http://www.accepterlescookies.com/" target="_blank">Voici les instructions pour activer les Cookies dans les navigateurs les plus commun.</a>
+        <a class="text-danger" href="http://www.accepterlescookies.com/" target="_blank">Voici les instructions pour activer les Cookies dans les navigateurs les plus commun.</a>
     </div>
     <?php } ?>
 
@@ -60,7 +59,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Votre navigateur est désuet!</strong> &nbsp;
         <p>Vous utilisez présentement un navigateur qui pourrait ne pas supporter toutes les fonctionnalités requises pour utiliser cette application, vous pouriez obtenir des résultats inatendus.</p>
-        <a href="https://www.google.com/chrome/" target="_blank">Nous vous suggérons d'installer la dernière version de Google Chrome, le navigateur le plus utilisé dans le monde.</a>
+        <a class="text-danger" href="https://www.google.com/chrome/" target="_blank">Nous vous suggérons d'installer la dernière version de Google Chrome, le navigateur le plus utilisé dans le monde.</a>
     </div>
 
     <?php if (isset($_SESSION['message'])) { ?>
@@ -95,7 +94,6 @@
     <script src="https://js.squareup.com/v2/paymentform"></script>
     <script src="/inscriptions/js/moment.min.js"></script>
     <script src="/inscriptions/js/daterangepicker.js"></script>
-    <script src="/inscriptions/js/bootstrap-datepicker.js"></script>
     <script src="/inscriptions/js/bootstrap-numberpicker.js"></script>
     <script src="/inscriptions/js/fileinput.min.js"></script>
     <script src="/inscriptions/js/fileinput.fr.js"></script>

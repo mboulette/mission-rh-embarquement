@@ -27,7 +27,7 @@
 						    </button> 
 						    <div class="crop"> 
 						        <div id="upload-demo"></div> 
-						        <button class="btn btn-primary btn-sm upload-result"><i class="fa fa-check"></i> &nbsp;Accepter</button> 
+						        <button class="btn btn-warning btn-sm upload-result"><i class="fa fa-check"></i> &nbsp;Accepter</button> 
 						        <button class="btn btn-default btn-sm upload-cancel"><i class="fa fa-times"></i> &nbsp;Annuler</button> 
 						    </div> 
 						    <textarea id="base64_picture" name="picture_url" class="hidden"></textarea>
@@ -80,7 +80,7 @@
 					<input type="hidden" id="id_news" name="id_news" value="<?php echo $news['id']; ?>">
 					<input type="hidden" id="submitaction" name="submitaction" value="save">
 					<a href='/inscriptions/admin/news' class="btn btn-default btn-lg backlink">Annuler</a>
-					<button id="save-news" type="submit" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-news" type="submit" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 			
 			</form>

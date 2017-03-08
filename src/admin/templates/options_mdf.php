@@ -49,7 +49,7 @@
 					<div class="form-group">
 						<label for="mandatory-x" class="col-sm-3 control-label required">Obligatoire</label>
 						<div class="col-sm-2">
-							<input type="checkbox" class="form-control" id="mandatory-x" name="mandatory-x" data-toggle="toggle" data-on="Obligatoire" data-off="Facultatif" <?php if ($options['mandatory']) echo 'checked'; ?>>
+							<input type="checkbox" class="form-control" id="mandatory-x" name="mandatory-x" data-toggle="toggle" data-on="Obligatoire" data-off="Facultatif" data-onstyle="warning" <?php if ($options['mandatory']) echo 'checked'; ?>>
 							<input type="hidden" id="mandatory" name="mandatory" value="<?php echo $options['mandatory']; ?>">
 						</div>
 						<div class="col-sm-offset-3 col-sm-8  col-lg-offset-0 col-lg-6 help-block">
@@ -82,7 +82,7 @@
 
 					<div class="row">
 						<div class="col-sm-offset-3 col-sm-8">
-							<button id="add_precision" type="button" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Ajouter une précision</button>
+							<button id="add_precision" type="button" class="btn btn-warning"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Ajouter une précision</button>
 						</div>
 					</div>
 
@@ -92,7 +92,7 @@
 					<input type="hidden" id="id_options" name="id_options" value="<?php echo $options['id']; ?>">
 					<input type="hidden" id="submitaction" name="submitaction" value="save">
 					<a href='/inscriptions/admin/options' class="btn btn-default btn-lg backlink">Annuler</a>
-					<button id="save-options" type="submit" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-options" type="submit" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 			
 				<div class="template hidden">

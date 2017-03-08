@@ -40,7 +40,7 @@
 												<p>
 													<input type="hidden" name="id_event" value="<?php echo $gn['id']; ?>">
 													<?php if ($gn['isActive'] == 'Ouvert') { ?>
-														<button type="submit" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> &nbsp;Participer</button>
+														<button type="submit" class="btn btn-warning"><i class="fa fa-shopping-cart"></i> &nbsp;Participer</button>
 													<?php }?>
 													<?php if ($gn['link'] != '' && $gn['link'] != NULL) { ?>
 														<a target="_blank" class="btn btn-default" href="<?php echo $gn['link']; ?>"><i class="fa fa-search "></i> &nbsp;Détails</a>
@@ -54,7 +54,7 @@
 
 											<?php
 											if ($gn['isRegistered'] == 0) {
-												echo '<div class="col-sm-9 text-right pull-right text-info hidden-xs">Inscrivez-vous avant le : '.substr($gn['inscription_end'], 0, -3).'</div>';
+												echo '<div class="col-sm-9 text-right pull-right text-warning hidden-xs">Inscrivez-vous avant le : '.substr($gn['inscription_end'], 0, -3).'</div>';
 											} elseif ($gn['isRegistered'] == 1) {
 												echo '<div class="col-sm-9 text-right pull-right text-success hidden-xs">Vous avez un personnage inscrit à cette évènement!</div>';
 											} else {
@@ -67,7 +67,7 @@
 											<?php if ($gn['isRegistered'] > 0) { ?>
 												<div class="ribbon ribbon-success"><span>INSCRIT</span></div>
 											<?php } else { ?>
-												<div class="ribbon ribbon-primary"><span><?php echo $gn['isActive']; ?></span></div>												
+												<div class="ribbon ribbon-warning"><span><?php echo $gn['isActive']; ?></span></div>												
 											<?php } ?>	
 										<?php } else { ?>
 											<div class="ribbon"><span><?php echo $gn['isActive']; ?></span></div>

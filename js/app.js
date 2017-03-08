@@ -216,7 +216,7 @@ $(function() {
     $("#characters_attachments").fileinput({
         language: 'fr',
         uploadUrl: '/inscriptions/upload', // you must set a valid URL here else you will get an error
-        allowedFileExtensions: ['pdf', 'doc', 'docx', 'odf'],
+        allowedFileExtensions: ['pdf', 'doc', 'docx', 'odf', 'jpg', 'jpeg', 'png'],
         overwriteInitial: false,
         maxFileSize: 1000,
         browseOnZoneClick : true,
@@ -314,17 +314,10 @@ $(function() {
 	/***  Profil
 	/*******************************************************************************/
 
-	$('#birthday').datepicker({
-		'weekStart' : 1,
-		'onRender': function(date) {
-    		return date.valueOf() > Date.now().valueOf() ? 'disabled' : '';
-    	}
-	});
-
     $("#profil_attachments").fileinput({
         language: 'fr',
         uploadUrl: '/inscriptions/upload', // you must set a valid URL here else you will get an error
-        allowedFileExtensions: ['pdf', 'doc', 'docx', 'odf'],
+        allowedFileExtensions: ['pdf', 'doc', 'docx', 'odf', 'jpg', 'jpeg', 'png'],
         overwriteInitial: false,
         maxFileSize: 1000,
         browseOnZoneClick : true,
@@ -359,6 +352,9 @@ $(function() {
     	
 	    	$('#modal-attachements').modal('show');
     	}
+
+		$('#gender').val('M');
+		if ($('#gender-x').is(':checked')) $('#gender').val('F');
 
     });
 

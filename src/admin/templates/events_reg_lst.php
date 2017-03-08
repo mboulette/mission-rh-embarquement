@@ -8,7 +8,7 @@
 
 				<div class="panel-body">
 
-					<button type="submit" class="btn btn-primary list-action" data-form="form-auto" data-action="/inscriptions/admin/events/excel/" data-id="<?php echo $event['id']; ?>">
+					<button type="submit" class="btn btn-warning list-action" data-form="form-auto" data-action="/inscriptions/admin/events/excel/" data-id="<?php echo $event['id']; ?>">
 						<i class="fa fa-file-excel-o fa-2x"></i>
 						<div>Télécharger une liste Excel</div>
 					</button>
@@ -40,7 +40,7 @@
 								<?php foreach ($list as $current) { ?>
 								<tr class='action'>
 									<th>
-										<button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $current['id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
+										<button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $current['id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
 									</th>
 									<?php
 									foreach ($columns as $column_name => $field_name) {

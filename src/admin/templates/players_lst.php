@@ -28,7 +28,7 @@
 								<?php foreach ($list as $current) { ?>
 								<tr class='action'>
 									<th>
-										<button class="edit btn btn-primary btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
+										<button class="edit btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
 									</th>
 									<td><?php if ($current['picture_url'] != '') echo '<img width="20" src="'.$current['picture_url'].'">'; ?></td>
 									<?php

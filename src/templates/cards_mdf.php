@@ -59,7 +59,7 @@
 				</div>
 				<div class="panel-footer text-right">
 					<a href='/inscriptions/cards' class="btn btn-default btn-lg backlink">Annuler</a>
-					<button id="save-card" type="button" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-card" type="button" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 			</form>	
 

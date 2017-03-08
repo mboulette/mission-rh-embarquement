@@ -28,7 +28,7 @@
 
 								<tr class='action'>
 									<th>
-										<button class="edit btn btn-primary btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
+										<button class="edit btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
 									</th>
 									<?php
 									foreach ($columns as $column_name => $field_name) {

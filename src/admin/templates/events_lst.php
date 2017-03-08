@@ -12,7 +12,7 @@
 						<input type="hidden" name="submitaction" value="edit">
 						<input type="hidden" name="id" value="new">
 
-						<button type="submit" class="btn btn-primary">
+						<button type="submit" class="btn btn-warning">
 							<i class="fa fa-plus-circle fa-2x"></i>
 							<div>Nouvel Évènement</div>
 						</button>
@@ -39,7 +39,7 @@
 								<?php foreach ($list as $current) { ?>
 								<tr class='action'>
 									<th>
-										<button class="registrations btn btn-primary btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Inscriptions"><i class='fa fa-search'></i></button>
+										<button class="registrations btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Inscriptions"><i class='fa fa-search'></i></button>
 										<button class="edit btn btn-default btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Modifier"><i class='fa fa-pencil'></i></button>
 										<button class="delete btn btn-danger btn-xs" data-url="/inscriptions/admin/events/erase" data-id='<?php echo $current['id']; ?>' data-toggle="tooltip" title="Supprimer"><i class='fa fa-trash'></i></button>
 									</th>
@@ -111,7 +111,7 @@
       </div>
       <div class="modal-footer">
 	    <button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-	    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
+	    <button type="button" data-dismiss="modal" class="btn btn-warning" id="delete"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

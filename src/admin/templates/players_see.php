@@ -11,13 +11,13 @@
 				<div class="form-horizontal">
 
 					<div class="hidden-xs">
-						<a href="/inscriptions/admin/players" class="btn btn-primary backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
+						<a href="/inscriptions/admin/players" class="btn btn-warning backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
 						<button class="btn btn-danger tool" data-modal="modal-delete" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 						
 						<?php if ($player['locked'] == 0) { ?>
-							<button class="btn btn-warning tool" data-modal="modal-lock"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Verrouiller</button>
+							<button class="btn btn-primary tool" data-modal="modal-lock"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Verrouiller</button>
 						<?php } else { ?>
-							<button class="btn btn-warning tool" data-modal="modal-unlock"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
+							<button class="btn btn-primary tool" data-modal="modal-unlock"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
 						<?php } ?>					
 
 						<button class="btn btn-default tool" data-modal="modal-connectas"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Incarner</button>
@@ -25,7 +25,7 @@
 
 						<hr />
 
-						<div class="alert alert-info alert-dismissible" role="alert">
+						<div class="alert alert-warning alert-dismissible" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							
 								<p><strong><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste :</strong> Ce bouton permet de retourner à la liste des joueurs</p>
@@ -40,13 +40,13 @@
 					</div>
 
 					<div class="visible-xs-block">
-						<a href="/inscriptions/admin/players" class="btn btn-primary btn-lg btn-block" style="margin: 3px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
+						<a href="/inscriptions/admin/players" class="btn btn-warning btn-lg btn-block" style="margin: 3px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
 						<button class="btn btn-danger btn-lg btn-block tool" data-modal="modal-delete" style="margin: 3px;" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 
 						<?php if ($player['locked'] == 0) { ?>
-							<button class="btn btn-warning btn-lg btn-block tool" data-modal="modal-lock" style="margin: 3px;"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Vérouiller</button>
+							<button class="btn btn-primary btn-lg btn-block tool" data-modal="modal-lock" style="margin: 3px;"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Vérouiller</button>
 						<?php } else { ?>
-							<button class="btn btn-warning btn-lg btn-block tool" data-modal="modal-unlock" style="margin: 3px;"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
+							<button class="btn btn-primary btn-lg btn-block tool" data-modal="modal-unlock" style="margin: 3px;"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
 						<?php } ?>
 
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-connectas" style="margin: 3px;"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Incarner</button>
@@ -156,7 +156,7 @@
 							<label for="tags" class="col-sm-3 control-label">Tags</label>
 							<div class="col-sm-3"  style="font-size:20px;">
 								<?php if ($player['completed']) echo '<span class="label label-default">Complété</span>&nbsp;'; ?>
-								<?php if ($player['locked']) echo '<span class="label label-warning">Verrouillé</span>&nbsp;'; ?>
+								<?php if ($player['locked']) echo '<span class="label label-primary">Verrouillé</span>&nbsp;'; ?>
 								<?php if ($player['admin']) echo '<span class="label label-danger">Admin</span>&nbsp;'; ?>
 							</div>
 						</div>
@@ -170,7 +170,7 @@
 				<hr />
 
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					<div class="panel panel-primary">
+					<div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingOne">
 							<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 								<i class="glyphicon glyphicon-paperclip"></i>&nbsp;
@@ -197,7 +197,7 @@
 											<tbody>
 												<?php foreach ($files as $file) { ?>
 												<tr class='action'>
-													<td><button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="0" data-action="<?php echo $file['path']; ?>" data-toggle="tooltip" title="Télécharger"><i class='fa fa-download'></i></button></td>
+													<td><button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="0" data-action="<?php echo $file['path']; ?>" data-toggle="tooltip" title="Télécharger"><i class='fa fa-download'></i></button></td>
 													<td><strong><?php echo str_cut($file['name'], 60); ?></strong></td>
 													<td><?php echo str_cut($file['type'], 60); ?></td>
 													<td><?php echo str_cut($file['size'], 60); ?></td>
@@ -215,7 +215,7 @@
 						</div>
 					</div>
 
-					<div class="panel panel-primary">
+					<div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="heading2">
 							<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
 								<i class="fa fa-users"></i>&nbsp;
@@ -258,7 +258,7 @@
 													if ($character['dead']) $dead = '&nbsp;<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" width="16">';
 													?>
 												
-													<td><button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $character['id']; ?>" data-action="/inscriptions/admin/characters/display" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button></td>
+													<td><button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $character['id']; ?>" data-action="/inscriptions/admin/characters/display" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button></td>
 													<td><strong><?php echo str_cut($character['name'], 60); ?></strong></td>
 													<td><?php echo $race_pic.str_cut($character['race']['name'], 60); ?></td>
 													<td><?php echo $profession_pic.str_cut($character['profession']['name'], 60); ?></td>
@@ -279,7 +279,7 @@
 
 					</div>
 
-					<div class="panel panel-primary">
+					<div class="panel panel-warning">
 
 						<div class="panel-heading" role="tab" id="heading3">
 							<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
@@ -308,7 +308,7 @@
 											<tbody>
 												<?php foreach ($inscriptions as $event) { ?>
 												<tr class='action'>
-													<td><button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $event['inscription_id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button></td>
+													<td><button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $event['inscription_id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button></td>
 													<td><strong><?php echo substr($event['date_event'], 0, 10); ?></strong></td>
 													<td><?php echo str_cut($event['name'], 60); ?></td>
 													<td><?php echo str_cut($event['synopsis'], 60); ?></td>
@@ -328,7 +328,7 @@
 
 					</div>
 
-					<div class="panel panel-primary">
+					<div class="panel panel-warning">
 
 						<div class="panel-heading" role="tab" id="heading4">
 							<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
@@ -415,7 +415,7 @@
 			<input name="id" type="hidden" value="<?php echo $player['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
 		</form>
 	  </div>
 	</div><!-- /.modal-content -->
@@ -441,7 +441,7 @@
 			<input name="id" type="hidden" value="<?php echo $player['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Verrouiller</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Verrouiller</button>
 		</form>
 	  </div>
 	</div><!-- /.modal-content -->
@@ -466,7 +466,7 @@
 			<input name="id" type="hidden" value="<?php echo $player['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
 		</form>
 	  </div>
 	</div><!-- /.modal-content -->
@@ -492,7 +492,7 @@
 			<input name="id" type="hidden" value="<?php echo $player['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Connexion</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Connexion</button>
 		</form>
 	  </div>
 	</div><!-- /.modal-content -->
@@ -536,7 +536,7 @@
 					<input name="id" type="hidden" value="<?php echo $player['id']; ?>">
 
 					<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-					<button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp;Envoyer</button>
+					<button type="submit" class="btn btn-warning"><i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp;Envoyer</button>
 				</div>
 			</form>
 		</div><!-- /.modal-content -->

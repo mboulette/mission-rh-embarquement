@@ -50,7 +50,7 @@
 
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-lock"></i> &nbsp;Réinitialisation</button>
+                  <button type="submit" class="btn btn-warning btn-lg"><i class="fa fa-lock"></i> &nbsp;Réinitialisation</button>
                   <a href='/inscriptions' class="btn btn-default btn-lg">Annuler</a>
                 </div>
 

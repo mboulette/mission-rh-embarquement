@@ -10,7 +10,7 @@
 
 				<div class="form-horizontal">
 				
-					<a href="/inscriptions/admin/attendees" class="btn btn-primary backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
+					<a href="/inscriptions/admin/attendees" class="btn btn-warning backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
 
 					<hr>
 
@@ -38,7 +38,7 @@
 					<div class="row">
 						<div class="col-md-6" >
 
-							<h3>Évènement <button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $event['id']; ?>" data-action="/inscriptions/admin/events/edit" data-toggle="tooltip" data-original-title="Modifier"><i class="fa fa-pencil"></i></button></h3>
+							<h3>Évènement <button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $event['id']; ?>" data-action="/inscriptions/admin/events/edit" data-toggle="tooltip" data-original-title="Modifier"><i class="fa fa-pencil"></i></button></h3>
 
 							<p>
 								<strong>Nom :</strong> <?php echo $event['name'];?><br />
@@ -46,7 +46,7 @@
 								<strong>Nombre de places :</strong> <?php echo $event['max_places'];?><br />
 							</p>
 
-							<h3>Joueur <button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $player['id']; ?>" data-action="/inscriptions/admin/players/display" data-toggle="tooltip" data-original-title="Détails"><i class="fa fa-search"></i></button></h3>
+							<h3>Joueur <button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $player['id']; ?>" data-action="/inscriptions/admin/players/display" data-toggle="tooltip" data-original-title="Détails"><i class="fa fa-search"></i></button></h3>
 							<p>
 								<strong>Nom :</strong> <?php echo $player['firstname'].'  '.$player['lastname'];?><br />
 								<strong>Date de naissance :</strong> <?php echo substr($player['birthday'], 0, 10);?><br />
@@ -54,7 +54,7 @@
 								<strong>Courriel :</strong> <?php echo $player['email'];?><br />
 							</p>
 
-							<h3>Personnage  <button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $character['id']; ?>" data-action="/inscriptions/admin/characters/display" data-toggle="tooltip" data-original-title="Détails"><i class="fa fa-search"></i></button></h3>
+							<h3>Personnage  <button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $character['id']; ?>" data-action="/inscriptions/admin/characters/display" data-toggle="tooltip" data-original-title="Détails"><i class="fa fa-search"></i></button></h3>
 							
 							<p>
 								<strong>Nom :</strong> <?php echo $character['name'];?><br />

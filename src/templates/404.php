@@ -22,7 +22,7 @@
 							<p>Vous pouvez essayer de la retrouver en passant par l'accueil et en naviguant par la barre de navigation.</p>
 
 							<p>&nbsp;</p>
-							<a class="btn btn-primary btn-lg" href='/inscriptions/home/'>
+							<a class="btn btn-warning btn-lg" href='/inscriptions/home/'>
 								<i class="fa fa-home" aria-hidden="true"></i> &nbsp;
 								Accueil
 							</a>

@@ -12,13 +12,13 @@
 
 				<?php echo $step; ?>
 
-				<div class="alert alert-info" role="alert">
+				<div class="alert alert-warning" role="alert">
 					<p><strong>Désolé!</strong> Pour vous inscrire à un évènement, vous devez d'abord créer un personnage et entrée une carte de crédit dans le système.</p>
 				</div>
 
 			</div>
 			<div class="panel-footer text-right">
-				<a href='/inscriptions/events' class="btn btn-primary btn-lg">Annuler</a>
+				<a href='/inscriptions/events' class="btn btn-warning btn-lg">Annuler</a>
 			</div>
 			
 

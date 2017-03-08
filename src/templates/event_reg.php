@@ -15,7 +15,7 @@
 
 
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					  <div class="panel panel-primary">
+					  <div class="panel panel-warning">
 
 						<div class="panel-heading" role="tab" id="headingOne">
 							<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -70,7 +70,7 @@
 						  </div>
 						</div>
 					  </div>
-					  <div class="panel panel-primary">
+					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingThree">
 						  <h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 							  <i class="fa fa-shopping-cart"></i>&nbsp;
@@ -110,7 +110,7 @@
 								if ($current['isRegistered'] > 0) $option['mandatory'] = 0;
 
 								$more_link = '';
-								if ($option['link'] != '') $more_link = '<a href="'.$option['link'].'" target="_blank">En savoir plus...</a>';
+								if ($option['link'] != '') $more_link = '<a class="text-warning" href="'.$option['link'].'" target="_blank">En savoir plus...</a>';
 
 								echo '
 									<row>
@@ -241,7 +241,7 @@
 						  </div>
 						</div>
 					  </div>
-					  <div class="panel panel-primary">
+					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingTwo">
 						  <h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 							  <i class="fa fa-credit-card-alt"></i>&nbsp;
@@ -302,7 +302,7 @@
 					<input type="hidden" name="save" value="save">
 
 					<a href='/inscriptions/events' class="btn btn-default btn-lg backlink">Annuler</a>
-					<button id="register-event" type="submit" value="pay" class="btn btn-primary btn-lg"><i class="fa fa-usd"></i> &nbsp;Payer</button>
+					<button id="register-event" type="submit" value="pay" class="btn btn-warning btn-lg"><i class="fa fa-usd"></i> &nbsp;Payer</button>
 				</div>
 			</form>		
 			
@@ -349,7 +349,7 @@
 	  </div>
 	  <div class="modal-footer">
 		<button type="button" data-dismiss="modal" class="btn btn-default btn-lg">Annuler</button>
-		<button type="button" class="btn btn-primary btn-lg" id="payment"><i class="fa fa-usd"></i> &nbsp;Payer</button>
+		<button type="button" class="btn btn-warning btn-lg" id="payment"><i class="fa fa-usd"></i> &nbsp;Payer</button>
 	  </div>
 	</div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

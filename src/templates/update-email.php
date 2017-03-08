@@ -12,7 +12,7 @@
 				<div class="panel-body">
 
 
-					<div class="alert alert-info" role="alert">
+					<div class="alert alert-warning" role="alert">
 						<p><strong>Attention!</strong> Le système de Rh-PATAF utilise votre adresse courriel pour faire le lien avec vos compte de média social. Si vous utilisé la connexion automatique de Facebook ou Google, assurez-vous de faire le même changement dans Facebook ou Google sinon, Rh-PATAF pourrait ne pas vous reconnaitre.</p>
 						<p>Soyez certain que vous ne faites aucune erreur dans votre nouvelle adresse, c'est aussi votre nom d'utilisateur et votre adresse pour réinitailiser votre mot de passe.</p>
 					</div>
@@ -46,7 +46,7 @@
 
 				</div>
 				<div class="panel-footer text-right">
-					<button id="save-profile" type="submit" value="save" class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
+					<button id="save-profile" type="submit" value="save" class="btn btn-warning btn-lg"><i class="fa fa-check"></i> &nbsp;Enregistrer</button>
 				</div>
 		
 
