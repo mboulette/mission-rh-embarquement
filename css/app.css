@@ -1,0 +1,323 @@
+body {
+	background-color: #000;
+	background: url(../img/bg-space.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+label.required::after {
+  content: " *";
+  color: #265a88;
+}
+
+.signin-logo {
+	margin:20px 20% 20px 20%;
+}
+
+.signin-panel {
+	box-shadow: 2px 2px 12px #111e33;
+}
+
+.copyright {
+	color: #fff;
+}
+
+
+.navbar-inverse .navbar-brand {
+	padding-top:5px;
+	padding-right: 20px; 
+}
+
+.session_message {
+	position: fixed;
+	top: 90px;
+	width: 80%;
+	margin-left: 10%;
+	z-index: 100;
+}
+
+.nav .usercard {
+	font-size: 90%;
+	color: #9d9d9d;
+	text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+}
+
+.nav .usercard strong {
+	font-size: 130%;
+}
+
+.nav .usercard img {
+	padding-right:5px;
+	padding-top: 3px;
+}
+
+.nav .usercard li {
+	padding:5px;
+}
+
+.nav .usercard:hover {
+	color:#fff;
+}
+
+
+
+.main {
+	margin-top: 20px;
+}
+
+.main .panel-body {
+	min-height: 250px;
+}
+
+.row .panel-body {
+  min-height: initial;
+}
+
+
+.bg-icon {
+	color: #337ab7;
+	font-size: 444px !important;
+	opacity: 0.1;
+	position: absolute;
+	right:0;
+	top:90px;
+}
+
+.card .fa-check-square {
+    display:none;
+}
+
+.card .fa-square-o  {
+    display:inline;
+}
+
+.card.active .fa-check-square {
+    display:inline;
+}
+
+.card.active .fa-square-o  {
+    display:none;
+}
+
+.card {
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+    padding: 10px; 
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    color: #777;
+    font-size: 90%;
+}
+
+label .card {
+  font-weight: normal;
+}
+
+.card:hover, .card.active {
+	border: 1px solid #337ab7;
+	color: #265a88;
+	background-color: #e6eef7;
+	cursor: pointer;
+}
+
+.card.disabled:hover {
+  border: 1px solid #e8e8e8;
+  color: #777;
+  background-color: #f5f5f5;
+  cursor: default;
+}
+
+.card h3 {
+	margin: 0;
+	color: #000;
+}
+
+.card hr {
+	margin: 5px 10px;
+}
+
+.card h1 {
+  text-align: center;
+  font-size: 500%;
+  font-weight: bold;
+  margin: 0;
+  line-height: 90%;
+}
+
+.card h2 {
+  text-align: center;
+  font-size: 300%;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 90%;
+}
+
+.card .participants {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 140%;
+  line-height: 90%;
+}
+
+.card .participants span {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 70%;
+  line-height: 90%;
+}
+
+.option-description small {
+  font-size: 120%;  
+}
+
+
+.option-description small {
+  font-size: 90%;
+  color: #777;
+}
+
+/*
+.table thead {
+  background-color: #000;
+  color: #fff;
+}
+*/
+
+.cart-total {
+  font-size: 120%;
+}
+
+.file-drop-zone {
+    height: auto;
+}
+
+.bs-placeholder {
+  color: #337ab7 !important;
+  font-weight: bold;
+}
+
+.ribbon {
+   position: absolute;
+   right: 10px; top: -5px;
+   z-index: 1;
+   overflow: hidden;
+   width: 75px; height: 75px; 
+   text-align: right;
+}
+.ribbon span {
+   font-size: 10px;
+   color: #fff; 
+   text-transform: uppercase; 
+   text-align: center;
+   font-weight: bold; line-height: 20px;
+   transform: rotate(45deg);
+   width: 100px; display: block;
+   background: #79A70A;
+   background: linear-gradient(#d6d6d6 0%, #9b9b9b 100%);
+   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+   position: absolute;
+   top: 19px; right: -21px;
+}
+.ribbon span::before {
+   content: '';
+   position: absolute; 
+   left: 0px; top: 100%;
+   z-index: -1;
+   border-left: 3px solid #9b9b9b;
+   border-right: 3px solid transparent;
+   border-bottom: 3px solid transparent;
+   border-top: 3px solid #9b9b9b;
+}
+.ribbon span::after {
+   content: '';
+   position: absolute; 
+   right: 0%; top: 100%;
+   z-index: -1;
+   border-right: 3px solid #9b9b9b;
+   border-left: 3px solid transparent;
+   border-bottom: 3px solid transparent;
+   border-top: 3px solid #9b9b9b;
+}
+
+.ribbon-warning span {background: linear-gradient(#f0ad4e 0%, #ba7c25 100%);}
+.ribbon-warning span::before {border-left-color: #ba7c25; border-top-color: #ba7c25;}
+.ribbon-warning span::after {border-right-color: #ba7c25; border-top-color: #ba7c25;}
+
+.ribbon-success span {background: linear-gradient(#9BC90D 0%, #79A70A 100%);}
+.ribbon-success span::before {border-left-color: #79A70A; border-top-color: #79A70A;}
+.ribbon-success span::after {border-right-color: #79A70A; border-top-color: #79A70A;}
+
+.ribbon-danger span {background: linear-gradient(#F70505 0%, #8F0808 100%);}
+.ribbon-danger span::before {border-left-color: #8F0808; border-top-color: #8F0808;}
+.ribbon-danger span::after {border-right-color: #8F0808; border-top-color: #8F0808;}
+
+.ribbon-primary span {background: linear-gradient(#2989d8 0%, #1e5799 100%);}
+.ribbon-primary span::before {border-left-color: #1e5799; border-top-color: #1e5799;}
+.ribbon-primary span::after {border-right-color: #1e5799; border-top-color: #1e5799;}
+
+.ribbon-default span {background: linear-gradient(#d6d6d6 0%, #9b9b9b 100%);}
+.ribbon-default span::before {border-left-color: #9b9b9b; border-top-color: #9b9b9b;}
+.ribbon-default span::after {border-right-color: #9b9b9b; border-top-color: #9b9b9b;}
+
+.ribbon-active span {background: linear-gradient(#2989d8 0%, #1e5799 100%);}
+.ribbon-active span::before {border-left-color: #1e5799; border-top-color: #1e5799;}
+.ribbon-active span::after {border-right-color: #1e5799; border-top-color: #1e5799;}
+
+.card.active .ribbon span {background: linear-gradient(#2989d8 0%, #1e5799 100%);}
+.card.active .ribbon span::before {border-left-color: #1e5799; border-top-color: #1e5799;}
+.card.active .ribbon span::after {border-right-color: #1e5799; border-top-color: #1e5799;}
+
+.fa-cc-american_express:before {
+  content: "\f1f3";
+}
+
+
+.bootstrap-select {
+  margin-top: 5px;
+}
+
+
+.fa-step {
+  font-family: Arial !important;
+  font-weight: bold !important;
+  font-size: 1em !important;
+  line-height: 1.5em !important;
+
+}
+
+.home-step {
+  cursor: pointer;
+}
+
+.home-step:hover {
+  color : #337ab7;
+}
+
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.table tr button {
+  display: none;
+}
+
+.table tr:hover button {
+  display: inherit;
+}
+
+.table-hover>tbody>tr:hover {
+  background-color: #d9edf7;
+  /*font-weight: bold;*/
+}
+
+.table tr.action {
+  cursor: pointer;
+}
+
+.table .sort-order {
+  cursor: pointer; 
+}
