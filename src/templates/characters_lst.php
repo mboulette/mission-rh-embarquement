@@ -41,7 +41,7 @@
 											<p><?php echo $char['notes']; ?></p>
 											<p>
 												<input type="hidden" name="id_character" value="<?php echo $char['id']; ?>">
-												<?php if ($char['level'] == 0) { ?>
+												<?php if ($char['rank'] == 0) { ?>
 													
 													<button type="submit" class="btn btn-warning hidden-xs"><i class="fa fa-pencil"></i> &nbsp;Modifier</button>
 													<button data-id="<?php echo $char['id']; ?>" type="button" class="btn btn-default delete_character hidden-xs"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
@@ -59,7 +59,7 @@
 									<div class="row">
 										<div class="col-sm-9 text-right pull-right text-warning hidden-xs">Date de création : <?php echo $char['date_created']; ?></div>
 									</div>
-									<div class="ribbon"><span>Niveau <?php echo $char['level']; ?></span></div>
+									<div class="ribbon"><span>Grade <?php echo $char['rank']; ?></span></div>
 								</form>
 
 							</div>

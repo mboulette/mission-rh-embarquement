@@ -15,14 +15,14 @@
 
 				<div class="panel-body">
 
-					<?php if ($current['level'] != 0) { ?>
+					<?php if ($current['rank'] != 0) { ?>
 						<div class="alert alert-danger" role="alert">Puisque ce personnage a déjà participé à un évènement, vous ne pouvez pas le modifier dans sont intégralité, si vous voulez modifier son nom, sa race, sa profession ou sa corporation, contactez un administrateur.</div>
 					<?php } ?>
 
 					<div class="form-group">
 						<label for="name" class="col-sm-3 control-label">Nom du personnage</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="name" name="name" placeholder="Nom du personnage" required maxlength="40" value="<?php echo $current['name']; ?>" <?php if ($current['level'] != 0) echo 'disabled';?>>
+							<input type="text" class="form-control" id="name" name="name" placeholder="Nom du personnage" required maxlength="40" value="<?php echo $current['name']; ?>" <?php if ($current['rank'] != 0) echo 'disabled';?>>
 						</div>
 					</div>
 
@@ -32,7 +32,7 @@
 						<div class="col-sm-8">
 							<?php foreach ($races_lst as $race) { ?>
 								<label class="radio-inline">
-									<input type="radio" name="id_race" value="<?php echo $race['id']; ?>" <?php if ($current['id_race'] == $race['id']) echo 'checked'; ?> required <?php if ($current['level'] != 0) echo 'disabled';?>>
+									<input type="radio" name="id_race" value="<?php echo $race['id']; ?>" <?php if ($current['id_race'] == $race['id']) echo 'checked'; ?> required <?php if ($current['rank'] != 0) echo 'disabled';?>>
 									<?php echo $race['name']; ?>
 								</label>
 							<?php } ?>
@@ -43,7 +43,7 @@
 						<div class="col-sm-8">
 							<?php foreach ($corporations_lst as $corporation) { ?>
 								<label class="radio-inline">
-									<input type="radio" name="id_corporation" value="<?php echo $corporation['id']; ?>" <?php if ($current['id_corporation'] == $corporation['id']) echo 'checked'; ?> required <?php if ($current['level'] != 0) echo 'disabled';?>>
+									<input type="radio" name="id_corporation" value="<?php echo $corporation['id']; ?>" <?php if ($current['id_corporation'] == $corporation['id']) echo 'checked'; ?> required <?php if ($current['rank'] != 0) echo 'disabled';?>>
 									<?php echo $corporation['name']; ?>
 								</label>
 							<?php } ?>
@@ -54,7 +54,7 @@
 						<div class="col-sm-8">
 							<?php foreach ($professions_lst as $profession) { ?>
 								<label class="radio-inline">
-									<input type="radio" name="id_profession" value="<?php echo $profession['id']; ?>" <?php if ($current['id_profession'] == $profession['id']) echo 'checked'; ?> required <?php if ($current['level'] != 0) echo 'disabled';?>>
+									<input type="radio" name="id_profession" value="<?php echo $profession['id']; ?>" <?php if ($current['id_profession'] == $profession['id']) echo 'checked'; ?> required <?php if ($current['rank'] != 0) echo 'disabled';?>>
 									<?php echo $profession['name']; ?>
 								</label>
 							<?php } ?>

@@ -29,7 +29,7 @@
 	<strong>Race :</strong> <?php echo $character['race']['name'];?><br />
 	<strong>Profession :</strong> <?php echo $character['profession']['name'];?><br />
 	<strong>Corporation :</strong> <?php echo $character['corporation']['name'];?><br />
-	<strong>Level :</strong> <?php echo $character['level'];?><br />
+	<strong>Grade :</strong> <?php echo $character['rank'];?><br />
 </p>
 
 

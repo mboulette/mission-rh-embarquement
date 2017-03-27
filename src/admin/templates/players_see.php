@@ -238,7 +238,7 @@
 													<th>Race</th>
 													<th>Profession</th>
 													<th>Corporation</th>
-													<th>Niveau</th>
+													<th>Grade</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -263,7 +263,7 @@
 													<td><?php echo $race_pic.str_cut($character['race']['name'], 60); ?></td>
 													<td><?php echo $profession_pic.str_cut($character['profession']['name'], 60); ?></td>
 													<td><?php echo $corporation_pic.str_cut($character['corporation']['name'], 60); ?></td>
-													<td><?php echo $character['level'].$dead; ?></td>
+													<td><?php echo $character['rank'].$dead; ?></td>
 												</tr>
 												<?php } ?>
 											</tbody>

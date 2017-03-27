@@ -125,9 +125,9 @@ switch ($script_url) {
         echo $characters->kill();
     break;
 
-    case '/inscriptions/admin/characters/levelup/' :
+    case '/inscriptions/admin/characters/rankup/' :
         $characters = new characters();
-        echo $characters->levelup();
+        echo $characters->rankup();
     break;
 
     case '/inscriptions/admin/characters/edit/' :

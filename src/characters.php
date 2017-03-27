@@ -252,7 +252,7 @@ class characters extends dataObject
             'Race' => 'race_name',
             'Profession' => 'profession_name',
             'Corporation' => 'corporation_name',
-            'Niveau' => 'level',
+            'Grade' => 'rank',
         );
 
         $orderby = 'name';
@@ -460,18 +460,18 @@ class characters extends dataObject
     }
 
 
-    public function levelup() {
+    public function rankup() {
 
     	$current = $this->getOne($_POST['id']);
 		$character = array('id' => $_POST['id']);
-		$character['level'] = 1+$current['level'];
+		$character['rank'] = 1+$current['rank'];
 
 		$this->update($character);
 
 
         $_SESSION['message'] = array(
             'type' => 'success',
-            'body' => 'Le personnage «'.$current['name'].'» a monté d`un niveau!'
+            'body' => 'Le personnage «'.$current['name'].'» a monté en grade!'
         );
 
         $_POST['submitaction'] = 'display';

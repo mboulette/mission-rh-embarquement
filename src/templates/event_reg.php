@@ -59,7 +59,7 @@
 												</div>
 												
 											</div>
-											<div class="ribbon"><span>Niveau <?php echo $char['level']; ?></span></div>
+											<div class="ribbon"><span>Grade <?php echo $char['rank']; ?></span></div>
 										</div>
 
 									</label>

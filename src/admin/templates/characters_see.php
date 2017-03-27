@@ -20,7 +20,7 @@
 							<button class="btn btn-primary tool" data-modal="modal-unkill"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
 						<?php } ?>					
 
-						<button class="btn btn-default tool" data-modal="modal-levelup"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up</button>
+						<button class="btn btn-default tool" data-modal="modal-rankup"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade</button>
 						<button class="btn btn-default tool" data-modal="modal-edit"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
 
 						<hr />
@@ -30,7 +30,7 @@
 							<p><strong><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste :</strong> Ce bouton permet de retourner à la liste des personnages</p>
 							<p><strong><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer :</strong> Ce bouton permet de supprimer complètement le personnage. C'est essentiellement pour supprimer des spamers, ou des tests de certains clients. Vous ne pouvez pas supprimer des personnages qui ont déjà participé à des évènements.</p>
 							<p><strong><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer :</strong> Ce bouton permet de tuer un personnage, ce dernier ne pourra plus être utilisé lors d'une inscription.</p>
-							<p><strong><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up :</strong> Ce bouton vous permet d'ajouter un niveau à ce personnage, en ajoutant un niveau, certaines nouveaux pouvoirs pourrait être disponible.</p>
+							<p><strong><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade :</strong> Ce bouton vous permet d'élever ce personnage en grade, en montanr de grade, certaines nouvelles ressources lui seront disponible.</p>
 							<p><strong><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier :</strong> Ce bouton permet de modifier un personnage, il permet de faire des changements impossible par le joueur.</p>
 						</div>
 
@@ -48,7 +48,7 @@
 							<button class="btn btn-primary btn-lg btn-block tool" data-modal="modal-unkill" style="margin: 3px;"><i class="fa fa-child" aria-hidden="true"></i> &nbsp;Ressusciter</button>
 						<?php } ?>					
 
-						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-levelup" style="margin: 3px;"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up</button>
+						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-rankup" style="margin: 3px;"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade</button>
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-edit" style="margin: 3px;"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
 
 					</div>
@@ -57,9 +57,9 @@
 					<form id="form_character" method="post" class="form-horizontal">
 
 						<div class="form-group">
-							<label for="level" class="col-sm-3 control-label">Niveau</label>
+							<label for="rank" class="col-sm-3 control-label">Grade</label>
 							<div class="col-sm-8" style="font-size:24px;">
-								<span class="label label-default">Niveau <?php echo $character['level']; ?></span>
+								<span class="label label-default">Grade <?php echo $character['rank']; ?></span>
 								<?php if ($character['dead']) echo '&nbsp;<span class="label label-danger"><img src="/inscriptions/img/ico-dead.svg.php?fill=fff" style="margin-bottom:4px; width:18px;"> '.'Mort'.'</span>'; ?>
 							</div>
 						</div>
@@ -380,25 +380,25 @@
 </div><!-- /.modal -->
 
 
-<div id="modal-levelup" class="modal fade" tabindex="-1" role="dialog">
+<div id="modal-rankup" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Confirmation de Level-Up</h4>
+        <h4 class="modal-title">Confirmation de nouveau grade</h4>
       </div>
       <div class="modal-body">
         
-		<p>Êtes-vous certain de vouloir ajouter un niveau au personnage «<?php echo $character['name']; ?>» ?</p>
+		<p>Êtes-vous certain de vouloir élever en grade ce personnage «<?php echo $character['name']; ?>» ?</p>
 
       </div>
       <div class="modal-footer">
-	    <form method="post" action="/inscriptions/admin/characters/levelup/">
-			<input name="submitaction" type="hidden" value="levelup">
+	    <form method="post" action="/inscriptions/admin/characters/rankup/">
+			<input name="submitaction" type="hidden" value="rankup">
 			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-warning"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Level Up</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade</button>
 		</form>
       </div>
     </div><!-- /.modal-content -->

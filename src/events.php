@@ -394,7 +394,7 @@ class events extends dataObject
             'Sexe' => 'gender',
             'Courriel' => 'email',
             'Personnage' => 'character_name',
-            'Niveau' => 'level',
+            'Grade' => 'rank',
             'Corporation' => 'corporation_name',
             'Race' => 'race_name',
             'Profession' => 'profession_name',
