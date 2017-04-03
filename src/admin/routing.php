@@ -208,6 +208,73 @@ switch ($script_url) {
     break;
     
 
+
+
+    case '/inscriptions/admin/ressources/' :
+        $ressources = new ressources();
+        echo $ressources->getAdminList();
+    break;
+
+    case '/inscriptions/admin/ressources/edit' :
+        $ressources = new ressources();
+        echo $ressources->edit();
+    break;
+
+    case '/inscriptions/admin/ressources/erase' :
+        $ressources = new ressources();
+        echo $ressources->erase();
+    break;
+
+
+    case '/inscriptions/admin/recipes/' :
+        $recipes = new recipes();
+        echo $recipes->getAdminList();
+    break;
+
+    case '/inscriptions/admin/recipes/edit' :
+        $recipes = new recipes();
+        echo $recipes->edit();
+    break;
+
+    case '/inscriptions/admin/recipes/erase' :
+        $recipes = new recipes();
+        echo $recipes->erase();
+    break;
+
+
+    case '/inscriptions/admin/feats/' :
+        $feats = new feats();
+        echo $feats->getAdminList();
+    break;
+
+    case '/inscriptions/admin/feats/edit' :
+        $feats = new feats();
+        echo $feats->edit();
+    break;
+
+    case '/inscriptions/admin/feats/erase' :
+        $feats = new feats();
+        echo $feats->erase();
+    break;
+
+
+    case '/inscriptions/admin/skills/' :
+        $skills = new skills();
+        echo $skills->getAdminList();
+    break;
+
+    case '/inscriptions/admin/skills/edit' :
+        $skills = new skills();
+        echo $skills->edit();
+    break;
+
+    case '/inscriptions/admin/skills/erase' :
+        $skills = new skills();
+        echo $skills->erase();
+    break;
+
+
+
     default :
         
         if (isset($no_player_page) && $no_player_page) {

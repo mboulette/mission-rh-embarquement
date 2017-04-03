@@ -1,8 +1,10 @@
 	<?php
 	$active_menu_clients = ($active_menu=='admin-players' || $active_menu=='admin-characters') ? 'active' : '';
 	$active_menu_inscriptions = ($active_menu=='admin-events' || $active_menu=='admin-options' || $active_menu=='admin-attendees') ? 'active' : '';
-	$active_menu_rules = ($active_menu=='admin-races' || $active_menu=='admin-corporations' || $active_menu=='admin-professions' || $active_menu=='admin-powers') ? 'active' : '';
 	$active_menu_maintenance = ($active_menu=='admin-news' || $active_menu=='admin-maintenance') ? 'active' : '';
+
+	$active_menu_rules = ($active_menu=='admin-races' || $active_menu=='admin-corporations' || $active_menu=='admin-professions' || $active_menu=='admin-ressources' || $active_menu=='admin-recipes' || $active_menu=='admin-feats' || $active_menu=='admin-skills') ? 'active' : '';
+
 	?>
 
 	<nav class="navbar navbar-default navbar-static-top">
@@ -40,7 +42,11 @@
 							<li class="<?php echo ($active_menu=='admin-races' ? 'active' : '');?>"><a href="/inscriptions/admin/races">Races</a></li>
 							<li class="<?php echo ($active_menu=='admin-corporations' ? 'active' : '');?>"><a href="/inscriptions/admin/corporations">Corporations</a></li>
 							<li class="<?php echo ($active_menu=='admin-professions' ? 'active' : '');?>"><a href="/inscriptions/admin/professions">Professions</a></li>
-							<li class="<?php echo ($active_menu=='admin-powers' ? 'active' : '');?>"><a href="/inscriptions/admin/powers">Pouvoirs</a></li>
+							<li class="<?php echo ($active_menu=='admin-ressources' ? 'active' : '');?>"><a href="/inscriptions/admin/ressources">Ressources</a></li>
+							<li class="<?php echo ($active_menu=='admin-recipes' ? 'active' : '');?>"><a href="/inscriptions/admin/recipes">Recettes</a></li>
+							<li class="<?php echo ($active_menu=='admin-feats' ? 'active' : '');?>"><a href="/inscriptions/admin/feats">Talents</a></li>
+							<li class="<?php echo ($active_menu=='admin-skills' ? 'active' : '');?>"><a href="/inscriptions/admin/skills">Habiletés</a></li>
+
 						</ul>
 					</li>
 
