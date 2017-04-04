@@ -15,6 +15,11 @@ class skills extends dataObject
     //****************************************************************************************************
     //** ADMIN
     //****************************************************************************************************
+    public function search_array($array, $colomn, $value) {
+
+        $results = array_search($value, array_column($array, $colomn));
+        return $array[$results];
+    }
 
     public function getAdminList() {
         
@@ -24,10 +29,17 @@ class skills extends dataObject
 
         $list = $this->getAll();
 
+        $races = new races();
+        $races = $races->getOrderedList('name');
+
+        foreach ($list as &$skill) {
+            $skill['race_name'] = $this->search_array($races, 'id', $skill['feature_id'])['name'];
+        }
+
         $columns = array(
+            'Race' => 'race_name',
             'Nom' => 'name',
             'Description' => 'description',
-            'Race' => 'feature_id',
             'Mise à jour' => 'date_updated',
         );
 
@@ -59,10 +71,16 @@ class skills extends dataObject
             return $this->getAdminList();
         }
 
+        $races = new races();
+        $races = $races->getOrderedList('name');
+
         $skills = $this->getOne($_POST['id']);
 
         $template = get_template('navbar', array('active_menu' => 'admin-skills'));
-        $template .= get_template('recipes_mdf', array('skills' => $skills), 'admin/');
+        $template .= get_template('skills_mdf', array(
+            'skills' => $skills,
+            'races' => $races
+        ), 'admin/');
 
         return render($template);
 
@@ -78,7 +96,7 @@ class skills extends dataObject
 
 
         $skills = array(
-            'id' => $_POST['id_recipes'],
+            'id' => $_POST['id_skills'],
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'link' => $_POST['link'],

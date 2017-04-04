@@ -22,7 +22,7 @@
 					<div class="form-group">
 						<label for="description" class="col-sm-3 control-label">Description</label>
 						<div class="col-sm-8">
-							<textarea class="form-control" rows="6" id="description" name="description" placeholder="Description" required maxlength="500"><?php echo $feats['description']; ?></textarea>
+							<textarea class="form-control" rows="6" id="description" name="description" placeholder="Description" required maxlength="1000"><?php echo $feats['description']; ?></textarea>
 						</div>
 					</div>
 
@@ -34,6 +34,13 @@
 						</div>
 					</div>
 
+
+					<div class="form-group">
+						<label for="prerequisites" class="col-sm-3 control-label">Prérequis</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="6" id="prerequisites" name="prerequisites" placeholder="Conditions préalables" maxlength="1000"><?php echo $feats['prerequisites']; ?></textarea>
+						</div>
+					</div>
 
 				</div>
 				<div class="panel-footer text-right">

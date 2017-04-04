@@ -57,6 +57,50 @@
 						</div>
 					</div>
 
+					<hr>
+
+					<div class="form-group">
+						<label for="malus" class="col-sm-3 control-label">Malus de départ</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="6" id="malus" name="malus" placeholder="Modificateur de santé" required maxlength="1000"><?php echo $corporations['malus']; ?></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="ressource_id" class="col-sm-3 control-label">Ressource type</label>
+						<div class="col-sm-8">
+							<select name="ressource_id" class="selectpicker">
+								<optgroup label="Terrestre">
+								<?php foreach ($ressources as $ressource) { ?>
+									<?php if ($ressource['level'] == 1) { ?>
+										<option value="<?php echo $ressource['id']; ?>"
+										<?php if ($corporations['ressource_id'] == $ressource['id']) echo 'selected'; ?>><?php echo $ressource['name']; ?></option>
+									<?php } ?>
+								<?php } ?>
+								</optgroup>
+								<!--
+								<optgroup label="Indigène">
+								<?php foreach ($ressources as $ressource) { ?>
+									<?php if ($ressource['level'] == 2) { ?>
+										<option value="<?php echo $ressource['id']; ?>"
+										<?php if ($corporations['ressource_id'] == $ressource['id']) echo 'selected'; ?>><?php echo $ressource['name']; ?></option>
+									<?php } ?>
+								<?php } ?>
+								</optgroup>
+								<optgroup label="Hybride">
+								<?php foreach ($ressources as $ressource) { ?>
+									<?php if ($ressource['level'] == 3) { ?>
+										<option value="<?php echo $ressource['id']; ?>"
+										<?php if ($corporations['ressource_id'] == $ressource['id']) echo 'selected'; ?>><?php echo $ressource['name']; ?></option>
+									<?php } ?>
+								<?php } ?>
+								</optgroup>
+								-->
+							</select>
+							<p class="help-block">Le joueur de cette corporation recevra automatiquement 2 ressources de ce type à chaque inscription.</p>
+						</div>
+					</div>
+
 
 				</div>
 				<div class="panel-footer text-right">

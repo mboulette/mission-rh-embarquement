@@ -9,12 +9,33 @@ class recipes extends dataObject
 
 	}
 
+    public function getOne($id) {
+        $tmp = parent::getOne($id);
+        $tmp['recipies'] = json_decode($tmp['recipies'], true);
+        if (is_null($tmp['recipies'])) $tmp['recipies'] = array();
+        $tmp['level_name'] = $this->getLevelName($tmp['level']);
 
+        return $tmp;
+    }
+
+    public function getLevelName($level) {
+        $level_name = array(
+            1 => 'Mineure',
+            2 => 'Majeure',
+        );
+
+        return $level_name[$level];
+    }
 
 
     //****************************************************************************************************
     //** ADMIN
     //****************************************************************************************************
+    public function search_array($array, $colomn, $value) {
+
+        $results = array_search($value, array_column($array, $colomn));
+        return $array[$results];
+    }
 
     public function getAdminList() {
         
@@ -22,12 +43,21 @@ class recipes extends dataObject
             $this->save();
         }
 
+        $professions = new professions();
+        $professions = $professions->getOrderedList('name');
+
         $list = $this->getAll();
 
+        foreach ($list as &$recipe) {
+            $recipe['level_name'] = $this->getLevelName($recipe['level']);
+            $recipe['profession_name'] = $this->search_array($professions, 'id', $recipe['feature_id'])['name'];
+        }
+
         $columns = array(
+            'Profession' => 'profession_name',
             'Nom' => 'name',
             'Description' => 'description',
-            'Niveau' => 'level',
+            'Niveau' => 'level_name',
             'Mise à jour' => 'date_updated',
         );
 
@@ -59,10 +89,21 @@ class recipes extends dataObject
             return $this->getAdminList();
         }
 
+        $professions = new professions();
+        $professions = $professions->getOrderedList('name');
+
+        $ressources = new ressources();
+        $ressources = $ressources->getOrderedList('name');
+
+
         $recipes = $this->getOne($_POST['id']);
 
         $template = get_template('navbar', array('active_menu' => 'admin-recipes'));
-        $template .= get_template('recipes_mdf', array('recipes' => $recipes), 'admin/');
+        $template .= get_template('recipes_mdf', array(
+            'recipes' => $recipes,
+            'professions' => $professions,
+            'ressources' => $ressources
+        ), 'admin/');
 
         return render($template);
 
@@ -83,7 +124,7 @@ class recipes extends dataObject
             'description' => $_POST['description'],
             'link' => $_POST['link'],
             'level' => $_POST['level'],
-            'recipies' => $_POST['recipies'],
+            'recipies' => json_encode($_POST['recipies']),
             'feature_id' => $_POST['feature_id'],
         );
 

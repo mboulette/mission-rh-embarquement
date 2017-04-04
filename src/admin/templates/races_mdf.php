@@ -57,6 +57,15 @@
 						</div>
 					</div>
 
+					<hr>
+
+					<div class="form-group">
+						<label for="malus" class="col-sm-3 control-label">Malus de départ</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="6" id="malus" name="malus" placeholder="Malus de départ" required maxlength="1000"><?php echo $races['malus']; ?></textarea>
+						</div>
+					</div>
+
 
 				</div>
 				<div class="panel-footer text-right">

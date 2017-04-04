@@ -40,8 +40,9 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Règles <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li class="<?php echo ($active_menu=='admin-races' ? 'active' : '');?>"><a href="/inscriptions/admin/races">Races</a></li>
-							<li class="<?php echo ($active_menu=='admin-corporations' ? 'active' : '');?>"><a href="/inscriptions/admin/corporations">Corporations</a></li>
 							<li class="<?php echo ($active_menu=='admin-professions' ? 'active' : '');?>"><a href="/inscriptions/admin/professions">Professions</a></li>
+							<li class="<?php echo ($active_menu=='admin-corporations' ? 'active' : '');?>"><a href="/inscriptions/admin/corporations">Corporations</a></li>
+							<li class="nav-divider"></li>
 							<li class="<?php echo ($active_menu=='admin-ressources' ? 'active' : '');?>"><a href="/inscriptions/admin/ressources">Ressources</a></li>
 							<li class="<?php echo ($active_menu=='admin-recipes' ? 'active' : '');?>"><a href="/inscriptions/admin/recipes">Recettes</a></li>
 							<li class="<?php echo ($active_menu=='admin-feats' ? 'active' : '');?>"><a href="/inscriptions/admin/feats">Talents</a></li>

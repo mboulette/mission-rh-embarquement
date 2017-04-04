@@ -61,7 +61,7 @@ class feats extends dataObject
         $feats = $this->getOne($_POST['id']);
 
         $template = get_template('navbar', array('active_menu' => 'admin-feats'));
-        $template .= get_template('recipes_mdf', array('feats' => $feats), 'admin/');
+        $template .= get_template('feats_mdf', array('feats' => $feats), 'admin/');
 
         return render($template);
 

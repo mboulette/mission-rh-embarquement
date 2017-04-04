@@ -16,7 +16,15 @@ class races extends dataObject
 		return parent::getList($conditions);
 	}
 
+    public function getOrderedList($orderby) {
+        $races = $this->getAll();
 
+        usort($races, function($a, $b) use ($orderby) {
+            return ($a[$orderby] > $b[$orderby]);
+        });
+
+        return $races;
+    }
 
     //****************************************************************************************************
     //** ADMIN
@@ -87,7 +95,9 @@ class races extends dataObject
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'link' => $_POST['link'],
+            'malus' => $_POST['malus'],
             'discriminator' => 'race',
+
         );
 
         if ($_POST['picture_url'] != '') {

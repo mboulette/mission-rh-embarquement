@@ -65,10 +65,16 @@ class corporations extends dataObject
             return $this->getAdminList();
         }
 
+        $ressources = new ressources();
+        $ressources = $ressources->getOrderedList('name');
+
         $corporations = $this->getOne($_POST['id']);
 
         $template = get_template('navbar', array('active_menu' => 'admin-corporations'));
-        $template .= get_template('corporations_mdf', array('corporations' => $corporations), 'admin/');
+        $template .= get_template('corporations_mdf', array(
+            'corporations' => $corporations,
+            'ressources' => $ressources
+        ), 'admin/');
 
         return render($template);
 
@@ -88,6 +94,8 @@ class corporations extends dataObject
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'link' => $_POST['link'],
+            'malus' => $_POST['malus'],
+            'ressource_id' => $_POST['ressource_id'],
             'discriminator' => 'corporation',
         );
 

@@ -16,7 +16,15 @@ class professions extends dataObject
 		return parent::getList($conditions);
 	}
 
+    public function getOrderedList($orderby) {
+        $professions = $this->getAll();
 
+        usort($professions, function($a, $b) use ($orderby) {
+            return ($a[$orderby] > $b[$orderby]);
+        });
+
+        return $professions;
+    }
 
 
     //****************************************************************************************************

@@ -9,7 +9,34 @@ class ressources extends dataObject
 
 	}
 
+    public function getLevelName($level) {
+        $level_name = array(
+            1 => 'Terrestre',
+            2 => 'Indigène',
+            3 => 'Hybride',
+        );
 
+        return $level_name[$level];
+    }
+
+    public function getOne($id) {
+        $tmp = parent::getOne($id);
+        $tmp['credits'] = json_decode($tmp['credits'], true);
+        if (is_null($tmp['credits'])) $tmp['credits'] = array();
+        $tmp['level_name'] = $this->getLevelName($tmp['level']);
+
+        return $tmp;
+    }
+
+    public function getOrderedList($orderby) {
+        $ressources = $this->getAll();
+
+        usort($ressources, function($a, $b) use ($orderby) {
+            return ($a[$orderby] > $b[$orderby]);
+        });
+
+        return $ressources;
+    }
 
 
     //****************************************************************************************************
@@ -18,16 +45,22 @@ class ressources extends dataObject
 
     public function getAdminList() {
         
+
+
         if (isset($_POST['submitaction']) && $_POST['submitaction'] == 'save') {
             $this->save();
         }
 
         $list = $this->getAll();
 
+        foreach ($list as &$ressource) {
+            $ressource['level_name'] = $this->getLevelName($ressource['level']);
+        }
+
         $columns = array(
             'Nom' => 'name',
             'Description' => 'description',
-            'Niveau' => 'level',
+            'Niveau' => 'level_name',
             'Mise à jour' => 'date_updated',
         );
 
@@ -60,9 +93,14 @@ class ressources extends dataObject
         }
 
         $ressources = $this->getOne($_POST['id']);
+        $professions = new professions();
+        $professions = $professions->getOrderedList('name');
 
         $template = get_template('navbar', array('active_menu' => 'admin-ressources'));
-        $template .= get_template('ressources_mdf', array('ressources' => $ressources), 'admin/');
+        $template .= get_template('ressources_mdf', array(
+            'ressources' => $ressources,
+            'professions' => $professions
+        ), 'admin/');
 
         return render($template);
 
@@ -83,7 +121,7 @@ class ressources extends dataObject
             'description' => $_POST['description'],
             'link' => $_POST['link'],
             'level' => $_POST['level'],
-            'credit' => $_POST['credit'],
+            'credits' => json_encode($_POST['credits']),
         );
 
         if (is_numeric($ressources['id'])) {

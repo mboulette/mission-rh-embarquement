@@ -354,3 +354,12 @@ label .card {
 .decharge h4 {
   margin-top: 0;
 }
+
+.input-group-addon.credits {
+  width: 160px;
+  text-align: left;
+}
+
+.input-group-btn.minus .btn {
+  border-radius: initial;
+}
