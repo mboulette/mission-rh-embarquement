@@ -17,7 +17,15 @@ class corporations extends dataObject
 	}
 
 
+    public function getOrderedList($orderby) {
+        $corporations = $this->getAll();
 
+        usort($corporations, function($a, $b) use ($orderby) {
+            return ($a[$orderby] > $b[$orderby]);
+        });
+
+        return $corporations;
+    }
 
     //****************************************************************************************************
     //** ADMIN

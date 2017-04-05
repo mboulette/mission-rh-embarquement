@@ -125,6 +125,9 @@ class recipes extends dataObject
             'link' => $_POST['link'],
             'level' => $_POST['level'],
             'recipies' => json_encode($_POST['recipies']),
+            'method' => $_POST['method'],
+            'effect' => $_POST['effect'],
+            'bilan' => $_POST['bilan'],
             'feature_id' => $_POST['feature_id'],
         );
 

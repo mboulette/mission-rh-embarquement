@@ -27,9 +27,29 @@
 					</div>
 
 					<div class="form-group">
+						<label for="method" class="col-sm-3 control-label">Méthode d’utilisation</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="6" id="method" name="method" placeholder="Démarche à suivre pour appliquer la recette" maxlength="1000"><?php echo $recipes['method']; ?></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="effect" class="col-sm-3 control-label">Effet immédiat</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="6" id="effect" name="effect" placeholder="Les effets positives ou négatives qui sont applicables instantanément sur la cible" maxlength="1000"><?php echo $recipes['effect']; ?></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="bilan" class="col-sm-3 control-label">Effet sur le bilan</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="6" id="bilan" name="bilan" placeholder="Les effets positives ou négatives qui auront une incidence sur le bilan de santé de la cible" maxlength="1000"><?php echo $recipes['bilan']; ?></textarea>
+						</div>
+					</div>
+
+
+					<div class="form-group">
 						<label for="link" class="col-sm-3 control-label">Lien</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="link" name="link" placeholder="http://www.exemple.com" maxlength="200" value="<?php echo $recipes['link']; ?>">
+							<input type="url" class="form-control" id="link" name="link" placeholder="http://www.exemple.com" maxlength="200" value="<?php echo $recipes['link']; ?>">
 							<p class="help-block">URL vers une page d'information supplémentaire</p>
 						</div>
 					</div>

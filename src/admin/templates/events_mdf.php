@@ -35,14 +35,14 @@
 					<div class="form-group">
 						<label for="synopsis" class="col-sm-3 control-label">Synopsis</label>
 						<div class="col-sm-8">
-							<textarea class="form-control" rows="6" id="synopsis" name="synopsis" placeholder="Synopsis" required maxlength="500"><?php echo $events['synopsis']; ?></textarea>
+							<textarea class="form-control" rows="6" id="synopsis" name="synopsis" placeholder="Synopsis" required maxlength="1000"><?php echo $events['synopsis']; ?></textarea>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="link" class="col-sm-3 control-label">Lien</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="link" name="link" placeholder="http://www.exemple.com" maxlength="200" value="<?php echo $professions['link']; ?>">
+							<input type="url" class="form-control" id="link" name="link" placeholder="http://www.exemple.com" maxlength="200" value="<?php echo $events['link']; ?>">
 							<p class="help-block">URL vers une page d'information supplémentaire</p>
 						</div>
 					</div>
@@ -65,6 +65,46 @@
 								<input type="hidden" id="inscription_begin" name="inscription_begin" value="<?php echo $events['inscription_begin']; ?>">
 								<input type="hidden" id="inscription_end" name="inscription_end" value="<?php echo $events['inscription_end']; ?>">
 							</div>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="form-group">
+						<label for="credits" class="col-sm-3 control-label">Credits des membres</label>
+						<div class="col-sm-7 col-md-4">
+
+							<?php foreach ($corporations as $corporation) { ?>
+
+									<?php
+									if (!array_key_exists($corporation['id'], $events['credits'])) {
+										$events['credits'][$corporation['id']] = 20;
+									}
+									?>
+
+									<div class="input-group">
+										<div class="input-group" style="margin-top: 5px;">
+											<span class="input-group-addon credits"><img src="<?php echo $corporation['picture_url']; ?>" width='18'> &nbsp;<?php echo $corporation['name']; ?></span>
+											<input type="text" name="credits[<?php echo $corporation['id']; ?>]" class="form-control input-number text-right" 
+												value="<?php echo $events['credits'][$corporation['id']]; ?>"
+												min="0" max="99"
+											>
+											<span class="input-group-btn minus">
+												<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="credits[<?php echo $corporation['id']; ?>]">
+													<span class="glyphicon glyphicon-minus"></span>
+												</button>
+											</span>
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="credits[<?php echo $corporation['id']; ?>]">
+													<span class="glyphicon glyphicon-plus"></span>
+												</button>
+											</span>
+										</div>
+
+
+									</div>
+
+							<?php } ?>
 						</div>
 					</div>
 

@@ -30,7 +30,7 @@
 					<div class="form-group">
 						<label for="link" class="col-sm-3 control-label">Lien</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="link" name="link" placeholder="http://www.exemple.com" maxlength="200" value="<?php echo $options['link']; ?>">
+							<input type="url" class="form-control" id="link" name="link" placeholder="http://www.exemple.com" maxlength="200" value="<?php echo $options['link']; ?>">
 							<p class="help-block">URL vers une page d'information supplémentaire</p>
 						</div>
 					</div>

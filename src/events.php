@@ -318,10 +318,20 @@ class events extends dataObject
         	$events['date_event'] = $date_event->format('Y-m-d 12:00');
         	$events['inscription_begin'] = $inscription_begin->format('Y-m-d 12:00');
         	$events['inscription_end'] = $inscription_end->format('Y-m-d 12:00');
+
         } 
 
+        if ($events['credits'] == '') $events['credits'] = '{}';
+        $events['credits'] = json_decode($events['credits'], true);
+
+        $corporations = new corporations();
+        $corporations = $corporations->getOrderedList('name');
+
         $template = get_template('navbar', array('active_menu' => 'admin-events'));
-        $template .= get_template('events_mdf', array('events' => $events), 'admin/');
+        $template .= get_template('events_mdf', array(
+            'events' => $events,
+            'corporations' => $corporations
+        ), 'admin/');
 
         return render($template);
 
@@ -344,6 +354,7 @@ class events extends dataObject
             'max_places' => $_POST['max_places'],
             'inscription_begin' => $_POST['inscription_begin'],
             'inscription_end' => $_POST['inscription_end'],
+            'credits' => json_encode($_POST['credits']),
             'date_event' => $_POST['date_event'],
         );
 
