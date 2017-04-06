@@ -33,8 +33,25 @@
 												<h2><?php echo  $GLOBALS['month_abbr'][$date_event->format('n')]; ?></h2>
 
 												<div class="participants">
-													<?php echo $gn['nbInscription']. '/'.$gn['max_places']; ?><br />
-													<span>Participants</span>
+
+													<div class="marquee">
+														<div class="marquee-content">
+
+															<div>
+																<?php echo $gn['nbInscription']. '/'.$gn['max_places']; ?><br />
+																<span>Participants</span>
+															</div>
+
+															<?php
+															foreach ($gn['nbInscriptionCorpo'] as $corpo) {
+																echo '<div>';
+																echo $corpo['nbInscriptions']. '/'.$gn['max_places'].'<br />';
+																echo '<span>'.$corpo['name'].'</span>';
+																echo '</div>';
+															}
+															?>
+														</div>
+													</div>
 												</div>
 											</div>
 											<div class="col-xs-9 col-sm-9">

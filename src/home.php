@@ -27,6 +27,7 @@ class home
         	$event['isRegistered'] = $events_factory->isRegistered($event['id']);
 			$event['nbInscription'] = $events_factory->nbInscription($event['id']);
 			$event['isActive'] = $events_factory->isActive($event);
+			$event['nbInscriptionCorpo'] = $events_factory->nbInscriptionCorpo($event['id']);
         }
 
         $template .= get_template('home', array(

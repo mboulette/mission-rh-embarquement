@@ -68,6 +68,7 @@ class events extends dataObject
 			$event['nbInscription'] = $this->nbInscription($event['id']);
 			$event['isActive'] = $this->isActive($event);
 			$event['isRegistered'] = $this->isRegistered($event['id']);
+            $event['nbInscriptionCorpo'] = $this->nbInscriptionCorpo($event['id']);
 		}
 		
 		$template = get_template('navbar', array('active_menu' => 'events'));
@@ -112,6 +113,13 @@ class events extends dataObject
         return $array[0];
 
 	}
+
+    public function nbInscriptionCorpo($id) {
+
+        $inscription_factory = new inscriptions();
+
+        return $inscription_factory->countByCorpo($id);
+    }
 
 	public function nbInscription($id) {
 

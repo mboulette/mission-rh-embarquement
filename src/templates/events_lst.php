@@ -18,7 +18,7 @@
 							<?php $date_event = new DateTime($gn['date_event']); ?>
 
 							<div class="col-md-6 card-conteiner">
-								<div class="card card-event <?php if ($gn['isActive'] != 'Ouvert') echo 'disabled' ?>">
+								<div class="card card-event <?php if ($gn['isActive'] != 'Ouvert' || $gn['isRegistered'] != 0) echo 'disabled' ?>">
 									
 									<form action="/inscriptions/events/register" method="post">
 										<div class="row">
@@ -28,8 +28,25 @@
 												<h2><?php echo  $GLOBALS['month_abbr'][$date_event->format('n')]; ?></h2>
 
 												<div class="participants">
-													<?php echo $gn['nbInscription']. '/'.$gn['max_places']; ?><br />
-													<span>Participants</span>
+
+													<div class="marquee">
+														<div class="marquee-content">
+
+															<div>
+																<?php echo $gn['nbInscription']. '/'.$gn['max_places']; ?><br />
+																<span>Participants</span>
+															</div>
+
+															<?php
+															foreach ($gn['nbInscriptionCorpo'] as $corpo) {
+																echo '<div>';
+																echo $corpo['nbInscriptions']. '/'.$gn['max_places'].'<br />';
+																echo '<span>'.$corpo['name'].'</span>';
+																echo '</div>';
+															}
+															?>
+														</div>
+													</div>
 												</div>
 											</div>
 											<div class="col-xs-9 col-sm-9">
@@ -39,7 +56,7 @@
 												<p><?php echo $gn['synopsis']; ?></p>
 												<p>
 													<input type="hidden" name="id_event" value="<?php echo $gn['id']; ?>">
-													<?php if ($gn['isActive'] == 'Ouvert') { ?>
+													<?php if ($gn['isActive'] == 'Ouvert' && $gn['isRegistered'] == 0) { ?>
 														<button type="submit" class="btn btn-warning"><i class="fa fa-shopping-cart"></i> &nbsp;Participer</button>
 													<?php }?>
 													<?php if ($gn['link'] != '' && $gn['link'] != NULL) { ?>
@@ -51,14 +68,14 @@
 											
 										</div>
 										<div class="row">
-
+											
 											<?php
 											if ($gn['isRegistered'] == 0) {
-												echo '<div class="col-sm-9 text-right pull-right text-warning hidden-xs">Inscrivez-vous avant le : '.substr($gn['inscription_end'], 0, -3).'</div>';
+												echo '<div class="col-sm-6 text-right pull-right text-warning hidden-xs">Inscrivez-vous avant le : '.substr($gn['inscription_end'], 0, -3).'</div>';
 											} elseif ($gn['isRegistered'] == 1) {
-												echo '<div class="col-sm-9 text-right pull-right text-success hidden-xs">Vous avez un personnage inscrit à cette évènement!</div>';
+												echo '<div class="col-sm-6 text-right pull-right text-success hidden-xs">Vous avez un personnage inscrit à cette évènement!</div>';
 											} else {
-												echo '<div class="col-sm-9 text-right pull-right text-success hidden-xs">Vous avez '.$gn['isRegistered'].' personnages inscrit à cette évènement!</div>';
+												echo '<div class="col-sm-6 text-right pull-right text-success hidden-xs">Vous avez '.$gn['isRegistered'].' personnages inscrit à cette évènement!</div>';
 											}
 											?>
 										</div>

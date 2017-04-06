@@ -30,6 +30,32 @@ class inscriptions extends dataObject
 		return $count;
 	}
 
+	public function countByCorpo($id) {
+		$sql = '
+		SELECT features.*, count(distinct insc.id_character) as nbInscriptions
+		FROM features
+		LEFT JOIN (
+		 SELECT id_character, id_corporation FROM inscriptions
+		 INNER JOIN characters ON id_character = characters.id
+		 WHERE id_event=?
+		) as insc ON features.id = insc.id_corporation
+		WHERE discriminator="corporation"
+		GROUP BY features.id
+		ORDER BY features.name
+		';
+
+		$stmt = $this->db->prepare($sql);
+		$stmt->bind_param('i', $id);
+
+		$stmt->execute();
+        $result = $stmt->get_result();
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt->close();
+
+        return $array;
+	}
+
 	public function playerParticipations($id_player) {
 		$sql = '
 		SELECT inscriptions.id as inscription_id, events.*

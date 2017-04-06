@@ -20,6 +20,16 @@ String.prototype.passwordMeter = function() {
 
 $(function() {
 
+	if ($('.marquee').length > 0) {
+		setInterval(function(){
+			$( ".marquee-content div:first" ).slideUp( "slow", function() {
+				$('.marquee-content div:first').appendTo('.marquee-content:first').show();
+			});
+
+		}, 5000);
+	}
+
+
 	/*******************************************************************************/
 	/***  Reset Password
 	/*******************************************************************************/
