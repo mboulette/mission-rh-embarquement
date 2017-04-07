@@ -9,7 +9,16 @@ class planets extends dataObject
 
 	}
 
+    function getJSON() {
+        header('Content-Type: application/json');
 
+        $list = $this->getAll();
+        foreach ($list as &$planet) {
+            $planet['position'] = json_decode($planet['position'], true);
+        }
+
+        return 'planets ='.json_encode($list);
+    }
 
 
     //****************************************************************************************************
@@ -32,6 +41,7 @@ class planets extends dataObject
             'Code' => 'code',
             'Nom' => 'name',
             'Position' => 'position',
+            'Taille' => 'size',
             'Rhodium' => 'rhodium',
             'Description' => 'description',
             'Mise à jour' => 'date_updated',
@@ -65,11 +75,63 @@ class planets extends dataObject
             return $this->getAdminList();
         }
 
-        $planets = $this->getOne($_POST['id']);
-        $planet['position'] = json_decode($planet['position'], true);
+
+        $dir = $GLOBALS['planets_textures_path'];
+        $textures = array();
+        if (is_dir($dir)) {
+
+            if ($dh = opendir($dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    if ($file != '.' && $file != '..') {
+
+                        $textures[] = array(
+                            'name' => 'planet-textures/'.$file,
+                            'path' => '/constellations/planet-textures/'.$file,
+                        );
+                    }
+                }
+                closedir($dh);
+            }
+        }
+
+        $dir = '../constellations/planet-bumps/';
+        $bumps = array();
+        if (is_dir($dir)) {
+
+            if ($dh = opendir($dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    if ($file != '.' && $file != '..') {
+
+                        $bumps[] = array(
+                            'name' => 'planet-bumps/'.$file,
+                            'path' => '/constellations/planet-bumps/'.$file,
+                        );
+                    }
+                }
+                closedir($dh);
+            }
+        }
+
+
+        if (is_numeric($_POST['id'])) {
+            $planets = $this->getOne($_POST['id']);
+            $planets['position'] = json_decode($planets['position'], true);            
+        } else {
+            $planets = array(
+                "size" => 2,
+                "rhodium" => 2,
+                "hazard" => 2,
+                "position" => array("x" => 0, "y" => 0, "z" => 0),
+                "color" => "#FFFFFF"
+            );
+        }
 
         $template = get_template('navbar', array('active_menu' => 'admin-planets'));
-        $template .= get_template('planets_mdf', array('planets' => $planets), 'admin/');
+        $template .= get_template('planets_mdf', array(
+            'planets' => $planets,
+            'textures' => $textures,
+            'bumps' => $bumps
+        ), 'admin/');
 
         return render($template);
 
@@ -88,6 +150,7 @@ class planets extends dataObject
             'id' => $_POST['id_planets'],
             'code' => $_POST['code'],
             'name' => $_POST['name'],
+            'size' => $_POST['size'],
             'rhodium' => $_POST['rhodium'],
             'hazard' => $_POST['hazard'],
             'position' => json_encode($_POST['position']),

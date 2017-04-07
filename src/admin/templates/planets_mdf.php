@@ -59,6 +59,17 @@
 					<hr />
 
 					<div class="form-group">
+						<label for="size" class="col-sm-3 control-label">Taille</label>
+						<div class="col-sm-2">
+							<input type="number" class="form-control" id="size" name="size" required min="1" max="5" value="<?php echo $planets['size']; ?>">
+						</div>
+						<div class="col-sm-6">
+							<p class="help-block">Taille de la planète, cote de 1 à 5</p>
+						</div>
+
+					</div>
+
+					<div class="form-group">
 						<label for="rhodium" class="col-sm-3 control-label">Niveau de Rhodium</label>
 						<div class="col-sm-2">
 							<input type="number" class="form-control" id="rhodium" name="rhodium" required min="1" max="5" value="<?php echo $planets['rhodium']; ?>">
@@ -84,7 +95,19 @@
 					<div class="form-group">
 						<label for="texture" class="col-sm-3 control-label">Image d'embalage</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="texture" name="texture" placeholder="diffuseTexture" required maxlength="100" value="<?php echo $planets['texture']; ?>">
+							<input type="text" class="form-control" id="texture" name="texture" placeholder="diffuseTexture" required maxlength="100" readonly value="<?php echo $planets['texture']; ?>">
+
+							<div>&nbsp;</div>
+							<div class="row">
+							<?php foreach ($textures as $texture) { ?>
+								<div class="col-xs-4 col-sm-2">
+									<a href="#" class="thumbnail textures <?php if ($planets['texture'] == $texture['name']) echo 'active'; ?>" data-path="<?php echo $texture['name']; ?>">
+										<img src="<?php echo $texture['path']; ?>">
+									</a>
+								</div>
+							<?php }	?>
+							</div>
+
 						</div>
 					</div>
 
@@ -92,7 +115,19 @@
 					<div class="form-group">
 						<label for="bump" class="col-sm-3 control-label">Texture</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="bump" name="bump" placeholder="bumpTexture" maxlength="100" value="<?php echo $planets['bump']; ?>">
+							<input type="text" class="form-control" id="bump" name="bump" placeholder="bumpTexture" maxlength="100" readonly value="<?php echo $planets['bump']; ?>">
+
+							<div>&nbsp;</div>
+							<div class="row">
+							<?php foreach ($bumps as $bump) { ?>
+								<div class="col-sm-4">
+									<a href="#" class="thumbnail bumps <?php if ($planets['bump'] == $bump['name']) echo 'active'; ?>" data-path="<?php echo $bump['name']; ?>">
+										<img src="<?php echo $bump['path']; ?>">
+									</a>
+								</div>
+							<?php }	?>
+							</div>
+
 						</div>
 					</div>
 

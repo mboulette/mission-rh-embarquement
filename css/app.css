@@ -380,3 +380,13 @@ label .card {
 .marquee-content div {
   margin-bottom: 5px;
 }
+
+.textures.active {
+  /*border : 2px solid red;*/
+  background-color: #337ab7;
+}
+
+.bumps.active {
+  /*border : 2px solid red;*/
+  background-color: #337ab7;
+}

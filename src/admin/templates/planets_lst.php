@@ -42,9 +42,23 @@
 										<button class="edit btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Modifier"><i class='fa fa-pencil'></i></button>
 										<button class="delete btn btn-danger btn-xs" data-url="/inscriptions/admin/planets/erase" data-id='<?php echo $current['id']; ?>' data-toggle="tooltip" title="Supprimer"><i class='fa fa-trash'></i></button>
 									</th>
-									<?php foreach ($columns as $column_name => $field_name) { ?>
-										<td><?php echo str_cut($current[$field_name], 60); ?></td>
-									<?php } ?>
+
+									<?php
+									foreach ($columns as $column_name => $field_name) {
+										switch ($field_name) {
+										case 'position' :
+											echo '<td>';
+											echo '&Xscr;:'.$current['position']['x'].',  &Yscr;:'.$current['position']['y'].',  &Zscr;:'.$current['position']['z'];
+											echo '</td>';
+											break;
+										default :
+											echo '<td>'.str_cut($current[$field_name], 60).'</td>';
+											break;
+										}
+									}
+									?>
+
+
 								</tr>
 								<?php } ?>
 							</tbody>

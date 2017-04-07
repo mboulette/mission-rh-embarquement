@@ -701,6 +701,25 @@ $(function() {
 	});
 
 
+	$('a.textures').on('click', function() {
+		event.preventDefault();
+		event.stopPropagation();
+
+		$('#texture').val( $(this).data('path') );
+		$('.textures').removeClass('active');
+		$(this).addClass('active');
+	});
+
+
+	$('a.bumps').on('click', function() {
+		event.preventDefault();
+		event.stopPropagation();
+
+		$('#bump').val( $(this).data('path') );
+		$('.bumps').removeClass('active');
+		$(this).addClass('active');
+	});
+
 });
 
 

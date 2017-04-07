@@ -34,8 +34,7 @@ switch ($script_url) {
 
     case '/inscriptions/planets/':
         $planets = new planets();
-        header('Content-Type: application/json');
-        echo json_encode($planets->getAll());
+        echo $planets->getJSON();
         die();
     break;
 
