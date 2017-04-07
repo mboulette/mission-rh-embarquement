@@ -77,7 +77,7 @@ class feats extends dataObject
 
 
         $feats = array(
-            'id' => $_POST['id_recipes'],
+            'id' => $_POST['id_feats'],
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'link' => $_POST['link'],

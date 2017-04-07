@@ -85,7 +85,7 @@ class players extends dataObject
 
     public function getAdminList() {
 
-        $list = $this->getList(array("admin" => 0));
+        $list = $this->getAll();
 
         $columns = array(
             'Nom' => 'lastname',
@@ -189,6 +189,8 @@ class players extends dataObject
             return $this->getAdminList();
         }
 
+        writelogs(array('action' => 'incarner', 'player' => $_POST['id']));
+        
         $_SESSION['player-admin'] = $_SESSION['player'];
         $_SESSION['player'] = $this->getOne($_POST['id']);
         $_SESSION['player']['admin'] = $_SESSION['player-admin']['admin'];

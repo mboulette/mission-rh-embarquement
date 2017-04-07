@@ -36,6 +36,7 @@
 						</ul>
 					</li>
 
+					<?php if ($_SESSION['player']['admin'] > 1) { ?>
 					<li class="dropdown <?php echo $active_menu_rules;?>">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Règles <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -50,6 +51,7 @@
 
 						</ul>
 					</li>
+					<?php } ?>
 
 
 					<li class="dropdown <?php echo $active_menu_maintenance;?>">
@@ -57,7 +59,10 @@
 						<ul class="dropdown-menu">
 					
 							<li class="<?php echo ($active_menu=='admin-news' ? 'active' : '');?>"><a href="/inscriptions/admin/news">Nouvelles</a></li>
-							<li class="<?php echo ($active_menu=='admin-maintenance' ? 'active' : '');?>"><a href="/inscriptions/admin/maintenance">Arrêter le système</a></li>
+							<?php if ($_SESSION['player']['admin'] > 1) { ?>
+								<li class="<?php echo ($active_menu=='admin-planets' ? 'active' : '');?>"><a href="/inscriptions/admin/planets">Planètes</a></li>
+								<li class="<?php echo ($active_menu=='admin-maintenance' ? 'active' : '');?>"><a href="/inscriptions/admin/maintenance">Arrêter le système</a></li>
+							<?php } ?>
 						</ul>
 					</li>
 				</ul>

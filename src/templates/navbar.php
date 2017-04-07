@@ -1,6 +1,6 @@
 
 	<?php
-	if ($_SESSION['player']['admin'] == 1) {
+	if ($_SESSION['player']['admin'] != 0) {
 		include('src/admin/templates/navbar.php');
 	}
 	?>
