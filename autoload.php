@@ -26,3 +26,4 @@ require_once('src/admin/ressources.php');
 require_once('src/admin/recipes.php');
 require_once('src/admin/feats.php');
 require_once('src/admin/skills.php');
+require_once('src/admin/planets.php');

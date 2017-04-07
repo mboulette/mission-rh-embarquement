@@ -390,7 +390,9 @@ $(function() {
 	});
 
 	$('input,textarea,select').filter('[required]:visible').each(function(){
-		$('[for='+$(this).attr('name')+']').not('.input-group-addon').addClass('required')
+		try {
+			$('[for='+$(this).attr('name')+']').not('.input-group-addon').addClass('required');
+		} catch (e) {}
 	})
 
 

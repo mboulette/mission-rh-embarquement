@@ -32,6 +32,13 @@ $script_url = strtolower(substr($_SERVER['SCRIPT_URL'], -1) == "/" ? $_SERVER['S
 /*************************************************************/
 switch ($script_url) {
 
+    case '/inscriptions/planets/':
+        $planets = new planets();
+        header('Content-Type: application/json');
+        echo json_encode($planets->getAll());
+        die();
+    break;
+
     case '/inscriptions/signout/' :
         session_unset();
         session_destroy();

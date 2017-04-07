@@ -34,3 +34,11 @@ function human_filesize($bytes) {
     $factor = floor((strlen($bytes) - 1) / 3);
     return round($bytes / pow(1024, $factor)).$size[$factor];
 }
+
+function writelogs($array) {
+    $db = new dataObject('logs');
+    $db->insert(array(
+        'player_id' => $_SESSION['player']['id'],
+        'event' => json_encode($array)
+    ));
+}

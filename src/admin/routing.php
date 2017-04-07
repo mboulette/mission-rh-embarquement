@@ -274,6 +274,21 @@ switch ($script_url) {
     break;
 
 
+    case '/inscriptions/admin/planets/' :
+        $planets = new planets();
+        echo $planets->getAdminList();
+    break;
+
+    case '/inscriptions/admin/planets/edit/' :
+        $planets = new planets();
+        echo $planets->edit();
+    break;
+
+    case '/inscriptions/admin/planets/erase/' :
+        $planets = new planets();
+        echo $planets->erase();
+    break;
+    
 
     default :
         
