@@ -41,6 +41,7 @@
 														<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" style="margin-bottom:4px; width:24px;">
 													<?php } else { ?>
 														<i class="fa fa-square-o fa-3x"></i>
+														<i class="fa fa-square fa-3x"></i>
 														<i class="fa fa-check-square fa-3x"></i>
 													<?php } ?>
 												</div>
@@ -264,6 +265,7 @@
 														<input type="radio" name="id_card" data-group='credit' class="radio_card hidden" value="<?php echo $card->getId(); ?>">
 														
 														<i class="fa fa-square-o fa-3x"></i>
+														<i class="fa fa-square fa-3x"></i>
 														<i class="fa fa-check-square fa-3x"></i>
 													</div>
 													<div class="col-xs-10">

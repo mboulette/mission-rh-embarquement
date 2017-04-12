@@ -9,7 +9,25 @@ class skills extends dataObject
 
 	}
 
+    public function getRaceList($id) {
+        $sql = '
+        SELECT *
+        FROM '.$this->objectName.'
+        WHERE feature_id=?
+        ORDER BY `name`
+        ';
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('i', $id);
 
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt->close();
+
+        return $array;
+    }
 
 
     //****************************************************************************************************

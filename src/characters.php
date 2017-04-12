@@ -27,20 +27,54 @@ class characters extends dataObject
 			return $this->getList();
 		}
 
-		$races_factory = new races();
-		$professions_factory = new professions();
-		$corporations_factory = new corporations();
-
-		$race_lst = $races_factory->getAll();
-		$professions_lst = $professions_factory->getAll();
-		$corporations_lst = $corporations_factory->getAll();
-
 		$character = $this->getOne($_POST['id_character']);
 		if (!$character) {
 			$character = $this->getMock();
 			$character['id'] = uniqid();
 			$character['id_player'] = $_SESSION['player']['id'];
 		}
+
+		$races_factory = new races();
+		$professions_factory = new professions();
+		$corporations_factory = new corporations();
+		$ressources_factory = new ressources();
+		$skills_factory = new skills();
+		$recipes_factory = new recipes();
+
+		$races_lst = $races_factory->getOrderedList('name');
+		$professions_lst = $professions_factory->getOrderedList('name');
+		$corporations_lst = $corporations_factory->getOrderedList('name');
+		$ressources_lst = $ressources_factory->getAll();
+
+
+		$corporations_tpl = array();
+		foreach ($corporations_lst as $corpo) {
+			$corpo['ressource'] = search_array($ressources_lst, 'id', $corpo['ressource_id']);
+			$corporations_tpl[] = get_template('partial/corpo_card', array(
+				'corpo' => $corpo,
+				'checked' => $character['id_corporation']
+			));
+		}
+
+		$races_tpl = array();
+		foreach ($races_lst as $race) {
+			$race['skills'] = $skills_factory->getRaceList($race['id']);
+			$races_tpl[] = get_template('partial/race_card', array(
+				'race' => $race,
+				'checked' => $character['id_race']
+			));
+		}
+
+		$professions_tpl = array();
+		foreach ($professions_lst as $profession) {
+			$profession['recipes'] = $recipes_factory->getProfessionList($profession['id']);	
+			$professions_tpl[] = get_template('partial/prof_card', array(
+				'profession' => $profession,
+				'ressources' => $ressources_lst,
+				'checked' => $character['id_profession']
+			));
+		}
+
 	
 		$dir = $GLOBALS['attachments_path_characters'].$character['id'];
         $files = array();
@@ -62,16 +96,16 @@ class characters extends dataObject
             }
         }
 
-        $attachments_lst = get_template('partial/attachments_lst', array('files' => $files));
+        $attachments_tpl = get_template('partial/attachments_lst', array('files' => $files));
 
 
 		$template = get_template('navbar', array('active_menu' => 'characters'));
 		$template .= get_template('character_mdf', array(
-			'current' => $character,
-			'attachments_lst' => $attachments_lst,
-			'races_lst' => $race_lst,
-			'professions_lst' => $professions_lst,
-			'corporations_lst' => $corporations_lst,
+			'character' => $character,
+			'attachments_tpl' => $attachments_tpl,
+			'races_tpl' => $races_tpl,
+			'professions_tpl' => $professions_tpl,
+			'corporations_tpl' => $corporations_tpl,
 		));
 
 		return render($template);

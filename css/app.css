@@ -90,21 +90,35 @@ label.required::after {
 	top:90px;
 }
 
-.card .fa-check-square {
+.card .fa-check-square, .card .fa-square {
     display:none;
 }
-
 .card .fa-square-o  {
     display:inline;
 }
 
+
 .card.active .fa-check-square {
     display:inline;
 }
-
-.card.active .fa-square-o  {
+.card.active .fa-square-o, .card.active .fa-square {
     display:none;
 }
+
+.card:hover .fa-check-square, .card:hover .fa-square-o {
+    display:none;
+}
+.card:hover .fa-square {
+    display:inline;
+}
+
+.card.active:hover .fa-check-square {
+    display:inline;
+}
+.card.active:hover .fa-square-o, .card.active:hover .fa-square {
+    display:none;
+}
+
 
 .card {
     border-radius: 5px;

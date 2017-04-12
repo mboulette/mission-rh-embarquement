@@ -42,3 +42,9 @@ function writelogs($array) {
         'event' => json_encode($array)
     ));
 }
+
+
+function search_array($array, $colomn, $value) {
+    $results = array_search($value, array_column($array, $colomn));
+    return $array[$results];
+}

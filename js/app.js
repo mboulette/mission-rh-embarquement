@@ -29,6 +29,7 @@ $(function() {
 		}, 5000);
 	}
 
+	$('[data-toggle="popover"]').popover();
 
 	/*******************************************************************************/
 	/***  Reset Password
@@ -219,7 +220,7 @@ $(function() {
 		event.stopPropagation();
 
 		//$(this).find('.updcard').click();
-		$("#info-update").modal()
+		$("#info-update").modal('show');
 	});
 	
 
@@ -407,7 +408,7 @@ $(function() {
 	/***  Event
 	/*******************************************************************************/
 
-	$('.card a').on('click', function(event){
+	$('.card a').not('[data-toggle="modal"]').on('click', function(event){
 		event.stopPropagation();
 	});
 
