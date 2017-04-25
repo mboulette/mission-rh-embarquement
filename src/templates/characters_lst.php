@@ -50,6 +50,12 @@
 													<button data-id="<?php echo $char['id']; ?>" type="button" class="btn btn-default delete_character btn-block btn-lg visible-xs-block"><i class="fa fa-trash "></i> &nbsp;Supprimer</button>
 												<?php } else { ?>
 													<button type="submit" class="btn btn-default"><i class="fa fa-search "></i> &nbsp;Détails</button>
+
+													<input type="hidden" name="step" value="2">
+													<input type="hidden" name="id_race" value="<?php echo $char['id_race']; ?>">
+													<input type="hidden" name="id_profession" value="<?php echo $char['id_profession']; ?>">
+													<input type="hidden" name="id_corporation" value="<?php echo $char['id_corporation']; ?>">
+
 												<?php }?>
 											</p>
 
@@ -60,6 +66,7 @@
 										<div class="col-sm-9 text-right pull-right text-warning hidden-xs">Date de création : <?php echo $char['date_created']; ?></div>
 									</div>
 									<div class="ribbon"><span>Grade <?php echo $char['rank']; ?></span></div>
+
 								</form>
 
 							</div>

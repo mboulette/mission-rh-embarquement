@@ -256,12 +256,49 @@ $(function() {
 
     $('#form_character').on('submit', function(event){
 
-    	if ( $('#characters_attachments').fileinput('getFilesCount') != 0 ) {
-	    	event.preventDefault();
-	    	event.stopPropagation();
     	
-	    	$('#modal-attachements').modal('show');
+    	if ($('#step').val() == '1') {
+
+    		$('.alert-required').hide();
+    		$ok = true;
+
+    		if (!$("input[name='id_corporation']:checked").val()) $ok = false;
+    		if (!$("input[name='id_race']:checked").val()) $ok = false;
+    		if (!$("input[name='id_profession']:checked").val()) $ok = false;
+
+			if (!$ok) {
+		    	event.preventDefault();
+		    	event.stopPropagation();
+				$('.alert-required').show();
+			}
+
     	}
+
+    	if ($('#step').val() == '2') {
+
+    		$('.alert-required').hide();
+    		$ok = true;
+
+    		if (!$("input[name='id_skill']:checked").val()) $ok = false;
+    		if ($("input.checkbox_card:checked").length != 2) $ok = false;
+
+			if (!$ok) {
+		    	event.preventDefault();
+		    	event.stopPropagation();
+				$('.alert-required').show();
+			}
+
+    	}
+
+    	if ($('#step').val() == '3') {
+
+	    	if ( $('#characters_attachments').fileinput('getFilesCount') != 0 ) {
+		    	event.preventDefault();
+		    	event.stopPropagation();
+	    	
+		    	$('#modal-attachements').modal('show');
+	    	}
+	    }
 
     });
 
@@ -318,6 +355,10 @@ $(function() {
 	$('.radio_card').on('click', function(event) {
 		$('.card.card-'+$(this).data('group')).removeClass('active');
 	 	$(this).parents('.card').addClass('active');
+	});
+
+	$('.checkbox_card').on('click', function(event) {
+	 	$(this).parents('.card').toggleClass('active');
 	});
 
 
@@ -720,6 +761,94 @@ $(function() {
 		$('.bumps').removeClass('active');
 		$(this).addClass('active');
 	});
+
+
+
+	if ($('#form_character').length != 0) {
+
+		$('button#rnd-name').on('click', function() {
+
+			$.get($(this).data('url'), function( data ) {
+				$( "input#name").val( data.name + ' ' + data.surname );
+			});
+		});
+
+		$('button#rnd-skills').on('click', function() {
+			$count = $('input[name=id_skill]').length;
+			$index = Math.floor(Math.random() * $count);
+
+			$('input[name=id_skill]:eq('+$index+')').click();
+			
+		});
+
+		$('button#rnd-feats').on('click', function() {
+			
+			$('input.checkbox_card:checked').click();
+
+
+			$count = $('input.checkbox_card').length;
+			$index = Math.floor(Math.random() * $count);
+			$index2 = Math.floor(Math.random() * $count);
+
+			if ($index!=0 && $index==$index2) $index2--;
+			if ($index==0 && $index==$index2) $index2++;
+
+
+			$('input.checkbox_card:eq('+$index+')').click();
+			$('input.checkbox_card:eq('+$index2+')').click();
+			
+		});
+
+		$('button.char-choice').on('click', function() {
+			
+			if ($(this).data('open') == 'close') {
+
+				$('#list-'+$(this).data('list')).show();
+				$(this).data('open', 'open');
+			} else {
+
+				$('#list-'+$(this).data('list')).slideUp();
+				$(this).data('open', 'close');
+			}
+
+		});
+
+		$('input[name=id_corporation]').on('click', function(){
+
+			$('.choice-corpo').data('open', 'close').hide();
+			$('#list-corpo').slideUp();
+			//$('#alert-corpo').hide();
+
+			$('#btn_corpo_'+$(this).val()).show();
+
+		});
+
+		$('input[name=id_profession]').on('click', function(){
+
+			$('.choice-prof').data('open', 'close').hide();
+			$('#list-prof').slideUp();
+			//$('#alert-prof').hide();
+
+			$('#btn_prof_'+$(this).val()).show();
+
+		});
+
+		$('input[name=id_race]').on('click', function(){
+
+			$('.choice-race').data('open', 'close').hide();
+			$('#list-race').slideUp();
+			//$('#alert-race').hide();
+
+			$('#btn_race_'+$(this).val()).show();
+
+		});
+
+		$('#btn_char_stepback').on('click', function(){
+			event.stopPropagation();
+			$('#frm_char_stepback').submit();
+		});
+
+	}
 
 });
 

@@ -21,7 +21,7 @@ class characters extends dataObject
 	public function edit() {
 
 
-		if (isset($_POST['background'])) $this->save();
+		if (isset($_POST['step'])) return $this->save();
 
 		if (!isset($_POST['id_character'])) {
 			return $this->getList();
@@ -31,7 +31,10 @@ class characters extends dataObject
 		if (!$character) {
 			$character = $this->getMock();
 			$character['id'] = uniqid();
-			$character['id_player'] = $_SESSION['player']['id'];
+			$character['id_race'] = $_POST['id_race'];
+			$character['id_profession'] = $_POST['id_profession'];
+			$character['id_corporation'] = $_POST['id_corporation'];
+
 		}
 
 		$races_factory = new races();
@@ -76,6 +79,70 @@ class characters extends dataObject
 		}
 
 	
+		$template = get_template('navbar', array('active_menu' => 'characters'));
+		$template .= get_template('character_step1_mdf', array(
+			'character' => $character,
+			'races_tpl' => $races_tpl,
+			'professions_tpl' => $professions_tpl,
+			'corporations_tpl' => $corporations_tpl,
+			
+			'races_lst' => $races_lst,
+			'professions_lst' => $professions_lst,
+			'corporations_lst' => $corporations_lst,
+		));
+
+		return render($template);
+
+	}
+
+	private function edit_step_2($character) {
+
+		if ($character['feats'] == '') $character['feats'] = '[]';
+
+		$skills_factory = new skills();
+		$feats_factory = new feats();
+
+		$skills_lst = $skills_factory->getRaceList($character['id_race']);
+		$feats_lst = $feats_factory->getAll();
+
+		$orderby = 'name';
+		$orderdir = 'desc';
+        usort($feats_lst, function($a, $b) use ($orderby, $orderdir) {
+            return ($orderdir == 'desc') ? ($b[$orderby] < $a[$orderby]) : ($a[$orderby] < $b[$orderby]);
+        });
+	
+
+		$skills_tpl = array();
+		foreach ($skills_lst as $skill) {
+			$skills_tpl[] = get_template('partial/skill_card', array(
+				'skill' => $skill,
+				'checked' => $character['id_skill']
+			));
+		}
+
+		$feats_tpl = array();
+		foreach ($feats_lst as $feat) {
+
+			$feats_tpl[] = get_template('partial/feat_card', array(
+				'feat' => $feat,
+				'checked' => (in_array($feat['id'], json_decode($character['feats'], true )) ? $feat['id'] : 0)
+			));
+		}
+
+		$template = get_template('navbar', array('active_menu' => 'characters'));
+		$template .= get_template('character_step2_mdf', array(
+			'character' => $character,
+			'skills_tpl' => $skills_tpl,
+			'feats_tpl' => $feats_tpl,
+		));
+
+		return render($template);
+
+
+	}
+
+	private function edit_step_3($character) {
+
 		$dir = $GLOBALS['attachments_path_characters'].$character['id'];
         $files = array();
         if (is_dir($dir)) {
@@ -98,14 +165,10 @@ class characters extends dataObject
 
         $attachments_tpl = get_template('partial/attachments_lst', array('files' => $files));
 
-
 		$template = get_template('navbar', array('active_menu' => 'characters'));
-		$template .= get_template('character_mdf', array(
+		$template .= get_template('character_step3_mdf', array(
 			'character' => $character,
 			'attachments_tpl' => $attachments_tpl,
-			'races_tpl' => $races_tpl,
-			'professions_tpl' => $professions_tpl,
-			'corporations_tpl' => $corporations_tpl,
 		));
 
 		return render($template);
@@ -115,43 +178,72 @@ class characters extends dataObject
 
 	public function save() {
 
-        $character = array(
-            'id' => $_POST['id_character'],
-            'id_player' => $_SESSION['player']['id'],
-            'background' => $_POST['background'],
-            'notes' => $_POST['notes'],
-        );
+		$character = parent::getOne($_POST['id_character']);
+		if (!$character) {
+			$character = $this->getMock();
+			$character['id'] = $_POST['id_character'];
+		}
 
-        if (isset($_POST['name'])) $character['name'] = $_POST['name'];
-        if (isset($_POST['id_race'])) $character['id_race'] = $_POST['id_race'];
-        if (isset($_POST['id_profession'])) $character['id_profession'] = $_POST['id_profession'];
-        if (isset($_POST['id_corporation'])) $character['id_corporation'] = $_POST['id_corporation'];
+		if (isset($_POST['id_character'])) $character['id'] = $_POST['id_character'];
+		if (isset($_POST['id_race'])) $character['id_race'] = $_POST['id_race'];
+		if (isset($_POST['id_profession'])) $character['id_profession'] = $_POST['id_profession'];
+		if (isset($_POST['id_corporation'])) $character['id_corporation'] = $_POST['id_corporation'];
 
-		if (is_numeric($character['id'])) {
-			$this->update($character);
+		if (isset($_POST['id_skill'])) $character['id_skill'] = $_POST['id_skill'];
+		if (isset($_POST['feats'])) $character['feats'] = $_POST['feats'];
 
-			$_SESSION['message'] = array(
-				'type' => 'success',
-				'body' => '<strong>Enregistré !</strong> Les modifications du personnage ont été enregistrés.'
-			);
 
-		} else {
+		switch ($_POST['step']) {
+			case '1':
+        		return $this->edit_step_2($character);
+			break;
+
+			case '2':
+        		if (isset($_POST['id_feat'])) $character['feats'] = json_encode($_POST['id_feat']);
+
+        		return $this->edit_step_3($character);
+			break;
+
+
+			case '3':
+        		$character['name'] = $_POST['name'];
+        		$character['id_player'] = $_SESSION['player']['id'];
+        		$character['background'] = $_POST['background'];
+        		$character['notes'] = $_POST['notes'];
+
+				if (is_numeric($character['id'])) {
+					$this->update($character);
+
+					$_SESSION['message'] = array(
+						'type' => 'success',
+						'body' => '<strong>Enregistré !</strong> Les modifications du personnage ont été enregistrés.'
+					);
+
+				} else {
+					
+					$id = $this->insert($character);
+
+					$old_dir = realpath('.').'/'.$GLOBALS['attachments_path_characters'].$character['id'];
+					$new_dir = realpath('.').'/'.$GLOBALS['attachments_path_characters'].$id;
+
+					rename($old_dir, $new_dir);
+
+					$_SESSION['message'] = array(
+						'type' => 'success',
+						'body' => '<strong>Enregistré !</strong> Le nouveau personnage a été enregistré.'
+					);
+
+				}
+
+				unset($_POST['id_character']);
+
+				return $this->getList();
+
+			break;
 			
-			$id = $this->insert($character);
-
-			$old_dir = realpath('.').'/'.$GLOBALS['attachments_path_characters'].$character['id'];
-			$new_dir = realpath('.').'/'.$GLOBALS['attachments_path_characters'].$id;
-
-			rename($old_dir, $new_dir);
-
-			$_SESSION['message'] = array(
-				'type' => 'success',
-				'body' => '<strong>Enregistré !</strong> Le nouveau personnage a été enregistré.'
-			);
 
 		}
 
-		unset($_POST['id_character']);
 	}
 
 

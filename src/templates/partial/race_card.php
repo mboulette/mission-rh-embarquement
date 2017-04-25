@@ -20,7 +20,7 @@
 				</div>
 				<div class="col-xs-10">
 					<p><strong>Description :</strong> <?php echo str_cut($race['description'], 500); ?></p>
-					<p><strong>Tare :</strong> <?php echo str_cut($race['malus'], 1000); ?></p>
+					<p><strong>Bonus :</strong> <?php echo str_cut($race['malus'], 1000); ?></p>
 
 					<p><strong>Habiletés :</strong> L'héritié de cette lignée peut choisir l'une des habiletés suivantes :<br />
 						<?php

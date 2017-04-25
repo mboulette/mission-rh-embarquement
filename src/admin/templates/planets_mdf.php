@@ -72,10 +72,10 @@
 					<div class="form-group">
 						<label for="rhodium" class="col-sm-3 control-label">Niveau de Rhodium</label>
 						<div class="col-sm-2">
-							<input type="number" class="form-control" id="rhodium" name="rhodium" required min="1" max="5" value="<?php echo $planets['rhodium']; ?>">
+							<input type="number" class="form-control" id="rhodium" name="rhodium" required min="0" max="5" value="<?php echo $planets['rhodium']; ?>">
 						</div>
 						<div class="col-sm-6">
-							<p class="help-block">Quantité de Rhodium exploitable, cote de 1 à 5</p>
+							<p class="help-block">Quantité de Rhodium exploitable, cote de 0 à 5</p>
 						</div>
 
 					</div>
