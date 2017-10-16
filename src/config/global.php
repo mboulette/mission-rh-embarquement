@@ -13,6 +13,7 @@ $GLOBALS['app_email'] = 'info@verslesetoiles.org';
 $GLOBALS['picture_path_avatars'] = 'avatars/';
 $GLOBALS['picture_path_features'] = 'attachments/features/';
 $GLOBALS['picture_path_news'] = 'attachments/news/';
+$GLOBALS['picture_path_options'] = 'attachments/options/';
 $GLOBALS['attachments_path_characters'] = 'attachments/characters/';
 $GLOBALS['attachments_path_players'] = 'attachments/players/';
 $GLOBALS['planets_textures_path'] = '../constellations/planet-textures/';

@@ -24,9 +24,13 @@ class events extends dataObject
 
 		$options_factory = new eventOptions();
 		$options_lst = $options_factory->getAll();
+        $options_cat = $options_factory->getOptionsCategories();
 
 		$cards_factory = new cards();
 		$cards_lst = $cards_factory->getAll();
+
+        $ressources_factory = new ressources();
+        $ressources_lst = $ressources_factory->getOrderedList('name');
 
 		$template = get_template('navbar', array('active_menu' => 'events'));
 
@@ -54,6 +58,9 @@ class events extends dataObject
 				'characters_lst' => $characters_lst,
 				'options_lst' => $options_lst,
 				'cards_lst' => $cards_lst,
+                'categories' => $options_cat,
+                'ressources_lst' => $ressources_lst,
+                'levels' => $ressources_factory->getLevels(),
 			));
 		}
 

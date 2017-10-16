@@ -16,10 +16,16 @@ class eventOptions extends dataObject
         }
 
         $list = $this->getAll();
+        $categories = $this->getOptionsCategories();
+
+        foreach ($list as &$option) {
+            $option['category_name'] = $categories[$option['id_category']]['name'];
+        }
+
 
         $columns = array(
+            'Categorie' => 'category_name',
             'Nom' => 'name',
-            'Description' => 'description',
             'Prix' => 'price',
             'Désactivé' => 'locked',
             'Mise à jour' => 'date_updated',
@@ -47,6 +53,28 @@ class eventOptions extends dataObject
 
     }
 
+    public function getOptionsCategories() {
+        $sql = '
+        SELECT * FROM options_categories
+        ORDER BY id
+        ';
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt->close();
+
+        $categories = array();
+        foreach ($array as $category) {
+            $categories[$category['id']] = $category;
+        }
+
+        return $categories;
+
+    }
 
     public function edit() {
 
@@ -55,9 +83,13 @@ class eventOptions extends dataObject
         }
 
         $options = $this->getOne($_POST['id']);
+        $categories = $this->getOptionsCategories();
 
         $template = get_template('navbar', array('active_menu' => 'admin-options'));
-        $template .= get_template('options_mdf', array('options' => $options), 'admin/');
+        $template .= get_template('options_mdf', array(
+            'options' => $options,
+            'categories' => $categories
+        ), 'admin/');
 
         return render($template);
 
@@ -75,6 +107,7 @@ class eventOptions extends dataObject
 
         $options = array(
             'id' => $_POST['id_options'],
+            'id_category' => $_POST['id_category'],
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'link' => $_POST['link'],
@@ -83,6 +116,18 @@ class eventOptions extends dataObject
             'price' => $_POST['price'],
             'options' => $_POST['options'],
         );
+
+        if ($_POST['picture_url'] != '') {
+            $base64 = explode(',', $_POST['picture_url']);
+            $data = base64_decode($base64[1]);
+
+            $filename = $GLOBALS['picture_path_options'].uniqid().'.jpg';
+
+            file_put_contents($filename, $data);
+        
+            $options['picture_url'] = $GLOBALS['app_url'].'/'.$filename;
+        }
+
 
         if (is_numeric($options['id'])) {
             $this->update($options);

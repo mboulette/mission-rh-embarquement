@@ -484,7 +484,6 @@ $(function() {
 
 			$('#confirm').modal({ backdrop: 'static', keyboard: false })
 				.one('click', '#payment', function() {
-				console.log('toto');
 				$('#form_register').submit();
 
 			});
@@ -494,6 +493,32 @@ $(function() {
 		}
 
 	});
+
+	if ($('#form_register').length > 0) {
+
+		$('input[name=id_character].radio_card').on('click', function(){
+			var profession = $(this).data('profession');
+
+			$('.ressource_price').addClass('hidden');
+			$('.ressource_' + profession).removeClass('hidden');
+
+			/*
+			$('.ressource_input').each(function(index){
+				$(this).data('price', )
+			});
+			*/
+
+			/*
+			$('.ressource_price.hidden').each(function(index){
+				$(this).data('value')
+			});
+			*/
+
+
+
+		});
+
+	}
 
 
 	/*******************************************************************************/

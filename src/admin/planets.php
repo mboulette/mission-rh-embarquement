@@ -10,14 +10,25 @@ class planets extends dataObject
 	}
 
     function getJSON() {
-        header('Content-Type: application/json');
+        header('Content-Type: text/plain');
 
         $list = $this->getAll();
         foreach ($list as &$planet) {
             $planet['position'] = json_decode($planet['position'], true);
         }
 
-        return 'planets ='.json_encode($list);
+        return base64_encode(json_encode($list));
+
+        /*
+        // Le code client est obscurci mais il ressemble à ceci:
+
+        $.get('../inscriptions/planets', function(planets) {
+            var planets = JSON.parse(atob(planets));
+            loadScene(planets);
+        });
+
+        */
+
     }
 
 

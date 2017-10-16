@@ -12,6 +12,41 @@
 
 				<div class="panel-body">
 
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Image</label>
+						<div class="col-sm-8"> 
+						    
+						    <button class="btn btn-default file-btn"> 
+								<div>
+									<img id="picture" src="<?php echo ($options['picture_url'] == "" ? "/inscriptions/img/blank_upload_pic.png" : $options['picture_url']); ?>" width="160" height="160" alt="Picture" class="img-thumbnail">
+								</div>
+						        <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp;Upload
+						        <input type="file" id="upload" value="Select" /> 
+						    </button> 
+						    <div class="crop"> 
+						        <div id="upload-demo"></div> 
+						        <button class="btn btn-warning btn-sm upload-result"><i class="fa fa-check"></i> &nbsp;Accepter</button> 
+						        <button class="btn btn-default btn-sm upload-cancel"><i class="fa fa-times"></i> &nbsp;Annuler</button> 
+						    </div> 
+						    <textarea id="base64_picture" name="picture_url" class="hidden"></textarea>
+
+						</div>
+					</div>
+
+					<hr />
+
+
+					<div class="form-group">
+						<label for="id_category" class="col-sm-3 control-label required">Categorie</label>
+						<div class="col-sm-8">
+							<select name="id_category" class="selectpicker">
+								<?php foreach ($categories as $key => $category) { ?>
+									<option value="<?php echo $key; ?>"
+									<?php if ($options['id_category'] == $key) echo 'selected'; ?>><?php echo $category['name']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label for="name" class="col-sm-3 control-label">Nom</label>

@@ -10,13 +10,16 @@ class ressources extends dataObject
 	}
 
     public function getLevelName($level) {
-        $level_name = array(
+        $levels = $this->getLevels();
+        return $levels[$level];
+    }
+
+    public function getLevels() {
+        return array(
             1 => 'Terrestre',
             2 => 'Indigène',
             3 => 'Hybride',
         );
-
-        return $level_name[$level];
     }
 
     public function getOne($id) {

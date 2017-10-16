@@ -71,11 +71,9 @@
 											
 											<?php
 											if ($gn['isRegistered'] == 0) {
-												echo '<div class="col-sm-6 text-right pull-right text-warning hidden-xs">Inscrivez-vous avant le : '.substr($gn['inscription_end'], 0, -3).'</div>';
-											} elseif ($gn['isRegistered'] == 1) {
-												echo '<div class="col-sm-6 text-right pull-right text-success hidden-xs">Vous avez un personnage inscrit à cette évènement!</div>';
+												echo '<div class="col-sm-9 text-right pull-right text-warning hidden-xs">Inscrivez-vous avant le : '.substr($gn['inscription_end'], 0, -3).'</div>';
 											} else {
-												echo '<div class="col-sm-6 text-right pull-right text-success hidden-xs">Vous avez '.$gn['isRegistered'].' personnages inscrit à cette évènement!</div>';
+												echo '<div class="col-sm-9 text-right pull-right text-success hidden-xs">Vous êtes inscrit à cette évènement!</div>';
 											}
 											?>
 										</div>

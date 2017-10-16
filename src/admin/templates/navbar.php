@@ -14,7 +14,13 @@
 					<span class="sr-only">Toggle navigation</span>
 					<span class="fa fa-lock" style="font-size: 1.5em;"></span>
 				</button>
-				<a class="navbar-brand" href="#"><i class="fa fa-lock"></i> &nbsp;ADMIN</a>
+				<a class="navbar-brand" href="#"><i class="fa fa-lock"></i> &nbsp;
+					<?php
+					if ($_SESSION['player']['admin'] == 1) echo 'SCÉNARISTE';
+					if ($_SESSION['player']['admin'] == 2) echo 'ADMIN';
+					if ($_SESSION['player']['admin'] == 3) echo 'SUPER ADMIN';
+					?>
+				</a>
 			</div>
 			<div id="navbar-admin" class="navbar-collapse navbar-right collapse">
 				<ul class="nav navbar-nav">
