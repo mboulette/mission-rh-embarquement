@@ -23,7 +23,7 @@ class events extends dataObject
 		$characters_lst = $characters_factory->getPlayerList($_SESSION['player']['id']);
 
 		$options_factory = new eventOptions();
-		$options_lst = $options_factory->getAll();
+		$options_lst = $options_factory->getAll('name');
         $options_cat = $options_factory->getOptionsCategories();
 
 		$cards_factory = new cards();

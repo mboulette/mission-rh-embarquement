@@ -16,12 +16,14 @@ class dataObject
     }
 
 
-    public function getAll() {
+    public function getAll($orderby = null) {
         
         $sql = '
         SELECT *
         FROM '.$this->objectName.'
         ';
+
+        if (!is_null($orderby)) $sql = $sql.' ORDER BY '.$orderby;
 
         $stmt = $this->db->prepare($sql);
 
