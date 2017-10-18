@@ -52,9 +52,11 @@
 							<span class="caret"></span>
 						</div>
 						<div class="panel-body collapse" id="more-recipe-<?php echo $recipe['id'];?>">
+							<?php if ($recipe['effect'] != '') echo "<p><strong>Durée</strong> : ".$recipe['effect']."</p>"; ?>
+							<!--
 							<p><strong>Méthode d’utilisation</strong> : <?php echo $recipe['method'];?></p>
-							<p><strong>Effet immédiat</strong> : <?php echo $recipe['effect'];?></p>
 							<p><strong>Effet sur le bilan</strong> : <?php echo $recipe['bilan'];?></p>
+							-->
 							
 							<p><strong>Ingrédients</strong> : 
 								<?php

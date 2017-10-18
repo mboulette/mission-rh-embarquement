@@ -46,14 +46,16 @@
     </div>
     </noscript>
 
-    <?php if (SID!='') { ?>
-    <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Les Cookies sont désactivés!</strong> &nbsp;
-        <p>Cette application utilise le Javascript et les Cookies pour fonctionner. Nous sommes désolé que votre situation ne le permet pas, mais vous pouriez obtenir des résultats inatendus.</p>
-        <a class="text-danger" href="http://www.accepterlescookies.com/" target="_blank">Voici les instructions pour activer les Cookies dans les navigateurs les plus commun.</a>
+    <div id='cookiesOk'>
+        <?php if (SID!='') { ?>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Les Cookies sont désactivés!</strong> &nbsp;
+            <p>Cette application utilise le Javascript et les Cookies pour fonctionner. Nous sommes désolé que votre situation ne le permet pas, mais vous pouriez obtenir des résultats inatendus.</p>
+            <a class="text-danger" href="http://www.accepterlescookies.com/" target="_blank">Voici les instructions pour activer les Cookies dans les navigateurs les plus commun.</a>
+        </div>
+        <?php } ?>
     </div>
-    <?php } ?>
 
     <div id="oldbrowser" class="alert alert-danger alert-dismissible" role="alert" style="display:none;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -80,6 +82,10 @@
     if (!document.createElement('input').checkValidity) {
        document.getElementById("oldbrowser").style.display='block';
        document.body.style.backgroundImage = "none";
+    }
+
+    if (navigator.cookieEnabled) {
+        document.getElementById("cookiesOk").style.display='none';
     }
     </script>
 
