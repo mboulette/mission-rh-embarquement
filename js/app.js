@@ -501,20 +501,17 @@ $(function() {
 
 			$('.ressource_price').addClass('hidden');
 			$('.ressource_' + profession).removeClass('hidden');
+			$('#alert-no-char').addClass('hidden');
+			$('.ressource_input, .ressource_plus').prop('disabled', false);
 
-			/*
-			$('.ressource_input').each(function(index){
-				$(this).data('price', )
+			$('.ressource_' + profession).each(function(){
+				var ressource = $(this).data('id');
+				var price = $(this).data('value');
+
+				$('#qty_ressource_'+ressource).data('price', price);
 			});
-			*/
 
-			/*
-			$('.ressource_price.hidden').each(function(index){
-				$(this).data('value')
-			});
-			*/
-
-
+			calculateTotal();
 
 		});
 

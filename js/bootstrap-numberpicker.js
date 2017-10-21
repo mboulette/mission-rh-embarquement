@@ -56,8 +56,8 @@ $('.input-number').change(function() {
         $(this).val($(this).data('oldValue'));
     }
     
-    $('#total-'+$(this).data('id')).html( ($(this).val()*$(this).data('price')).toFixed(2) ); 
     calculateTotal();
+
 });
 
 $(".input-number").keydown(function (e) {
@@ -76,17 +76,28 @@ $(".input-number").keydown(function (e) {
     }
 });
 
+
 function calculateTotal() {
     var total = 0;
+    var total_ressource = 0;
 
-    $( ".input-number" ).each(function(index) {
+    console.log('test');
+
+    $( ".input-number.price" ).each(function(index) {
+        $('#total-'+$(this).data('id')).html( ($(this).val()*$(this).data('price')).toFixed(2) );
         total = total + ( $(this).val()*$(this).data('price') );
     });
     
+    $( ".input-number.ressource_input" ).each(function(index) {
+        $('#total-ressource-'+$(this).data('id')).html( ($(this).val()*$(this).data('price')));
+        total_ressource = total_ressource + ( $(this).val()*$(this).data('price') );
+    });
+
     $('#total').html(total.toFixed(2));
     $('#total-modal').html(total.toFixed(2));
 
-    //console.log(total);
+    $('#total-ressource').html(total_ressource);
+
 
 }
 

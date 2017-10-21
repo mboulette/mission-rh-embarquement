@@ -101,7 +101,9 @@
 
 
 
-
+							<div id="alert-no-char" class="alert alert-danger hidden-xs" role="alert">
+								Vous devez choisir votre personnage avant de pouvoir choisir ses ressources de départ!
+							</div>
 
 
 
@@ -125,7 +127,7 @@
 													<?php
 													foreach ($credits as $key => $value) {
 														echo '
-														<span id="ressource_'.$ressource['id'].'_'.$key.'" class="ressource_price ressource_'.$key.' hidden" data-value="'.$value.'">
+														<span id="ressource_'.$ressource['id'].'_'.$key.'" class="ressource_price ressource_'.$key.' hidden" data-id="'.$ressource['id'].'" data-value="'.$value.'">
 														<i class="fa fa-ticket" aria-hidden="true"></i>
 														'.$value.'
 														</span>
@@ -149,9 +151,9 @@
 															<span class="glyphicon glyphicon-minus"></span>
 														</button>
 													</span>
-													<input type="text" id="qty_ressource_'.$ressource['id'].'" name="qty_ressource['.$ressource['id'].']" class="ressource_input form-control input-number text-right" data-price="0" data-id="'.$ressource['id'].'" value="0" min="0" max="20">
+													<input type="text" id="qty_ressource_'.$ressource['id'].'" name="qty_ressource['.$ressource['id'].']" class="ressource_input form-control input-number text-right" data-price="0" data-id="'.$ressource['id'].'" value="0" min="0" max="20" disabled>
 													<span class="input-group-btn">
-														<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="qty_ressource['.$ressource['id'].']">
+														<button type="button" class="btn btn-success btn-number ressource_plus" data-type="plus" data-field="qty_ressource['.$ressource['id'].']" disabled>
 															<span class="glyphicon glyphicon-plus"></span>
 														</button>
 													</span>
@@ -296,7 +298,7 @@
 															<span class="glyphicon glyphicon-minus"></span>
 														</button>
 													</span>
-													<input type="text" name="qty['.$option['id'].']" class="form-control input-number text-right" 
+													<input type="text" name="qty['.$option['id'].']" class="form-control input-number text-right price" 
 														data-price="'.$option['price'].'" data-id="'.$option['id'].'" 
 														value="'.$option['mandatory'].'" 
 														min="'.($option['mandatory'] == 1 ? 1 : 0).'" max="'.($option['mandatory'] == 1 ? 1 : 10).'"
