@@ -18,6 +18,7 @@ class events extends dataObject
 
 		$current_event = $this->getOne($_POST['id_event']);
 		$current_event['isRegistered'] = $this->isRegistered($_POST['id_event']);
+        $current_event['credits'] = json_decode($current_event['credits'], true);
 
 		$characters_factory = new characters();
 		$characters_lst = $characters_factory->getPlayerList($_SESSION['player']['id']);

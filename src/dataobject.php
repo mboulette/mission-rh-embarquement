@@ -36,7 +36,7 @@ class dataObject
         return $array;
     }
 
-    public function getList($conditions) {
+    public function getList($conditions, $orderby = null) {
         
         $sql = '
         SELECT *
@@ -52,6 +52,8 @@ class dataObject
             $param[] = & $conditions[$field];
         }
         $sql = substr($sql, 0, -4);
+
+        if (!is_null($orderby)) $sql = $sql.' ORDER BY '.$orderby;
 
         $stmt = $this->db->prepare($sql);
 

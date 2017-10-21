@@ -5,7 +5,6 @@
 				<h1><i class="fa fa-shopping-cart"></i> Inscription - <?php echo $current['name']; ?></h1>
 			</div>
 
-
 			<form id="form_register" method="post" class="form-horizontal">
 
 				<div class="bg-icon hidden-xs fa fa-shopping-cart"></div>
@@ -30,8 +29,8 @@
 								<?php
 								$lock_character = 0;
 								foreach ($characters_lst as $char) {
-									if ($char['dead'] == 0 && $char['rank'] > 0) {
-										$lock_character=1;
+									if ($char['dead'] == 0 && $char['rank'] > $lock_character) {
+										$lock_character=$char['rank'];
 									}
 								}
 								?>
@@ -40,14 +39,21 @@
 								
 									<div class="col-md-6 card-conteiner">
 										<label style="width:100%">
-											<div class="card card-character <?php if ($char['dead']==1 || ($char['rank']-$lock_character)<0) echo 'disabled'; ?>">
+											<div class="card card-character <?php if ($char['dead']==1 || ($char['rank']<$lock_character)) echo 'disabled'; ?>">
 												<div class="row">
 													<div class="col-xs-2">																								
 														<?php if ($char['dead']) { ?>
 															<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" style="margin-bottom:4px; width:24px;">
-														<?php } elseif (($char['rank']-$lock_character)<0) { ?>
+														<?php } elseif (($char['rank']<$lock_character)) { ?>
 														<?php } else { ?>
-															<input type="radio" data-group='character' name="id_character" class="radio_card hidden" data-profession="<?php echo $char['profession']['id']; ?>" value="<?php echo $char['id']; ?>">
+															<input type="radio"
+															data-group='character'
+															name="id_character"
+															class="radio_card hidden"
+															data-profession="<?php echo $char['profession']['id']; ?>"
+															data-rank="<?php echo $char['rank']; ?>"
+															data-credits="<?php echo $current['credits'][$char['corporation']['id']]; ?>"
+															value="<?php echo $char['id']; ?>">
 
 															<i class="fa fa-square-o fa-3x"></i>
 															<i class="fa fa-square fa-3x"></i>
@@ -101,8 +107,15 @@
 
 
 
-							<div id="alert-no-char" class="alert alert-danger hidden-xs" role="alert">
+							<div id="alert-no-char" class="alert alert-danger" role="alert">
 								Vous devez choisir votre personnage avant de pouvoir choisir ses ressources de départ!
+							</div>
+
+							<div id="alert-credits-max" class="alert alert-info hidden" role="alert">
+								<big>
+									Votre corporation vous offre un total de <span class="max-credits">0</span>
+									crédits pour magaziner les ressources que vous aurez besoin lors de votre prochaine mission.
+								</big>
 							</div>
 
 
@@ -110,13 +123,13 @@
 							<?php
 							foreach ($levels as $level => $level_name) {
 
+									echo '<div id="ressources-level-'.$level.'" '.($level!=1 ? 'class="hidden"' : '').'>';
 									echo '<h3>Ressources - '.$level_name.'</h3>';
 
 									foreach ($ressources_lst as $ressource) {
 										
 										if ($ressource['level'] != $level) continue;
 										$credits = json_decode($ressource['credits']);
-
 										?>
 
 										<div class="row">
@@ -173,6 +186,7 @@
 										</div>
 									<?php
 									}
+									echo '</div>';
 
 							}
 
@@ -183,6 +197,7 @@
 
 									<div class="panel panel-default text-right">
 									  <div class="panel-body cart-total">
+										Max : <span class="max-credits">0</span> &nbsp;-&nbsp;
 										<strong>TOTAL : <i class="fa fa-ticket" aria-hidden="true"></i> <span id="total-ressource">0</span></strong>
 									  </div>
 									</div>

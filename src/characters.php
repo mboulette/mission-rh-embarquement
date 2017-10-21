@@ -285,7 +285,7 @@ class characters extends dataObject
 
 	public function getPlayerList($id) {
 
-		$characters_list = parent::getList(array('id_player' => $id));
+		$characters_list = parent::getList(array('id_player' => $id), 'rank desc, name');
 
 		foreach ($characters_list as &$character) {
 			$character['corporation']	= $this->corporation->getOne($character['id_corporation']);

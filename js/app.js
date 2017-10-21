@@ -498,6 +498,8 @@ $(function() {
 
 		$('input[name=id_character].radio_card').on('click', function(){
 			var profession = $(this).data('profession');
+			var rank = $(this).data('rank');
+			var credits = $(this).data('credits');
 
 			$('.ressource_price').addClass('hidden');
 			$('.ressource_' + profession).removeClass('hidden');
@@ -510,6 +512,23 @@ $(function() {
 
 				$('#qty_ressource_'+ressource).data('price', price);
 			});
+
+			if (parseInt(rank) < 3) {
+				$('#ressources-level-3').addClass('hidden');
+				$('#ressources-level-3').find('.ressource_input').val('0');
+			} else {
+				$('#ressources-level-3').removeClass('hidden');
+			}
+
+			if (parseInt(rank) < 2) {
+				$('#ressources-level-2').addClass('hidden');
+				$('#ressources-level-2').find('.ressource_input').val('0');
+			} else {
+				$('#ressources-level-2').removeClass('hidden');
+			}
+
+			$('#alert-credits-max').removeClass('hidden');
+			$('.max-credits').html(credits);
 
 			calculateTotal();
 

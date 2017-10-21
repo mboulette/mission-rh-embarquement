@@ -81,8 +81,6 @@ function calculateTotal() {
     var total = 0;
     var total_ressource = 0;
 
-    console.log('test');
-
     $( ".input-number.price" ).each(function(index) {
         $('#total-'+$(this).data('id')).html( ($(this).val()*$(this).data('price')).toFixed(2) );
         total = total + ( $(this).val()*$(this).data('price') );
