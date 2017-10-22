@@ -276,7 +276,13 @@ $(function() {
     		$ok = true;
 
     		if (!$("input[name='id_skill']:checked").val()) $ok = false;
-    		if ($("input.checkbox_card:checked").length != 2) $ok = false;
+    		   		
+			if ($("input[name='id_skill']:checked").first().val() == '21') {
+				if ($("input.checkbox_card:checked").length != 3) $ok = false;
+			} else {
+				if ($("input.checkbox_card:checked").length != 2) $ok = false;
+			}
+
 
 			if (!$ok) {
 		    	event.preventDefault();
@@ -825,6 +831,14 @@ $(function() {
 			
 		});
 
+		$('input[name=id_skill]').on('click', function() {
+			
+			$('.trois-talents').addClass('hidden');
+			if ($(this).val() == '21') {
+				$('.trois-talents').removeClass('hidden');
+			}
+		});
+
 		$('button#rnd-feats').on('click', function() {
 			
 			$('input.checkbox_card:checked').click();
@@ -837,9 +851,17 @@ $(function() {
 			if ($index!=0 && $index==$index2) $index2--;
 			if ($index==0 && $index==$index2) $index2++;
 
-
 			$('input.checkbox_card:eq('+$index+')').click();
 			$('input.checkbox_card:eq('+$index2+')').click();
+
+			if ( !$('.trois-talents').first().hasClass('hidden') ) {
+				$index3 = Math.floor(Math.random() * $count);
+
+				if ($index3==$index || $index3==$index2) Math.floor(Math.random() * $count);
+				if ($index3==$index || $index3==$index2) Math.floor(Math.random() * $count);
+
+				$('input.checkbox_card:eq('+$index3+')').click();
+			}
 			
 		});
 

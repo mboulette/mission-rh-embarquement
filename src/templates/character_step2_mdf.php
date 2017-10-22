@@ -8,7 +8,6 @@
 				</h1>
 			</div>
 
-
 			<form id="form_character" method="post" class="form-horizontal">
 
 				<div class="panel-body">
@@ -18,7 +17,7 @@
 						<div class="col-sm-8">
 
 							<div id="alert-corpo" class="alert alert-info" role="alert">
-								<p>Toutes les races offrent 3 choix (ou plus) d’habiletés, normalement ces habiletés influencent le calcul de votre bilant de santé à la fin d’un évènement ou améliore le cout de certaines ressources primaires avant un évènement.</p>
+								<p>Toutes les races offrent 3 choix d’habiletés, normalement ces habiletés influencent le calcul de votre bilant de santé à la fin d’un évènement ou améliore le cout de certaines ressources primaires avant un évènement.</p>
 								<p>Vous devez choisir une seule habileté parmi les suivantes, ce sont elles qui sont offertes par votre race.</p>
 								<br />
 								<button id="rnd-skills" type="button" class="btn btn-default">
@@ -40,7 +39,7 @@
 
 							<div id="alert-corpo" class="alert alert-info" role="alert">
 								<p>Les talents sont des capacités spécifique à votre personnage, des actions que vous pouvez utiliser autant de fois que vous le voulez, tant que la situation de jeu respecte les prérequis décrient dans chaque talent. Le choix des talents n’est pas lié à une corporation, une race ou une profession, et avec les nombreuses options disponibles, ils donneront une couleur unique à votre rôle.</p>
-								<p>Vous devez choisir 2 talents, lisez-les attentivement, car, ce choix sera définitif jusqu'à la mort de votre personnage.</p>
+								<p>Vous devez choisir 2 talents, <strong class="trois-talents <?php if ($character['id_skill'] != '22') echo 'hidden'; ?>">et un 3e à cause de votre habileté raciale, </strong>lisez-les attentivement, car, ce choix sera définitif jusqu'à la mort de votre personnage.</p>
 								<br />
 								<button id="rnd-feats" type="button" class="btn btn-default">
 									<i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;
@@ -57,7 +56,7 @@
 					</div>
 
 					<div class="alert alert-danger alert-required" role="alert" style="display:none;">
-						<strong>Erreur de validation :</strong> Pour continuer, vous devez obligatoirement choisir une habileté, et 2 talents.
+						<strong>Erreur de validation :</strong> Pour continuer, vous devez obligatoirement choisir une habileté, et 2 talents<strong class="trois-talents  <?php if ($character['id_skill'] != '22') echo 'hidden'; ?>"> et un 3e à cause de votre habileté raciale</strong>.
 					</div>
 
 				</div>
