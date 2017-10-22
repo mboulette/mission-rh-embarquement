@@ -42,6 +42,7 @@
 									if ($char['rank'] == 0 && $credits != 0) {
 										$char_credits = $credits;
 									}
+									if ($char['id_skill'] == '15') $char_credits += 8;
 									?>
 
 
@@ -61,6 +62,7 @@
 															data-profession="<?php echo $char['profession']['id']; ?>"
 															data-rank="<?php echo $char['rank']; ?>"
 															data-credits="<?php echo $char_credits; ?>"
+															data-skill="<?php echo $char['id_skill']; ?>"
 															value="<?php echo $char['id']; ?>">
 
 															<i class="fa fa-square-o fa-3x"></i>
@@ -94,6 +96,8 @@
 
 										</label>
 									</div>
+
+
 
 								<?php } ?>
 							</div>
@@ -150,7 +154,7 @@
 														echo '
 														<span id="ressource_'.$ressource['id'].'_'.$key.'" class="ressource_price ressource_'.$key.' hidden" data-id="'.$ressource['id'].'" data-value="'.$value.'">
 														<i class="fa fa-ticket" aria-hidden="true"></i>
-														'.$value.'
+														<span>'.$value.'</span>
 														</span>
 														';
 													}

@@ -510,16 +510,50 @@ $(function() {
 			var profession = $(this).data('profession');
 			var rank = $(this).data('rank');
 			var credits = $(this).data('credits');
+			var skill = parseInt($(this).data('skill'));
 
 			$('.ressource_price').addClass('hidden');
 			$('.ressource_' + profession).removeClass('hidden');
 			$('#alert-no-char').addClass('hidden');
 			$('.ressource_input, .ressource_plus').prop('disabled', false);
 
-			$('.ressource_' + profession).each(function(){
-				var ressource = $(this).data('id');
-				var price = $(this).data('value');
+			
 
+			$('.ressource_' + profession).each(function(){
+
+				var ressource = $(this).data('id');
+				var price = parseInt($(this).data('value'));
+
+				console.log(skill, ressource);
+
+				switch(skill) {
+				case 14: //14 : breuvages (4, 10, 16)
+					if (ressource == 4 || ressource == 10 || ressource == 16) {
+						price--;
+					}
+
+					break;
+				case 17: //17 : vitamines  (5, 11, 17)
+					if (ressource == 5 || ressource  == 11 || ressource == 17) {
+						price--;
+					}
+
+					break;
+				case 20: //20 : mécaniques  (6, 12, 18)
+					if (ressource == 6 || ressource == 12 || ressource == 18) {
+						price--;
+					}
+
+					break;
+				case 23: //23 : énergies  (8, 14, 20)
+					if (ressource == 8 || ressource == 14 || ressource == 20) {
+						price--;
+					}
+
+					break;
+				}
+
+				$(this).find('span').html(price);
 				$('#qty_ressource_'+ressource).data('price', price);
 			});
 
