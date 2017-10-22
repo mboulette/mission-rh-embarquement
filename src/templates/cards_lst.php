@@ -8,7 +8,7 @@
 
 				<div class="bg-icon hidden-xs fa fa-credit-card-alt"></div>
 
-				<div class="panel-body">
+				<div class="panel-body credit-card-panel">
 
 
 					<div class="alert alert-warning" role="alert">

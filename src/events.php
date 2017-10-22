@@ -23,6 +23,13 @@ class events extends dataObject
 		$characters_factory = new characters();
 		$characters_lst = $characters_factory->getPlayerList($_SESSION['player']['id']);
 
+        $credits = 0;
+        $lastKilled = $characters_factory->lastKilled($_SESSION['player']['id']);
+        if (count($lastKilled) > 0) {
+            if ($lastKilled[0]['dead'] == 1) $credits = 15;
+            if ($lastKilled[0]['dead'] > 1) $credits = 10;
+        }
+
 		$options_factory = new eventOptions();
 		$options_lst = $options_factory->getAll('name');
         $options_cat = $options_factory->getOptionsCategories();
@@ -62,6 +69,7 @@ class events extends dataObject
                 'categories' => $options_cat,
                 'ressources_lst' => $ressources_lst,
                 'levels' => $ressources_factory->getLevels(),
+                'credits' => $credits,
 			));
 		}
 

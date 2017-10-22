@@ -43,7 +43,7 @@
 
 										case 'rank' :
 											echo '<td>'.$current['rank'];
-											if ($current['dead']) echo '&nbsp;<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" width="16">';
+											if ($current['dead'] > 0) echo '&nbsp;<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" width="16">';
 											echo '</td>';
 											break;
 

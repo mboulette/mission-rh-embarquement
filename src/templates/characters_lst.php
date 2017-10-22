@@ -34,7 +34,7 @@
 											<h3>
 												<?php
 												echo $char['name']; 
-												if ($char['dead']) echo '&nbsp;<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" style="margin-bottom:4px; width:18px;">';
+												if ($char['dead'] > 0) echo '&nbsp;<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" style="margin-bottom:4px; width:18px;">';
 												?>
 											</h3>
 											<hr>

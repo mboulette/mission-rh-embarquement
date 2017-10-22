@@ -69,7 +69,7 @@
 							<label for="rank" class="col-sm-3 control-label">Grade</label>
 							<div class="col-sm-8" style="font-size:24px;">
 								<span class="label label-default">Grade <?php echo $character['rank']; ?></span>
-								<?php if ($character['dead']) echo '&nbsp;<span class="label label-danger"><img src="/inscriptions/img/ico-dead.svg.php?fill=fff" style="margin-bottom:4px; width:18px;"> '.'Mort'.'</span>'; ?>
+								<?php if ($character['dead'] > 0) echo '&nbsp;<span class="label label-danger"><img src="/inscriptions/img/ico-dead.svg.php?fill=fff" style="margin-bottom:4px; width:18px;"> '.'Mort'.'</span>'; ?>
 							</div>
 						</div>
 
@@ -345,20 +345,23 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Confirmation de mort</h4>
       </div>
-      <div class="modal-body">
-        
-		<p>Êtes-vous certain de vouloir tuer le personnnage «<?php echo $character['name']; ?>»? Ce dernier ne pourra plus être utilisé lors d'une inscription.</p>
+      <form method="post" action="/inscriptions/admin/characters/kill/">
+	      <div class="modal-body">
+			<p>Êtes-vous certain de vouloir tuer le personnnage «<?php echo $character['name']; ?>»? Ce dernier ne pourra plus être utilisé lors d'une inscription.</p>
 
-      </div>
-      <div class="modal-footer">
-	    <form method="post" action="/inscriptions/admin/characters/kill/">
-			<input name="submitaction" type="hidden" value="kill">
-			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
+			<h4>Circonstances de la mort</h4>
+			<label><input type="radio" name="circonstance" value="1" checked> &nbsp; Mort en mission, ramené sur le vaisseau.</label></br>
+			<label><input type="radio" name="circonstance" value="2"> &nbsp; Mort en mission, laissé sur le terrain.</label></br>
+			<label><input type="radio" name="circonstance" value="3"> &nbsp; Changement de personnage volontaire.</label></br>
+	      </div>
+	      <div class="modal-footer">
+				<input name="submitaction" type="hidden" value="kill">
+				<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
 
-			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
-			<button type="submit" class="btn btn-warning"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
-		</form>
-      </div>
+				<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
+				<button type="submit" class="btn btn-warning"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
+	      </div>
+	  </form>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

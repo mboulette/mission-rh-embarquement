@@ -266,7 +266,7 @@
 													if ($character['corporation']['picture_url'] != '') $corporation_pic = '<img width="20" src="'.$character['corporation']['picture_url'].'"> &nbsp;';
 													
 													$dead = '';
-													if ($character['dead']) $dead = '&nbsp;<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" width="16">';
+													if ($character['dead'] > 0) $dead = '&nbsp;<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" width="16">';
 													?>
 												
 													<td><button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $character['id']; ?>" data-action="/inscriptions/admin/characters/display" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button></td>

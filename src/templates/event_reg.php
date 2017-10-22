@@ -36,13 +36,21 @@
 								?>
 
 								<?php foreach ($characters_lst as $char) { ?>
-								
+									
+									<?php
+									$char_credits = $current['credits'][$char['corporation']['id']];
+									if ($char['rank'] == 0 && $credits != 0) {
+										$char_credits = $credits;
+									}
+									?>
+
+
 									<div class="col-md-6 card-conteiner">
 										<label style="width:100%">
-											<div class="card card-character <?php if ($char['dead']==1 || ($char['rank']<$lock_character)) echo 'disabled'; ?>">
+											<div class="card card-character <?php if ($char['dead'] > 0 || ($char['rank']<$lock_character)) echo 'disabled'; ?>">
 												<div class="row">
 													<div class="col-xs-2">																								
-														<?php if ($char['dead']) { ?>
+														<?php if ($char['dead'] > 0) { ?>
 															<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" style="margin-bottom:4px; width:24px;">
 														<?php } elseif (($char['rank']<$lock_character)) { ?>
 														<?php } else { ?>
@@ -52,7 +60,7 @@
 															class="radio_card hidden"
 															data-profession="<?php echo $char['profession']['id']; ?>"
 															data-rank="<?php echo $char['rank']; ?>"
-															data-credits="<?php echo $current['credits'][$char['corporation']['id']]; ?>"
+															data-credits="<?php echo $char_credits; ?>"
 															value="<?php echo $char['id']; ?>">
 
 															<i class="fa fa-square-o fa-3x"></i>
@@ -75,7 +83,7 @@
 													</div>
 													
 												</div>
-												<?php if ($char['dead']) { ?>
+												<?php if ($char['dead'] > 0) { ?>
 													<div class="ribbon ribbon-danger"><span>Grade <?php echo $char['rank']; ?></span></div>
 												<?php } elseif (($char['rank']-$lock_character)<0) { ?>
 													<div class="ribbon"><span>Grade <?php echo $char['rank']; ?></span></div>
@@ -95,7 +103,7 @@
 
 					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingCredit">
-							<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCredit" aria-expanded="false" aria-controls="collapseCredit">
+							<h3 class="panel-title collapsed collapseCredit" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCredit" aria-expanded="false" aria-controls="collapseCredit">
 								<i class="fa fa-balance-scale"></i>&nbsp;
 								Choisirs vos ressources <span class="hidden-xs">de départ</span>
 								<span class="caret"></span>
@@ -449,6 +457,28 @@
 	</div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<div id="ressource-valid" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Choisir les ressources</h4>
+	  </div>
+	  <div class="modal-body">
+		
+		<p>Pour compléter un inscription, vous devez absoluement choisir vos ressources dans la section "Choisirs vos ressources de départ".</p>
+		<p>Assurez-vous aussi de vérifier que votre total de crédits dépensés n'est pas plus grand que les crédits alloués par votre corporation.</p>
+
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-default btn-lg">&nbsp; Ok &nbsp;</button>
+	  </div>
+	</div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 
 <div id="confirm" class="modal fade" tabindex="-1" role="dialog">

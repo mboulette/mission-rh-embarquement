@@ -347,6 +347,24 @@ class characters extends dataObject
         return $array[$results];
     }
 
+    public function lastKilled($id_player) {
+        $sql = '
+        SELECT *
+        FROM characters
+        WHERE id_player='.$id_player.'
+        AND dead>0
+        ORDER BY date_dead desc
+        LIMIT 1
+        ';
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+
+        return $array;
+    }
 
     public function getAdminList() {
 
@@ -560,7 +578,10 @@ class characters extends dataObject
 
             $character = array('id' => $_POST['id']);
             if ($_POST['submitaction'] == "kill") {
-                $character['dead'] = 1;
+                $character['dead'] = $_POST['circonstance'];
+
+		        $date = new DateTime('now');
+		        $character['date_dead'] = $date->format('Y-m-d H:i:s');
 
                 $_SESSION['message'] = array(
                     'type' => 'danger',
@@ -570,6 +591,7 @@ class characters extends dataObject
             
             if ($_POST['submitaction'] == "unkill") {
                 $character['dead'] = 0;
+                $character['date_dead'] = null;
 
                 $_SESSION['message'] = array(
                     'type' => 'success',

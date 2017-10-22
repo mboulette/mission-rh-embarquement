@@ -88,9 +88,6 @@ $(function() {
 	/***  SIGN-IN
 	/*******************************************************************************/
 
-
-
-
 	$('#signin_show_password').on('click', function(){
 
 		if ( $(this).is(':checked') ){
@@ -215,11 +212,10 @@ $(function() {
 	});
 
 	
-	$('.card.card-credit:not(.disabled)').on('click', function(){
+	$('.credit-card-panel .card.card-credit:not(.disabled)').on('click', function(event){
 		event.preventDefault();
 		event.stopPropagation();
 
-		//$(this).find('.updcard').click();
 		$("#info-update").modal('show');
 	});
 	
@@ -478,6 +474,14 @@ $(function() {
 			return false;
 		}
 
+		if ( parseInt($('#total-ressource').html()) > parseInt($('.max-credits').first().html()) || parseInt($('#total-ressource').html()) == 0 ) {
+			event.preventDefault();
+			$('#ressource-valid').modal();
+			$('h3.collapsed.collapseCredit').last().click();
+
+			return false;
+		} 
+
 		if (!$('#confirm').hasClass('in')) {
 
 			event.preventDefault();
@@ -545,7 +549,6 @@ $(function() {
 		$('#orderby').val( $(this).data('orderby') );
 		$('#orderdir').val( $(this).data('orderdir') );
 
-		console.log( $('#form-sort') );
 		$('#form-sort').submit();
 	});
 
