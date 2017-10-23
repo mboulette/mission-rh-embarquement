@@ -291,7 +291,7 @@ label .card {
 
 .card.active .ribbon span {background: linear-gradient(#f0ad4e 0%, #ba7c25 100%);}
 .card.active .ribbon span::before {border-left-color: #ba7c25; border-top-color: #ba7c25;}
-.card.active .ribbonspan::after {border-right-color: #ba7c25; border-top-color: #ba7c25;}
+.card.active .ribbon span::after {border-right-color: #ba7c25; border-top-color: #ba7c25;}
 
 .fa-cc-american_express:before {
   content: "\f1f3";

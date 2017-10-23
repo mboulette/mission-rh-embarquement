@@ -524,8 +524,6 @@ $(function() {
 				var ressource = $(this).data('id');
 				var price = parseInt($(this).data('value'));
 
-				console.log(skill, ressource);
-
 				switch(skill) {
 				case 14: //14 : breuvages (4, 10, 16)
 					if (ressource == 4 || ressource == 10 || ressource == 16) {

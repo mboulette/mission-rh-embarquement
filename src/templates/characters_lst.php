@@ -20,12 +20,12 @@
 								<form action="/inscriptions/characters/edit" method="post">
 									<div class="row">
 										<div class="col-xs-3 col-sm-3">
-											<img src="<?php echo $char['profession']['picture_url']; ?>" alt="<?php echo $char['profession']['name']; ?>" title="<?php echo $char['profession']['name']; ?>" class="img-thumbnail">
+											<img src="<?php echo $char['profession']['picture_url']; ?>" data-toggle="tooltip" alt="<?php echo $char['profession']['name']; ?>" title="<?php echo $char['profession']['name']; ?>" class="img-thumbnail">
 											
 											<div class="row" style="margin-top: 3px;">
 												<div class="col-xs-12 col-sm-12">
-													<img src="<?php echo $char['race']['picture_url']; ?>" alt="<?php echo $char['race']['name']; ?>" title="<?php echo $char['race']['name']; ?>"  width="47%" class="img-thumbnail">
-													<img src="<?php echo $char['corporation']['picture_url']; ?>" alt="<?php echo $char['corporation']['name']; ?>" title="<?php echo $char['corporation']['name']; ?>"  width="47%" class="img-thumbnail pull-right">
+													<img src="<?php echo $char['race']['picture_url']; ?>" data-toggle="tooltip" alt="<?php echo $char['race']['name']; ?>" title="<?php echo $char['race']['name']; ?>"  width="47%" class="img-thumbnail">
+													<img src="<?php echo $char['corporation']['picture_url']; ?>" data-toggle="tooltip" alt="<?php echo $char['corporation']['name']; ?>" title="<?php echo $char['corporation']['name']; ?>"  width="47%" class="img-thumbnail pull-right">
 												</div>
 											</div>
 										</div>

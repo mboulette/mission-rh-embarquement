@@ -79,7 +79,7 @@ class events extends dataObject
 
 	public function getList() {
 
-		$events_list = $this->getAll();
+		$events_list = $this->getAll('inscription_begin');
 		foreach ($events_list as &$event) {
 			$event['nbInscription'] = $this->nbInscription($event['id']);
 			$event['isActive'] = $this->isActive($event);
@@ -154,12 +154,16 @@ class events extends dataObject
 	public function save() {
 		
 		$current_event = $this->getOne($_POST['id_event']);
+        $amount = 0;
 
-		$options_factory = new eventOptions();
-		$options_lst = $options_factory->getAll();
 		$options = array();
-		$amount = 0;
+        $options_factory = new eventOptions();
+        $options_lst = $options_factory->getAll();
 
+        $ressources = array();
+        $ressources_factory = new ressources();
+        $ressources_lst = $ressources_factory->getAll();
+		
 		foreach ($options_lst as $option) {
 
 			$key = $option['id'];
@@ -180,10 +184,21 @@ class events extends dataObject
 						$options[$key][$name] = $precision[$key];
 					}
 				}
-
 			}
-
 		}
+
+        foreach ($ressources_lst as $ressource) {
+
+            $key = $ressource['id'];
+            
+            if (isset($_POST['qty_ressource'][$key]) && $_POST['qty_ressource'][$key] > 0) {
+
+                $ressource[$key] = array(
+                    'qty' => (integer)$_POST['qty_ressource'][$key],
+                    'name' => $ressource['name'],
+                );
+            }
+        }
 
 		$inscription_factory = new inscriptions();
 		$inscription = array(
@@ -192,7 +207,7 @@ class events extends dataObject
 			'id_player' => $_SESSION['player']['id'],
 			'id_character' => $_POST['id_character'], 
 			'options' => json_encode($options),
-			'powers' => '', 
+			'ressources' => json_encode($ressources),
 			'amount' => $amount,
 		);
 
