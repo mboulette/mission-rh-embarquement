@@ -152,7 +152,7 @@ class events extends dataObject
 	}
 
 	public function save() {
-		
+
 		$current_event = $this->getOne($_POST['id_event']);
         $amount = 0;
 
@@ -193,12 +193,13 @@ class events extends dataObject
             
             if (isset($_POST['qty_ressource'][$key]) && $_POST['qty_ressource'][$key] > 0) {
 
-                $ressource[$key] = array(
+                $ressources[$key] = array(
                     'qty' => (integer)$_POST['qty_ressource'][$key],
                     'name' => $ressource['name'],
                 );
             }
         }
+
 
 		$inscription_factory = new inscriptions();
 		$inscription = array(
@@ -246,7 +247,13 @@ class events extends dataObject
 
 		$id = $inscription_factory->insert($inscription);
 
-		$this->sendInscriptionEmail($id, $current_event);
+		$character_factory = new characters();
+        $character = $character_factory->getOne($_POST['id_character']);
+        if ($character['rank'] == 0) {
+            $character_factory->update(array('id' => $_POST['id_character'], 'rank' => 1));
+        }
+
+        $this->sendInscriptionEmail($id, $current_event);
 
 		unset($_POST['id_event']);
 		return true;
