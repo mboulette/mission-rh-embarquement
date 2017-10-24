@@ -35,17 +35,12 @@
 
 <h2>Options</h2>
 <?php
-$options = json_decode($inscription['options'], true);
+foreach (json_decode($inscription['options'], true) as $option) {
+	echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'].'<br />';
+}
 
-foreach ($options as $option) {
-	echo '<strong>'.$option['qty']. ' x '.$option['name'].' </strong>';
-	foreach ($option as $key => $value) {
-		if ($key != 'name' && $key != 'qty' && $key != 'total' && $key != 'price') {
-			echo ' - ' . $key . ' : ' . $value;
-		}
-	}
-	echo '<br />';
-
+foreach (json_decode($inscription['ressources'], true) as $ressource) {
+	echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';
 }
 ?>
 

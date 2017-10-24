@@ -69,70 +69,29 @@
 						<div class="col-md-6" >
 
 							<?php
-							$options = array();
-							$tmp ='';
-							$id_transaction = array();
 							$inscription_created = new DateTime($inscription['date_created']);
 							$inscription_updated = new DateTime($inscription['date_updated']);
-							$total = 0;
-
-							foreach ($inscriptions as $lines) {
-
-								$tmp = json_decode($lines['options'], true);
-								$id_transaction[] = $lines['id_transaction'];
-
-								$date_created = new DateTime($lines['date_created']);
-								$date_updated = new DateTime($lines['date_updated']);
-
-								if ($date_created->getTimestamp() < $inscription_created->getTimestamp()) $inscription_created = $date_created;
-								if ($date_updated->getTimestamp() > $inscription_updated->getTimestamp()) $inscription_updated = $date_updated;
-
-								$total += $lines['amount'];
-
-								foreach ($tmp as $option) {
-									
-									$token = '';
-									$description = array();
-									foreach ($option as $key => $value) {
-										if ($key != 'qty' && $key != 'total' && $key != 'price') {
-											$token .=$key.$value;
-
-											if ($key != 'name') {
-												$description[] = $key . ' : ' . $value;
-											} 
-										}
-									}
-
-									if (!isset($options[md5($token)])) {
-										$options[md5($token)] = array(
-											'name' => $option['name'],
-											'qty' => $option['qty'],
-											'description' => implode(', ', $description)
-										);
-									} else {
-										$options[md5($token)]['qty'] += $option['qty'];
-									}
-
-								}
-							}
 							?>
 							<h3>Inscription</h3>
 							<p>
-								<strong>Transaction :</strong> <?php echo implode(', ', $id_transaction);?><br />
+								<strong>Transaction :</strong> <?php echo $inscription['id_transaction'];?><br />
 								<strong>Date d'inscription :</strong> <?php echo $inscription_created->format('Y-m-d H:i');?><br />
 								<strong>Date mis à jour :</strong> <?php echo $inscription_updated->format('Y-m-d H:i');?><br />
-								<strong>Total :</strong> <?php echo number_format($total, 2);?> $<br />
+								<strong>Total :</strong> <?php echo number_format($inscription['amount'], 2);?> $<br />
 							</p>
 
-							<h4>Compilations des options</h4>
-
+							<h3>Options</h3>
 							<?php
-							foreach ($options as $option) {
-								echo '<strong>'.$option['qty']. ' x '.$option['name'].' </strong>';
-								if ($option['description'] != '')echo ' ('.$option['description'].') ';
-								echo '<br />';
+							foreach (json_decode($inscription['options'], true) as $option) {
+								echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'].'<br />';
 							}
+							?>
 
+							<h3>Ressources</h3>
+							<?php
+							foreach (json_decode($inscription['ressources'], true) as $ressource) {
+								echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';
+							}
 							?>
 						</div>
 					</div>
