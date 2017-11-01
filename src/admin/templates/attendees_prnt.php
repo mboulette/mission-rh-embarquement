@@ -100,6 +100,7 @@
 							foreach (json_decode($inscription['details'][0]['ressources'], true) as $ressource) {
 								echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';
 							}
+							echo '<strong>'.$inscription['details'][0]['credits']. ' x </strong>Crédits restants<br />';
 							?>
 
 						</div>

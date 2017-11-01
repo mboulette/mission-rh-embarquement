@@ -152,7 +152,6 @@ class events extends dataObject
 	}
 
 	public function save() {
-
 		$current_event = $this->getOne($_POST['id_event']);
         $amount = 0;
 
@@ -210,6 +209,7 @@ class events extends dataObject
 			'options' => json_encode($options),
 			'ressources' => json_encode($ressources),
 			'amount' => $amount,
+            'credits' => $_POST['credits'],
 		);
 
 

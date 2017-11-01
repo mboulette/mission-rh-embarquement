@@ -209,8 +209,8 @@
 
 									<div class="panel panel-default text-right">
 									  <div class="panel-body cart-total">
-										Max : <span class="max-credits">0</span> &nbsp;-&nbsp;
-										<strong>TOTAL : <i class="fa fa-ticket" aria-hidden="true"></i> <span id="total-ressource">0</span></strong>
+										<strong>TOTAL : <i class="fa fa-ticket" aria-hidden="true"></i> <span id="total-ressource">0</span>
+										/ <span class="max-credits">0</span></strong>
 									  </div>
 									</div>
 
@@ -428,6 +428,7 @@
 				<div class="panel-footer text-right">
 					<input type="hidden" id="id_event" name="id_event" value="<?php echo $current['id']; ?>">
 					<input type="hidden" name="save" value="save">
+					<input type="hidden" id="credits" name="credits" value="0">
 
 					<a href='/inscriptions/events' class="btn btn-default btn-lg backlink">Annuler</a>
 					<button id="register-event" type="submit" value="pay" class="btn btn-warning btn-lg"><i class="fa fa-usd"></i> &nbsp;Payer</button>

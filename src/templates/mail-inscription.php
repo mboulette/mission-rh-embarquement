@@ -38,10 +38,14 @@
 foreach (json_decode($inscription['options'], true) as $option) {
 	echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'].'<br />';
 }
+?>
 
+<h2>Ressources</h2>
+<?php
 foreach (json_decode($inscription['ressources'], true) as $ressource) {
 	echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';
 }
+echo '<strong>'.$inscription['credits']. ' x </strong>Crédits restants<br />';
 ?>
 
 <h3>Total Payé: $<?php echo $inscription['amount'];?></h3>

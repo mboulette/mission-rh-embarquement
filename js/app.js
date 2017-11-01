@@ -488,6 +488,8 @@ $(function() {
 			return false;
 		} 
 
+		$('#credits').val( parseInt($('.max-credits').first().html()) - parseInt($('#total-ressource').html()) );
+		
 		if (!$('#confirm').hasClass('in')) {
 
 			event.preventDefault();
@@ -501,6 +503,7 @@ $(function() {
 			return false;
 
 		}
+
 
 	});
 
