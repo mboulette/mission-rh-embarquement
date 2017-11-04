@@ -627,5 +627,28 @@ class characters extends dataObject
 
     }
 
+    public function healthcheck() {
+
+		if($_POST['submitaction'] == 'from_lst') {
+			$inscription_factory = new inscriptions();
+			$inscription = $inscription_factory->getOne($_POST['id']);
+			$_POST['id'] = $inscription['id_character'];
+		}
+
+		$current = $this->getOne($_POST['id']);
+		$character = array('id' => $_POST['id']);
+		$character['health_points'] = $_POST['health_check'];
+
+		$this->update($character);
+
+        $_SESSION['message'] = array(
+            'type' => 'success',
+            'body' => 'Le bilan de santé de «'.$current['name'].'» a été mis à jour!'
+        );
+
+        $_POST['submitaction'] = 'display';
+        return $this->display();
+    }
+
 
 }

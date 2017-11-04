@@ -130,6 +130,11 @@ switch ($script_url) {
         echo $characters->rankup();
     break;
 
+    case '/inscriptions/admin/characters/health/' :
+        $characters = new characters();
+        echo $characters->healthcheck();
+    break;    
+
     case '/inscriptions/admin/characters/edit/' :
         $characters = new characters();
         echo $characters->adminEdit();

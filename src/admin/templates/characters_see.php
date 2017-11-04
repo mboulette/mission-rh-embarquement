@@ -22,6 +22,8 @@
 						<?php } ?>
 
 						<button class="btn btn-default tool" data-modal="modal-rankup"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade</button>
+						<button class="btn btn-default tool" data-modal="modal-health"><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp;Changer le bilan</button>
+
 						<?php if ($_SESSION['player']['admin'] > 1) { ?>
 							<button class="btn btn-default tool" data-modal="modal-edit"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
 						<?php } ?>
@@ -35,7 +37,8 @@
 								<p><strong><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer :</strong> Ce bouton permet de supprimer complètement le personnage. C'est essentiellement pour supprimer des spamers, ou des tests de certains clients. Vous ne pouvez pas supprimer des personnages qui ont déjà participé à des évènements.</p>
 							<?php } ?>
 							<p><strong><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer :</strong> Ce bouton permet de tuer un personnage, ce dernier ne pourra plus être utilisé lors d'une inscription.</p>
-							<p><strong><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade :</strong> Ce bouton vous permet d'élever ce personnage en grade, en montanr de grade, certaines nouvelles ressources lui seront disponible.</p>
+							<p><strong><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade :</strong> Ce bouton vous permet d'élever ce personnage en grade, en montant de grade, certaines nouvelles ressources lui seront disponible.</p>
+							<p><strong><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp;Changer le bilan :</strong> Ce bouton vous permet de changer la valeur du bilan de santé de ce personnage.</p>
 							<?php if ($_SESSION['player']['admin'] > 1) { ?>
 								<p><strong><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier :</strong> Ce bouton permet de modifier un personnage, il permet de faire des changements impossible par le joueur.</p>
 							<?php } ?>
@@ -56,6 +59,7 @@
 						<?php } ?>
 
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-rankup" style="margin: 3px;"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade</button>
+						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-health" style="margin: 3px;"><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp;Changer le bilan</button>
 						<?php if ($_SESSION['player']['admin'] > 1) { ?>
 							<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-edit" style="margin: 3px;"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
 						<?php } ?>
@@ -67,9 +71,27 @@
 
 						<div class="form-group">
 							<label for="rank" class="col-sm-3 control-label">Grade</label>
-							<div class="col-sm-8" style="font-size:24px;">
-								<span class="label label-default">Grade <?php echo $character['rank']; ?></span>
-								<?php if ($character['dead'] > 0) echo '&nbsp;<span class="label label-danger"><img src="/inscriptions/img/ico-dead.svg.php?fill=fff" style="margin-bottom:4px; width:18px;"> '.'Mort'.'</span>'; ?>
+							<div class="col-sm-8">
+								<span style="font-size:24px;">
+									<span class="label label-default">Grade <?php echo $character['rank']; ?></span>
+									<?php if ($character['dead'] > 0) echo '&nbsp;<span class="label label-danger"><img src="/inscriptions/img/ico-dead.svg.php?fill=fff" style="margin-bottom:4px; width:18px;"> '.'Mort'.'</span>'; ?>
+								</span>
+								<?php 
+								if ($character['dead'] == 1) $dead_details = 'Mort en mission, ramené sur le vaisseau.';
+								if ($character['dead'] == 2) $dead_details = 'Mort en mission, laissé sur le terrain.';
+								if ($character['dead'] == 3) $dead_details = 'Changement de personnage volontaire.';
+								if ($character['dead'] > 0) echo '&nbsp;<code class="hidden-sm hidden-xs">'.$dead_details.'</code>';
+								?>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="health_points" class="col-sm-3 control-label">Bilan de santé</label>
+							<div class="col-sm-2">
+							    <div class="input-group">
+							      <input type="number" class="form-control" id="health_points" name="health_points" placeholder="Bilan de santé"  maxlength="5" readonly value="<?php echo $character['health_points']; ?>">
+							      <div class="input-group-addon">%</div>
+							    </div>
 							</div>
 						</div>
 
@@ -417,6 +439,40 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+<div id="modal-health" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modifier le blian de santé</h4>
+      </div>
+      <form method="post" action="/inscriptions/admin/characters/health/">
+	      <div class="modal-body">
+			<p>Entrez la nouvelle valeur de santé pour ce personnage «<?php echo $character['name']; ?>» ?</p>
+
+			<div class="row">
+				<label for="health_check" class="col-sm-3 control-label">Bilan de santé</label>
+				<div class="col-sm-4">
+				    <div class="input-group">
+				      <input type="number" class="form-control" id="health_check" name="health_check" min="0" max="100" value="<?php echo $character['health_points']; ?>">
+				      <div class="input-group-addon">%</div>
+				    </div>
+				</div>
+			</div>
+
+	      </div>
+	      <div class="modal-footer">
+			<input name="submitaction" type="hidden" value="health_check">
+			<input name="id" type="hidden" value="<?php echo $character['id']; ?>">
+
+			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-save" aria-hidden="true"></i> &nbsp;Enregistrer</button>
+	      </div>
+  	  </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <div id="modal-edit" class="modal fade" tabindex="-1" role="dialog">

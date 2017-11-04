@@ -20,6 +20,23 @@ String.prototype.passwordMeter = function() {
 
 $(function() {
 
+	$('.list-action.btn-health-points').on('click', function(){
+		$('#character_name').html($(this).data('name'));
+		$('#health_check').val($(this).data('health'));
+		$('#id_inscription').val($(this).data('id'));
+		$('#modal-health').modal();
+	});
+
+	$('#modal-health-form').on('submit', function(){
+		event.preventDefault();
+		event.stopPropagation();
+
+		$.post("/inscriptions/admin/characters/health/", $(this).serialize(), function(data) {
+			$('#form-sort').submit();
+		});
+	});
+
+
 	if ($('.marquee').length > 0) {
 		setInterval(function(){
 			$( ".marquee-content div:first" ).slideUp( "slow", function() {

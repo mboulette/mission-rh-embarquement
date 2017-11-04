@@ -520,6 +520,7 @@ class events extends dataObject
             'Joueur' => 'player_name',
             'Personnage' => 'character_name',
             'Total' => 'total',
+            'Bilan' => 'health_points',
         );
 
         $orderby = 'player_name';

@@ -83,6 +83,7 @@
 								<strong>Race :</strong> <?php echo $character['race']['name'];?><br />
 								<strong>Profession :</strong> <?php echo $character['profession']['name'];?><br />
 								<strong>Grade :</strong> <?php echo $character['rank'];?><br />
+								<strong>Bilan de santé :</strong> <?php echo $character['health_points'];?> / 100<br />
 							</p>
 
 						</div>
