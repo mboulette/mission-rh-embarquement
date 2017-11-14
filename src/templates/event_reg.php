@@ -246,7 +246,7 @@
 
 					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingThree">
-						  <h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						  <h3 class="panel-title collapsed collapseOptions" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 							  <i class="fa fa-shopping-cart"></i>&nbsp;
 							  Choisir vos options
 							  <span class="caret"></span>
@@ -325,7 +325,7 @@
 															<span class="glyphicon glyphicon-minus"></span>
 														</button>
 													</span>
-													<input type="text" name="qty['.$option['id'].']" class="form-control input-number text-right price" 
+													<input type="text" name="qty['.$option['id'].']" class="form-control input-number text-right price option_value_'.$option['id'].'" 
 														data-price="'.$option['price'].'" data-id="'.$option['id'].'" 
 														value="'.$option['mandatory'].'" 
 														min="'.($option['mandatory'] == 1 ? 1 : 0).'" max="'.($option['mandatory'] == 1 ? 1 : 10).'"
@@ -370,7 +370,7 @@
 					  </div>
 					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingTwo">
-						  <h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						  <h3 class="panel-title collapsed collapseCredit" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 							  <i class="fa fa-credit-card-alt"></i>&nbsp;
 							  Choisir votre carte de crédit
 							  <span class="caret"></span>
@@ -429,6 +429,7 @@
 					<input type="hidden" id="id_event" name="id_event" value="<?php echo $current['id']; ?>">
 					<input type="hidden" name="save" value="save">
 					<input type="hidden" id="credits" name="credits" value="0">
+					<input type="hidden" id="combinaison" name="combinaison" value="<?php echo $_SESSION['player']['combinaison']; ?>">
 
 					<a href='/inscriptions/events' class="btn btn-default btn-lg backlink">Annuler</a>
 					<button id="register-event" type="submit" value="pay" class="btn btn-warning btn-lg"><i class="fa fa-usd"></i> &nbsp;Payer</button>
@@ -442,6 +443,26 @@
 
 	</div>
 </div>
+
+
+<div id="combinaison-valid" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Compléter un inscription</h4>
+	  </div>
+	  <div class="modal-body">
+		
+		<p>Pour compléter un inscription, vous devez absoluement louer ou acheter une combinaison. Assurez-vous aussi de vérifier les autres options avant de continuer.</p>
+
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-default btn-lg">&nbsp; Ok &nbsp;</button>
+	  </div>
+	</div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <div id="register-valid" class="modal fade" tabindex="-1" role="dialog">

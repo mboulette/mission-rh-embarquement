@@ -252,6 +252,12 @@ class events extends dataObject
         if ($character['rank'] == 0) {
             $character_factory->update(array('id' => $_POST['id_character'], 'rank' => 1));
         }
+        
+        $player_factory = new players();
+        if (isset($_POST['qty']['6']) && $_POST['qty']['6'] > 0) {
+           $player_factory->update(array('id' => $_SESSION['player']['id'], 'combinaison' => 1));
+           $_SESSION['player']['combinaison'] = 1; 
+        }
 
         $this->sendInscriptionEmail($id, $current_event);
 

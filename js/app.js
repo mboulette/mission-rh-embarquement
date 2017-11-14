@@ -475,6 +475,18 @@ $(function() {
 	$('#form_register').on('submit', function(){
 		event.stopPropagation();
 
+		combinaison = parseInt($('#combinaison').val())+parseInt($('.option_value_5').first().val())+parseInt($('.option_value_6').first().val());
+		if (combinaison == 0) {
+			event.preventDefault();
+			$('#combinaison-valid').modal();
+
+			if (!$('#collapseThree').hasClass('in')) {
+				$('h3.collapsed.collapseOptions').last().click();
+			}
+
+			return false;
+		}
+		
 		if ($('input[name="id_character"]:checked').length == 0) {
 			event.preventDefault();
 			$('#register-valid').modal();
@@ -506,6 +518,7 @@ $(function() {
 		} 
 
 		$('#credits').val( parseInt($('.max-credits').first().html()) - parseInt($('#total-ressource').html()) );
+
 		
 		if (!$('#confirm').hasClass('in')) {
 
