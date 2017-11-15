@@ -45,7 +45,7 @@
 															<?php
 															foreach ($gn['nbInscriptionCorpo'] as $corpo) {
 																echo '<div>';
-																echo $corpo['nbInscriptions']. '/'.$gn['max_places'].'<br />';
+																echo $corpo['nbInscriptions'].'<br />';
 																echo '<span>'.$corpo['name'].'</span>';
 																echo '</div>';
 															}
