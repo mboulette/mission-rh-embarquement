@@ -455,7 +455,7 @@
 				<label for="health_check" class="col-sm-3 control-label">Bilan de santé</label>
 				<div class="col-sm-4">
 				    <div class="input-group">
-				      <input type="number" class="form-control" id="health_check" name="health_check" min="0" max="100" value="<?php echo $character['health_points']; ?>">
+				      <input type="number" class="form-control" id="health_check" name="health_check" min="0" max="125" value="<?php echo $character['health_points']; ?>">
 				      <div class="input-group-addon">%</div>
 				    </div>
 				</div>

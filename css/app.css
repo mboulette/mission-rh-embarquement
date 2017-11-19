@@ -407,3 +407,8 @@ label .card {
   /*border : 2px solid red;*/
   background-color: #337ab7;
 }
+
+.bigger {
+  font-size: 24px;
+  color: red;
+}

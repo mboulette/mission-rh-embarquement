@@ -50,7 +50,7 @@
 				<div class="panel-body">
 
 					<div class="row">
-						<div class="col-xs-5" >
+						<div class="col-xs-4" >
 
 							<?php
 							$inscription_created = new DateTime($inscription['date_created']);
@@ -87,12 +87,20 @@
 							</p>
 
 						</div>
-						<div class="col-xs-4" >
+						<div class="col-xs-5" >
 							
 							<h3>Options</h3>
 							<?php
 							foreach (json_decode($inscription['details'][0]['options'], true) as $option) {
-								echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'].'<br />';
+								echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'];
+
+								foreach ($option as $key => $value) {
+									if ($key != 'name' && $key != 'qty' && $key != 'total'  && $key != 'price') {
+										echo '&nbsp;<span class="label label-default">'.$key.':'.$value.'</span>';
+									}
+								}
+
+								echo '<br />';
 							}
 							?>
 

@@ -84,7 +84,15 @@
 							<h3>Options</h3>
 							<?php
 							foreach (json_decode($inscription['options'], true) as $option) {
-								echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'].'<br />';
+								echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'];
+
+								foreach ($option as $key => $value) {
+									if ($key != 'name' && $key != 'qty' && $key != 'total'  && $key != 'price') {
+										echo '&nbsp;<span class="label label-default">'.$key.':'.$value.'</span>';
+									}
+								}
+
+								echo '<br />';
 							}
 							?>
 

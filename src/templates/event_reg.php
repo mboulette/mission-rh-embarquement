@@ -17,9 +17,11 @@
 					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingOne">
 							<h3 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								<i class="fa fa-users"></i>&nbsp;
-								Choisir votre personnage
-								<span class="caret"></span>
+								<span class='bigger' style='font-size:24px;'>
+									<i class="fa fa-users"></i>&nbsp;
+									Choisir votre personnage
+									<span class="caret"></span>
+								</span>
 							</h3>
 						</div>
 
@@ -107,10 +109,12 @@
 
 					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingCredit">
-							<h3 class="panel-title collapsed collapseCredit" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCredit" aria-expanded="false" aria-controls="collapseCredit">
-								<i class="fa fa-balance-scale"></i>&nbsp;
-								Choisirs vos ressources <span class="hidden-xs">de départ</span>
-								<span class="caret"></span>
+							<h3 class="panel-title collapsed collapseCredit " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCredit" aria-expanded="false" aria-controls="collapseCredit">
+								<span class='bigger' style='font-size:24px;'>
+									<i class="fa fa-balance-scale"></i>&nbsp;
+									Choisirs vos ressources <span class="hidden-xs">de départ</span>
+									<span class="caret"></span>
+								</span>
 							</h3>
 						</div>
 
@@ -247,9 +251,11 @@
 					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingThree">
 						  <h3 class="panel-title collapsed collapseOptions" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-							  <i class="fa fa-shopping-cart"></i>&nbsp;
-							  Choisir vos options
-							  <span class="caret"></span>
+							  <span class='bigger' style='font-size:24px;'>
+								  <i class="fa fa-shopping-cart"></i>&nbsp;
+								  Choisir vos options
+								  <span class="caret"></span>
+							  </span>
 						  </h3>
 						</div>
 						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -370,10 +376,12 @@
 					  </div>
 					  <div class="panel panel-warning">
 						<div class="panel-heading" role="tab" id="headingTwo">
-						  <h3 class="panel-title collapsed collapseCredit" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							  <i class="fa fa-credit-card-alt"></i>&nbsp;
-							  Choisir votre carte de crédit
-							  <span class="caret"></span>
+						  <h3 class="panel-title collapsed collapseCredit bigger" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							  <span class='bigger' style='font-size:24px;'>
+								  <i class="fa fa-credit-card-alt"></i>&nbsp;
+								  Choisir votre carte de crédit
+								  <span class="caret"></span>
+							  </span>
 						  </h3>
 						</div>
 						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
