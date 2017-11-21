@@ -437,7 +437,7 @@
 					<input type="hidden" id="id_event" name="id_event" value="<?php echo $current['id']; ?>">
 					<input type="hidden" name="save" value="save">
 					<input type="hidden" id="credits" name="credits" value="0">
-					<input type="hidden" id="combinaison" name="combinaison" value="<?php echo $_SESSION['player']['combinaison']; ?>">
+					<input type="hidden" id="combinaison" name="combinaison" value="<?php echo (isset($_SESSION['player']['combinaison']) ? $_SESSION['player']['combinaison'] : '0' ); ?>">
 
 					<a href='/inscriptions/events' class="btn btn-default btn-lg backlink">Annuler</a>
 					<button id="register-event" type="submit" value="pay" class="btn btn-warning btn-lg"><i class="fa fa-usd"></i> &nbsp;Payer</button>

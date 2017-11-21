@@ -15,13 +15,13 @@
 						<label class="col-sm-3 control-label">Photo</label>
 						<div class="col-sm-8"> 
 						    
-						    <button class="btn btn-default file-btn"> 
+						    <div class="btn btn-default file-btn"> 
 								<div>
 									<img id="picture" src="<?php echo $_SESSION['player']['picture_url']; ?>" width="160" height="160" alt="Avatar" class="img-thumbnail">
 								</div>
 						        <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp;Modifier
 						        <input type="file" id="upload" value="Select" /> 
-						    </button> 
+						    </div> 
 						    <div class="crop"> 
 						        <div id="upload-demo"></div> 
 						        <button class="btn btn-warning btn-sm upload-result"><i class="fa fa-check"></i> &nbsp;Accepter</button> 

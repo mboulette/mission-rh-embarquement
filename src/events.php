@@ -281,11 +281,11 @@ class events extends dataObject
 
         $mail->Charset = 'UTF-8';
         $mail->setFrom($GLOBALS['app_email'], $GLOBALS['app_name']);
-        $mail->addAddress($_SESSION['player']['email'], $_SESSION['player']['firstname']);
+        $mail->addAddress($_SESSION['player']['email'], $_SESSION['player']['firstname'].' '. $_SESSION['player']['lastname']);
         $mail->addAddress($GLOBALS['app_email'], $GLOBALS['app_name']);
         $mail->isHTML(true);
 
-        $mail->Subject = 'Détails de votre inscription';
+        $mail->Subject = 'Détails de votre inscription - '. $_SESSION['player']['firstname'].' '. $_SESSION['player']['lastname'];
         $mail->Body    = $email_template;
 
         if(!$mail->send()) {

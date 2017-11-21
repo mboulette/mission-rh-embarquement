@@ -27,7 +27,7 @@ $(function() {
 		$('#modal-health').modal();
 	});
 
-	$('#modal-health-form').on('submit', function(){
+	$('#modal-health-form').on('submit', function(event){
 		event.preventDefault();
 		event.stopPropagation();
 
@@ -472,7 +472,7 @@ $(function() {
 		event.stopPropagation();
 	});
 
-	$('#form_register').on('submit', function(){
+	$('#form_register').on('submit', function(event){
 		event.stopPropagation();
 
 		combinaison = parseInt($('#combinaison').val())+parseInt($('.option_value_5').first().val())+parseInt($('.option_value_6').first().val());
@@ -858,7 +858,7 @@ $(function() {
 	});
 
 
-	$('a.textures').on('click', function() {
+	$('a.textures').on('click', function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 
@@ -868,7 +868,7 @@ $(function() {
 	});
 
 
-	$('a.bumps').on('click', function() {
+	$('a.bumps').on('click', function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 
@@ -974,7 +974,7 @@ $(function() {
 
 		});
 
-		$('#btn_char_stepback').on('click', function(){
+		$('#btn_char_stepback').on('click', function(event){
 			event.stopPropagation();
 			$('#frm_char_stepback').submit();
 		});
