@@ -37,15 +37,6 @@
 
 					<div class="row">
 						<div class="col-md-6" >
-
-							<h3>Évènement <button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $event['id']; ?>" data-action="/inscriptions/admin/events/edit" data-toggle="tooltip" data-original-title="Modifier"><i class="fa fa-pencil"></i></button></h3>
-
-							<p>
-								<strong>Nom :</strong> <?php echo $event['name'];?><br />
-								<strong>Date de l'évènement :</strong> <?php echo $event['date_event'];?><br />
-								<strong>Nombre de places :</strong> <?php echo $event['max_places'];?><br />
-							</p>
-
 							<h3>Joueur <button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $player['id']; ?>" data-action="/inscriptions/admin/players/display" data-toggle="tooltip" data-original-title="Détails"><i class="fa fa-search"></i></button></h3>
 							<p>
 								<strong>Nom :</strong> <?php echo $player['firstname'].'  '.$player['lastname'];?><br />
@@ -63,11 +54,30 @@
 								<strong>Profession :</strong> <?php echo $character['profession']['name'];?><br />
 								<strong>Grade :</strong> <?php echo $character['rank'];?><br />
 								<strong>Bilan de santé :</strong> <?php echo $character['health_points'];?> / 100<br />
+								<br />
+								<strong>Habiletés :</strong> <?php echo $character['skill']['name'];?><br />
+								<?php echo $character['skill']['description'];?>
+
 							</p>
+
+							<h3>Talents</h3>
+							<?php
+							foreach ($character['feats'] as $feats) {
+								echo '<strong>- </strong>'.$feats['name'].'<br />';
+							}
+							?>
 
 						</div>
 
 						<div class="col-md-6" >
+
+							<h3>Évènement <button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $event['id']; ?>" data-action="/inscriptions/admin/events/edit" data-toggle="tooltip" data-original-title="Modifier"><i class="fa fa-pencil"></i></button></h3>
+
+							<p>
+								<strong>Nom :</strong> <?php echo $event['name'];?><br />
+								<strong>Date de l'évènement :</strong> <?php echo $event['date_event'];?><br />
+								<strong>Nombre de places :</strong> <?php echo $event['max_places'];?><br />
+							</p>
 
 							<?php
 							$inscription_created = new DateTime($inscription['date_created']);

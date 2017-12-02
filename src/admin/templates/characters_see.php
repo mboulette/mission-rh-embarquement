@@ -15,7 +15,7 @@
 						<?php if ($_SESSION['player']['admin'] > 2) { ?>
 							<button class="btn btn-danger tool" data-modal="modal-delete" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 						<?php } ?>
-						
+
 						<?php if ($character['dead'] == 0) { ?>
 							<button class="btn btn-primary tool" data-modal="modal-kill"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
 						<?php } else { ?>
@@ -142,6 +142,25 @@
 								<textarea class="form-control" rows="6" id="background" name="background" placeholder="Historique" maxlength="5000" readonly><?php echo $character['background']; ?></textarea>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label for="skill" class="col-sm-3 control-label">Habiletés</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" rows="3" id="skill" name="skill" placeholder="Habiletés" maxlength="5000" readonly><?php echo '* '.$skill["name"] ." *\n". $skill["description"];  ?></textarea>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="feats" class="col-sm-3 control-label">Talents</label>
+							<div class="col-sm-8">
+								<?php 
+								foreach ($feats as $feat) {
+									echo '<div>'.$feat['name'].' <i class="fa fa-question-circle" data-toggle="tooltip" title="'.$feat['description'].'"></i> </div>';
+								}
+								?>
+							</div>
+						</div>
+
 
 						<hr />
 

@@ -436,6 +436,12 @@ class characters extends dataObject
         $players_factory = new players();
         $player = $players_factory->getOne($character['id_player']);
 
+		$skills_factory = new skills();
+		$feats_factory = new feats();
+
+		$skill = $skills_factory->getOne($character['id_skill']);
+		$feats_lst = $feats_factory->getAll();
+
         $inscriptions_factory = new inscriptions();
         $inscriptions = $inscriptions_factory->characterParticipations($_POST['id']);
 
@@ -459,12 +465,22 @@ class characters extends dataObject
             }
         }
 
+        $feats = [];
+        
+        foreach ($feats_lst as $feat) {
+        	if ( in_array($feat['id'], json_decode($character['feats'], true) ) ) {
+        		$feats[] = $feat;
+        	}
+        }
+
         $template = get_template('navbar', array('active_menu' => 'admin-characters'));
         $template .= get_template('characters_see', array(
             'player' => $player,
             'character' => $character,
             'inscriptions' => $inscriptions,
-            'files' => $files
+            'files' => $files,
+            'skill' => $skill,
+            'feats' => $feats
         ), 'admin/');
 
         return render($template);

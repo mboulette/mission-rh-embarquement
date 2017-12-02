@@ -574,6 +574,19 @@ class events extends dataObject
             'id_event' => $inscription['id_event'],
         ));
 
+        $skills_factory = new skills();
+        $character['skill'] = $skills_factory->getOne($character['id_skill']);
+
+        $feats_factory = new feats();
+        $feats_lst = $feats_factory->getAll();
+
+        $tmp_feats = json_decode($character['feats'], true);
+        $character['feats'] = [];
+        foreach ($feats_lst as $feat) {
+            if ( in_array($feat['id'], $tmp_feats) ) {
+                $character['feats'][] = $feat;
+            }
+        }
 
         $template = get_template('navbar', array('active_menu' => 'admin-attendees'));
         $template .= get_template('attendees_see', array(
