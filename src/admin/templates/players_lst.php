@@ -14,6 +14,7 @@
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
+									<th width="30">#</th>
 									<th width="60">Outils</th>
 									<th width="60">Pic</th>
 									<?php foreach ($columns as $column_name => $field_name) { ?>
@@ -25,8 +26,10 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php $i=1; ?>
 								<?php foreach ($list as $current) { ?>
 								<tr class='action'>
+									<td><?php echo $i++; ?></td>
 									<th>
 										<button class="edit btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
 									</th>

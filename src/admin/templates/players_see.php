@@ -12,7 +12,7 @@
 
 					<div class="hidden-xs">
 						<a href="/inscriptions/admin/players" class="btn btn-warning backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
-						<?php if ($_SESSION['player']['admin'] > 1) { ?>
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
 							<button class="btn btn-danger tool" data-modal="modal-delete" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 						<?php } ?>
 						
@@ -22,7 +22,7 @@
 							<button class="btn btn-primary tool" data-modal="modal-unlock"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
 						<?php } ?>					
 
-						<?php if ($_SESSION['player']['admin'] > 2) { ?>
+						<?php if ($_SESSION['player']['admin'] > 3) { ?>
 							<button class="btn btn-default tool" data-modal="modal-connectas"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Incarner</button>
 						<?php } ?>
 						<button class="btn btn-default tool" data-modal="modal-send"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Envoyer un message</button>
@@ -33,11 +33,11 @@
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							
 							<p><strong><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste :</strong> Ce bouton permet de retourner à la liste des joueurs</p>
-							<?php if ($_SESSION['player']['admin'] > 1) { ?>
+							<?php if ($_SESSION['player']['admin'] > 2) { ?>
 								<p><strong><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer :</strong> Ce bouton permet de supprimer complètement un joueur du système. C'est essentiellement pour supprimer des spamers, ou des clients qui n'étaient pas réellement intéressés. Vous ne pouvez pas supprimer des joueurs qui ont déjà participé à des évènements, si vous voulez bannir ce dernier, utilisé plutôt le bouton Verrouillé.</p>
 							<?php } ?>
 							<p><strong><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Verrouillé :</strong> Ce bouton block les accès de ce joueur, ce dernier ne pourra plus ce connecter au système, ni créer un nouveau compte à partir de la même adresse courriel.</p>
-							<?php if ($_SESSION['player']['admin'] > 2) { ?>							
+							<?php if ($_SESSION['player']['admin'] > 3) { ?>							
 								<p><strong><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Incarner :</strong> Ce bouton vous permet de vous connecter dans le système comme si vous étiez ce joueur. C'est essentiellement pour faire des modifications ou des transactions pour lui qui aurait des difficultés ou des empêchements. Vous conserverez la barre d'administration, mais le menu du joueur (en noir) sera personnalisé pour cette personne.</p>
 							<?php } ?>
 							<p><strong><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Envoyer un message :</strong> Ce boutpn permet d'envoyer un courriel à ce joueur.</p>
@@ -49,7 +49,7 @@
 
 					<div class="visible-xs-block">
 						<a href="/inscriptions/admin/players" class="btn btn-warning btn-lg btn-block" style="margin: 3px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
-						<?php if ($_SESSION['player']['admin'] > 1) { ?>
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
 							<button class="btn btn-danger btn-lg btn-block tool" data-modal="modal-delete" style="margin: 3px;" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 						<?php } ?>
 						<?php if ($player['locked'] == 0) { ?>
@@ -58,7 +58,7 @@
 							<button class="btn btn-primary btn-lg btn-block tool" data-modal="modal-unlock" style="margin: 3px;"><i class="fa fa-unlock" aria-hidden="true"></i> &nbsp;Déverrouiller</button>
 						<?php } ?>
 
-						<?php if ($_SESSION['player']['admin'] > 2) { ?>
+						<?php if ($_SESSION['player']['admin'] > 3) { ?>
 							<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-connectas" style="margin: 3px;"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Incarner</button>
 						<?php } ?>
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-send" style="margin: 3px;"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Envoyer un message</button>
@@ -168,7 +168,11 @@
 							<div class="col-sm-3"  style="font-size:20px;">
 								<?php if ($player['completed']) echo '<span class="label label-default">Complété</span>&nbsp;'; ?>
 								<?php if ($player['locked']) echo '<span class="label label-primary">Verrouillé</span>&nbsp;'; ?>
-								<?php if ($player['admin']) echo '<span class="label label-danger">Admin</span>&nbsp;'; ?>
+								<?php if ($player['admin'] == 1) echo '<span class="label label-danger">Animateur</span>&nbsp;'; ?>
+								<?php if ($player['admin'] == 2) echo '<span class="label label-danger">Scénariste</span>&nbsp;'; ?>
+								<?php if ($player['admin'] == 3) echo '<span class="label label-danger">Admin</span>&nbsp;'; ?>
+								<?php if ($player['admin'] == 4) echo '<span class="label label-danger">Super Admin</span>&nbsp;'; ?>
+								<?php if ($player['combinaison']) echo '<span class="label label-primary">Combinaison</span>&nbsp;'; ?>
 							</div>
 						</div>
 
@@ -339,7 +343,7 @@
 
 					</div>
 
-					<?php if ($_SESSION['player']['admin'] > 2) { ?>
+					<?php if ($_SESSION['player']['admin'] > 3) { ?>
 					
 					<div class="panel panel-warning">
 

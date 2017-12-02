@@ -46,7 +46,7 @@
 										<button class="edit btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Modifier"><i class='fa fa-pencil'></i></button>
 										<button class="lock btn btn-primary btn-xs <?php if ($current['locked'] == 0) echo 'hidden'; ?>" data-url="/inscriptions/admin/options/lock" data-id='<?php echo $current['id']; ?>' data-toggle="tooltip" title="Activer"><i class='fa fa-unlock'></i></button>
 										<button class="lock btn btn-primary btn-xs <?php if ($current['locked'] == 1) echo 'hidden'; ?>" data-url="/inscriptions/admin/options/lock" data-id='<?php echo $current['id']; ?>' data-toggle="tooltip" title="Désactiver"><i class='fa fa-lock'></i></button>
-										<?php if ($_SESSION['player']['admin'] > 1) { ?>
+										<?php if ($_SESSION['player']['admin'] > 2) { ?>
 											<button class="delete btn btn-danger btn-xs" data-url="/inscriptions/admin/options/erase" data-id='<?php echo $current['id']; ?>' data-toggle="tooltip" title="Supprimer"><i class='fa fa-trash'></i></button>
 										<?php } ?>
 									</th>

@@ -16,13 +16,15 @@
 				</button>
 				<a class="navbar-brand" href="#"><i class="fa fa-lock"></i> &nbsp;
 					<?php
-					if ($_SESSION['player']['admin'] == 1) echo 'SCÉNARISTE';
-					if ($_SESSION['player']['admin'] == 2) echo 'ADMIN';
-					if ($_SESSION['player']['admin'] == 3) echo 'SUPER ADMIN';
+					if ($_SESSION['player']['admin'] == 1) echo 'ANIMATEUR';
+					if ($_SESSION['player']['admin'] == 2) echo 'SCÉNARISTE';
+					if ($_SESSION['player']['admin'] == 3) echo 'ADMIN';
+					if ($_SESSION['player']['admin'] == 4) echo 'SUPER ADMIN';
 					?>
 				</a>
 			</div>
 			<div id="navbar-admin" class="navbar-collapse navbar-right collapse">
+				<?php if ($_SESSION['player']['admin'] > 1) { ?>
 				<ul class="nav navbar-nav">
 
 					<li class="dropdown <?php echo $active_menu_clients;?>">
@@ -42,7 +44,7 @@
 						</ul>
 					</li>
 
-					<?php if ($_SESSION['player']['admin'] > 1) { ?>
+					<?php if ($_SESSION['player']['admin'] > 2) { ?>
 					<li class="dropdown <?php echo $active_menu_rules;?>">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Règles <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -65,13 +67,14 @@
 						<ul class="dropdown-menu">
 					
 							<li class="<?php echo ($active_menu=='admin-news' ? 'active' : '');?>"><a href="/inscriptions/admin/news">Nouvelles</a></li>
-							<?php if ($_SESSION['player']['admin'] > 1) { ?>
+							<?php if ($_SESSION['player']['admin'] > 2) { ?>
 								<li class="<?php echo ($active_menu=='admin-planets' ? 'active' : '');?>"><a href="/inscriptions/admin/planets">Planètes</a></li>
 								<li class="<?php echo ($active_menu=='admin-maintenance' ? 'active' : '');?>"><a href="/inscriptions/admin/maintenance">Arrêter le système</a></li>
 							<?php } ?>
 						</ul>
 					</li>
 				</ul>
+				<?php } ?>
 			</div>
 		</div>
 	</nav>

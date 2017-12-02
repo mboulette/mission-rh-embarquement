@@ -41,7 +41,7 @@
 									<th>
 										<button class="registrations btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Inscriptions"><i class='fa fa-search'></i></button>
 										<button class="edit btn btn-default btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Modifier"><i class='fa fa-pencil'></i></button>
-										<?php if ($_SESSION['player']['admin'] > 1) { ?>
+										<?php if ($_SESSION['player']['admin'] > 2) { ?>
 											<button class="delete btn btn-danger btn-xs" data-url="/inscriptions/admin/events/erase" data-id='<?php echo $current['id']; ?>' data-toggle="tooltip" title="Supprimer"><i class='fa fa-trash'></i></button>
 										<?php } ?>
 									</th>

@@ -14,6 +14,7 @@
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
+									<th width="30">#</th>									
 									<th width="60">Outils</th>
 									<?php foreach ($columns as $column_name => $field_name) { ?>
 										<th data-orderby="<?php echo $field_name; ?>" data-orderdir="<?php echo $orderdir; ?>" class="sort-order <?php if ($orderdir != 'desc') echo 'dropup' ?>">
@@ -24,9 +25,12 @@
 								</tr>
 							</thead>
 							<tbody>
+								
+								<?php $i=1; ?>
 								<?php foreach ($list as $current) { ?>
 
 								<tr class='action'>
+									<td><?php echo $i++; ?></td>
 									<th>
 										<button class="edit btn btn-warning btn-xs" data-id="<?php echo $current['id']; ?>" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
 									</th>

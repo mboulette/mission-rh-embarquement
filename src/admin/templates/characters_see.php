@@ -12,9 +12,10 @@
 
 					<div class="hidden-xs">
 						<a href="/inscriptions/admin/characters" class="btn btn-warning backlink"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
-						<?php if ($_SESSION['player']['admin'] > 1) { ?>
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
 							<button class="btn btn-danger tool" data-modal="modal-delete" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
 						<?php } ?>
+						
 						<?php if ($character['dead'] == 0) { ?>
 							<button class="btn btn-primary tool" data-modal="modal-kill"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
 						<?php } else { ?>
@@ -24,7 +25,7 @@
 						<button class="btn btn-default tool" data-modal="modal-rankup"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade</button>
 						<button class="btn btn-default tool" data-modal="modal-health"><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp;Changer le bilan</button>
 
-						<?php if ($_SESSION['player']['admin'] > 1) { ?>
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
 							<button class="btn btn-default tool" data-modal="modal-edit"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
 						<?php } ?>
 
@@ -33,13 +34,13 @@
 						<div class="alert alert-warning alert-dismissible" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
 							<p><strong><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste :</strong> Ce bouton permet de retourner à la liste des personnages</p>
-							<?php if ($_SESSION['player']['admin'] > 1) { ?>
+							<?php if ($_SESSION['player']['admin'] > 2) { ?>
 								<p><strong><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer :</strong> Ce bouton permet de supprimer complètement le personnage. C'est essentiellement pour supprimer des spamers, ou des tests de certains clients. Vous ne pouvez pas supprimer des personnages qui ont déjà participé à des évènements.</p>
 							<?php } ?>
 							<p><strong><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer :</strong> Ce bouton permet de tuer un personnage, ce dernier ne pourra plus être utilisé lors d'une inscription.</p>
 							<p><strong><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade :</strong> Ce bouton vous permet d'élever ce personnage en grade, en montant de grade, certaines nouvelles ressources lui seront disponible.</p>
 							<p><strong><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp;Changer le bilan :</strong> Ce bouton vous permet de changer la valeur du bilan de santé de ce personnage.</p>
-							<?php if ($_SESSION['player']['admin'] > 1) { ?>
+							<?php if ($_SESSION['player']['admin'] > 2) { ?>
 								<p><strong><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier :</strong> Ce bouton permet de modifier un personnage, il permet de faire des changements impossible par le joueur.</p>
 							<?php } ?>
 						</div>
@@ -50,8 +51,10 @@
 					<div class="visible-xs-block">
 
 						<a href="/inscriptions/admin/characters" class="btn btn-warning btn-lg btn-block" style="margin: 3px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Retour à la liste</a>
-						<button class="btn btn-danger btn-lg btn-block tool" data-modal="modal-delete" style="margin: 3px;" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
-						
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
+							<button class="btn btn-danger btn-lg btn-block tool" data-modal="modal-delete" style="margin: 3px;" <?php if (count($inscriptions) > 0) echo 'disabled' ?> ><i class="fa fa-trash" aria-hidden="true"></i> &nbsp;Supprimer</button>
+						<?php } ?>
+
 						<?php if ($character['dead'] == 0) { ?>
 							<button class="btn btn-primary btn-lg btn-block tool" data-modal="modal-kill" style="margin: 3px;"><i class="fa fa-user-times" aria-hidden="true"></i> &nbsp;Tuer</button>
 						<?php } else { ?>
@@ -60,7 +63,7 @@
 
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-rankup" style="margin: 3px;"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i> &nbsp;Monter de grade</button>
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-health" style="margin: 3px;"><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp;Changer le bilan</button>
-						<?php if ($_SESSION['player']['admin'] > 1) { ?>
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
 							<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-edit" style="margin: 3px;"><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Modifier</button>
 						<?php } ?>
 
