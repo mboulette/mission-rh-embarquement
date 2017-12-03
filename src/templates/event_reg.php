@@ -45,6 +45,13 @@
 										$char_credits = $credits;
 									}
 									if ($char['id_skill'] == '15') $char_credits += 8;
+
+									$corpo_ressource_name = '???';
+									foreach ($ressources_lst as $ressource) {
+										if ($ressource['id'] == $char['corporation']['ressource_id']) {
+											$corpo_ressource_name = $ressource['name'];
+										}
+									}
 									?>
 
 
@@ -65,6 +72,7 @@
 															data-rank="<?php echo $char['rank']; ?>"
 															data-credits="<?php echo $char_credits; ?>"
 															data-skill="<?php echo $char['id_skill']; ?>"
+															data-ressource="<?php echo $corpo_ressource_name; ?>"
 															value="<?php echo $char['id']; ?>">
 
 															<i class="fa fa-square-o fa-3x"></i>
@@ -130,7 +138,8 @@
 							<div id="alert-credits-max" class="alert alert-info hidden" role="alert">
 								<big>
 									Votre corporation vous offre un total de <span class="max-credits">0</span>
-									crédits pour magaziner les ressources que vous aurez besoin lors de votre prochaine mission.
+									crédits pour magaziner les ressources que vous aurez besoin lors de votre prochaine mission.<br />
+									Elle vous offre aussi 2 "<span class="ressource-corpo">???</span>" qui seront ajouté automatiquement sur la feuille de personnage.
 								</big>
 							</div>
 

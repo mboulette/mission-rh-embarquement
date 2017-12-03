@@ -19,7 +19,7 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="/inscriptions/css/daterangepicker.css" />
     <link rel="stylesheet" href="/inscriptions/css/fileinput.min.css">
-    <link rel="stylesheet" href="/inscriptions/css/app.css?v2">
+    <link rel="stylesheet" href="/inscriptions/css/app.css?v3">
     <link rel="stylesheet" href="/inscriptions/css/avatar.css">
     <link rel="stylesheet" href="/inscriptions/css/font-awesome.min.css">
 
@@ -103,7 +103,7 @@
     <script src="/inscriptions/js/bootstrap-numberpicker.js"></script>
     <script src="/inscriptions/js/fileinput.min.js"></script>
     <script src="/inscriptions/js/fileinput.fr.js"></script>
-    <script src="/inscriptions/js/app.js?v2"></script>
+    <script src="/inscriptions/js/app.js?v3"></script>
     <script src="/inscriptions/js/avatar.js"></script>
     <script src="/inscriptions/js/daterangepicker-load.js"></script>
   </body>

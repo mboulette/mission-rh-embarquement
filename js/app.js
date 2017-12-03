@@ -549,7 +549,7 @@ $(function() {
 			$('.ressource_' + profession).removeClass('hidden');
 			$('#alert-no-char').addClass('hidden');
 			$('.ressource_input, .ressource_plus').prop('disabled', false);
-
+			$('.ressource-corpo').html( $(this).data('ressource') );
 			
 
 			$('.ressource_' + profession).each(function(){
