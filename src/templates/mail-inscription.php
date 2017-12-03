@@ -17,10 +17,10 @@
 
 <h2>Joueur</h2>
 <p>
-	<strong>Nom :</strong> <?php echo $_SESSION['player']['firstname'].'  '.$_SESSION['player']['lastname'];?><br />
-	<strong>Date de naissance :</strong> <?php echo substr($_SESSION['player']['birthday'], 0, 10);?><br />
-	<strong>Sexe :</strong> <?php echo $_SESSION['player']['gender'];?><br />
-	<strong>Courriel :</strong> <?php echo $_SESSION['player']['email'];?><br />
+	<strong>Nom :</strong> <?php echo $player['firstname'].'  '.$player['lastname'];?><br />
+	<strong>Date de naissance :</strong> <?php echo substr($player['birthday'], 0, 10);?><br />
+	<strong>Sexe :</strong> <?php echo $player['gender'];?><br />
+	<strong>Courriel :</strong> <?php echo $player['email'];?><br />
 </p>
 
 <h2>Personnage</h2>
@@ -31,8 +31,17 @@
 	<strong>Corporation :</strong> <?php echo $character['corporation']['name'];?><br />
 	<strong>Grade :</strong> <?php echo $character['rank'];?><br />
 	<strong>Bilan de santé :</strong> <?php echo $character['health_points'];?> / 100<br />
+	<br />
+	<strong>Habiletés :</strong> <?php echo $character['skill']['name'];?><br />
+	<?php echo $character['skill']['description'];?>
 </p>
 
+<h3>Talents</h3>
+<?php
+foreach ($character['feats'] as $feats) {
+	echo '<strong>- </strong>'.$feats['name'].'<br />';
+}
+?>
 
 <h2>Options</h2>
 <?php
@@ -49,11 +58,24 @@ foreach (json_decode($inscription['options'], true) as $option) {
 }
 ?>
 
-<h2>Ressources</h2>
+<h3>Ressources</h3>
 <?php
+
+$corpo_ressource = true;
+
 foreach (json_decode($inscription['ressources'], true) as $ressource) {
-	echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';
+	if ($character['corporation']['ressource']['name'] == $ressource['name']) {
+		echo '<strong>'.($ressource['qty']+2). ' x '.$ressource['name'].'</strong><br />';
+		$corpo_ressource = false;
+	} else {
+		echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';									
+	}
 }
+
+if ($corpo_ressource) {
+	echo '<strong>2 x '.$character['corporation']['ressource']['name'].'</strong><br />';
+}
+
 echo '<strong>'.$inscription['credits']. ' x </strong>Crédits restants<br />';
 ?>
 

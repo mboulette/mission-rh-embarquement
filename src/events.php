@@ -275,17 +275,37 @@ class events extends dataObject
 		$character = $characters_factory->getOne($inscription['id_character']);
 
 
-		$email_template = get_template('mail-inscription', array('inscription' => $inscription, 'event' => $event, 'character' => $character));
+        $skills_factory = new skills();
+        $character['skill'] = $skills_factory->getOne($character['id_skill']);
+
+        $feats_factory = new feats();
+        $feats_lst = $feats_factory->getAll();
+
+        $tmp_feats = json_decode($character['feats'], true);
+        $character['feats'] = [];
+        foreach ($feats_lst as $feat) {
+            if ( in_array($feat['id'], $tmp_feats) ) {
+                $character['feats'][] = $feat;
+            }
+        }
+
+        $player_factory = new players();
+        $player = $player_factory->getOne($inscription['id_player']);
+
+        $ressources_factory = new ressources();
+        $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
+
+        $email_template = get_template('mail-inscription', array('player' => $player, 'inscription' => $inscription, 'event' => $event, 'character' => $character));
 
         $mail = new PHPMailer;
 
         $mail->Charset = 'UTF-8';
         $mail->setFrom($GLOBALS['app_email'], $GLOBALS['app_name']);
-        $mail->addAddress($_SESSION['player']['email'], $_SESSION['player']['firstname'].' '. $_SESSION['player']['lastname']);
+        $mail->addAddress($player['email'], $player['firstname'].' '. $player['lastname']);
         $mail->addAddress($GLOBALS['app_email'], $GLOBALS['app_name']);
         $mail->isHTML(true);
 
-        $mail->Subject = 'Détails de votre inscription - '. $_SESSION['player']['firstname'].' '. $_SESSION['player']['lastname'];
+        $mail->Subject = 'Détails de votre inscription - '. $player['firstname'].' '. $player['lastname'];
         $mail->Body    = $email_template;
 
         if(!$mail->send()) {
@@ -588,6 +608,9 @@ class events extends dataObject
             }
         }
 
+        $ressources_factory = new ressources();
+        $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
+
         $template = get_template('navbar', array('active_menu' => 'admin-attendees'));
         $template .= get_template('attendees_see', array(
             'event' => $event,
@@ -613,6 +636,12 @@ class events extends dataObject
 
         $player_factory = new players();
         $character_factory = new characters();
+        $skills_factory = new skills();
+        $feats_factory = new feats();
+        $ressources_factory = new ressources();
+
+        $feats_lst = $feats_factory->getAll();
+
 
         foreach ($inscriptions as &$inscription) {
 
@@ -623,9 +652,22 @@ class events extends dataObject
                 'id_character' => $inscription['inscription']['id_character'],
                 'id_event' => $event['id'],
             ));
+
+            $inscription['character']['skill'] = $skills_factory->getOne($inscription['character']['id_skill']);
+
+            $tmp_feats = json_decode($inscription['character']['feats'], true);
+            $inscription['character']['feats'] = [];
+            foreach ($feats_lst as $feat) {
+                if ( in_array($feat['id'], $tmp_feats) ) {
+                    $inscription['character']['feats'][] = $feat;
+                }
+            }
+
+            $inscription['character']['corporation']['ressource'] = $ressources_factory->getOne($inscription['character']['corporation']['ressource_id']);
+
         }
 
-
+        
         $template .= get_template('attendees_prnt', array(
             'event' => $event,
             'inscriptions' => $inscriptions,
@@ -634,5 +676,71 @@ class events extends dataObject
         return $template;
 
     }
+
+
+    public function mailAttendees() {
+
+        if (!isset($_POST['id'])) {
+            return $this->getAttendeesList();
+        }
+
+
+        $inscription_factory = new inscriptions();
+        $inscription = $inscription_factory->getOne($_POST['id']);
+
+        $characters_factory = new characters();
+        $character = $characters_factory->getOne($inscription['id_character']);
+
+        $event = $this->getOne($inscription['id_event']);
+
+        $skills_factory = new skills();
+        $character['skill'] = $skills_factory->getOne($character['id_skill']);
+
+        $feats_factory = new feats();
+        $feats_lst = $feats_factory->getAll();
+
+        $tmp_feats = json_decode($character['feats'], true);
+        $character['feats'] = [];
+        foreach ($feats_lst as $feat) {
+            if ( in_array($feat['id'], $tmp_feats) ) {
+                $character['feats'][] = $feat;
+            }
+        }
+
+        $player_factory = new players();
+        $player = $player_factory->getOne($inscription['id_player']);
+
+        $ressources_factory = new ressources();
+        $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);
+
+        $email_template = get_template('mail-inscription', array('player' => $player, 'inscription' => $inscription, 'event' => $event, 'character' => $character));
+
+        $mail = new PHPMailer;
+
+        $mail->Charset = 'UTF-8';
+        $mail->setFrom($GLOBALS['app_email'], $GLOBALS['app_name']);
+        //$mail->addAddress($player['email'], $player['firstname'].' '. $player['lastname']);
+        $mail->addAddress($GLOBALS['app_email'], $GLOBALS['app_name']);
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Détails de votre inscription - '. $player['firstname'].' '. $player['lastname'];
+        $mail->Body    = $email_template;
+
+        if(!$mail->send()) {
+            $_SESSION['message'] = array(
+                'type' => 'warning',
+                'body' => '<strong>Attention!</strong> Vous êtes inscrit à l`évènement «'.$current_event['name'].'».<br /> Mais le courriel n`a pas été acheminé, contactez les administrateurs.<br />'.$mail->ErrorInfo
+            );
+        } else {
+            $_SESSION['message'] = array(
+                'type' => 'success',
+                'body' => 'Les détails de l\'inscription on été envoyé à '.$GLOBALS['app_email']
+            );  
+        }
+
+        return $this->getAttendeesList();
+
+    }
+
 
 }

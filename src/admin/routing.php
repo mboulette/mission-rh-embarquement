@@ -206,7 +206,11 @@ switch ($script_url) {
         echo $events->printAttendees();
     break;
 
-
+    case '/inscriptions/admin/attendees/mail/' :
+        $events = new events();
+        echo $events->mailAttendees();
+    break;
+    
     case '/inscriptions/admin/maintenance/' :
         $maintenance = new maintenance();
         echo $maintenance->edit();

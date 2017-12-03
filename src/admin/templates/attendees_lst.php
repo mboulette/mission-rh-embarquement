@@ -15,7 +15,7 @@
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
-									<th width="60">Outils</th>
+									<th width="80">Outils</th>
 									<?php foreach ($columns as $column_name => $field_name) { ?>
 										<th data-orderby="<?php echo $field_name; ?>" data-orderdir="<?php echo $orderdir; ?>" class="sort-order <?php if ($orderdir != 'desc') echo 'dropup' ?>">
 											<?php echo $column_name; ?>
@@ -29,6 +29,7 @@
 								<tr class='action'>
 									<th>
 										<button class="list-action btn btn-warning btn-xs" data-form="form-auto" data-id="<?php echo $current['id']; ?>" data-action="/inscriptions/admin/attendees/display/" data-toggle="tooltip" title="Détails"><i class='fa fa-search'></i></button>
+										<button class="list-action btn btn-primary btn-xs" data-form="form-auto" data-id="<?php echo $current['id']; ?>" data-action="/inscriptions/admin/attendees/mail/" data-toggle="tooltip" title="Envoyer par courriel"><i class='fa fa-envelope'></i></button>
 									</th>
 									<?php
 									foreach ($columns as $column_name => $field_name) {

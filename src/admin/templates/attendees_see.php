@@ -104,13 +104,27 @@
 
 								echo '<br />';
 							}
+
 							?>
 
 							<h3>Ressources</h3>
 							<?php
+
+							$corpo_ressource = true;
+
 							foreach (json_decode($inscription['ressources'], true) as $ressource) {
-								echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';
+								if ($character['corporation']['ressource']['name'] == $ressource['name']) {
+									echo '<strong>'.($ressource['qty']+2). ' x '.$ressource['name'].'</strong><br />';
+									$corpo_ressource = false;
+								} else {
+									echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';									
+								}
 							}
+
+							if ($corpo_ressource) {
+								echo '<strong>2 x '.$character['corporation']['ressource']['name'].'</strong><br />';
+							}
+
 							echo '<strong>'.$inscription['credits']. ' x </strong>Crédits restants<br />';
 							?>
 						</div>
