@@ -68,6 +68,18 @@
 						</div>
 					</div>
 
+					<div class="form-group">
+						<label for="max_places" class="col-sm-3 control-label">Portée</label>
+						<div class="col-sm-4 col-lg-3">
+							<select name='animateur' class='form-control'>
+								<option value="0" <?php if ($events['animateur'] == 0) echo 'selected';?>>Tous le monde</option>
+								<option value="1" <?php if ($events['animateur'] == 1) echo 'selected';?>>Animateurs</option>
+								<option value="2" <?php if ($events['animateur'] == 2) echo 'selected';?>>Scénaristes</option>
+								<option value="3" <?php if ($events['animateur'] == 3) echo 'selected';?>>Admin</option>
+							</select>
+						</div>
+					</div>					
+
 					<hr>
 
 					<div class="form-group">

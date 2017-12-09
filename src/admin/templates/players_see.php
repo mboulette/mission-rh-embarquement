@@ -27,6 +27,10 @@
 						<?php } ?>
 						<button class="btn btn-default tool" data-modal="modal-send"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Envoyer un message</button>
 
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
+							<button class="btn btn-default tool" data-modal="modal-animateur" <?php if ($player['admin'] > 0) echo 'disabled' ?> ><i class="fa fa-graduation-cap" aria-hidden="true"></i> &nbsp;Nouvel Animateur</button>
+						<?php } ?>
+
 						<hr />
 
 						<div class="alert alert-warning alert-dismissible" role="alert">
@@ -40,7 +44,11 @@
 							<?php if ($_SESSION['player']['admin'] > 3) { ?>							
 								<p><strong><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Incarner :</strong> Ce bouton vous permet de vous connecter dans le système comme si vous étiez ce joueur. C'est essentiellement pour faire des modifications ou des transactions pour lui qui aurait des difficultés ou des empêchements. Vous conserverez la barre d'administration, mais le menu du joueur (en noir) sera personnalisé pour cette personne.</p>
 							<?php } ?>
-							<p><strong><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Envoyer un message :</strong> Ce boutpn permet d'envoyer un courriel à ce joueur.</p>
+							<p><strong><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Envoyer un message :</strong> Ce bouton permet d'envoyer un courriel à ce joueur.</p>
+
+							<?php if ($_SESSION['player']['admin'] > 2) { ?>
+								<p><strong><i class="fa fa-graduation-cap" aria-hidden="true"></i> &nbsp;Nouvel Animateur :</strong> Ce bouton permet d'upgrader un joueur en animateur.</p>
+							<?php } ?>
 							
 						</div>
 
@@ -62,6 +70,11 @@
 							<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-connectas" style="margin: 3px;"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Incarner</button>
 						<?php } ?>
 						<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-send" style="margin: 3px;"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Envoyer un message</button>
+					
+						<?php if ($_SESSION['player']['admin'] > 2) { ?>
+							<button class="btn btn-default btn-lg btn-block tool" data-modal="modal-animateur" <?php if ($player['admin'] > 0) echo 'disabled' ?> ><i class="fa fa-graduation-cap" aria-hidden="true"></i> &nbsp;Nouvel Animateur</button>
+						<?php } ?>
+
 					</div>
 
 					
@@ -165,7 +178,7 @@
 
 						<div class="form-group">
 							<label for="tags" class="col-sm-3 control-label">Tags</label>
-							<div class="col-sm-3"  style="font-size:20px;">
+							<div class="col-sm-8"  style="font-size:20px;">
 								<?php if ($player['completed']) echo '<span class="label label-default">Complété</span>&nbsp;'; ?>
 								<?php if ($player['locked']) echo '<span class="label label-primary">Verrouillé</span>&nbsp;'; ?>
 								<?php if ($player['admin'] == 1) echo '<span class="label label-danger">Animateur</span>&nbsp;'; ?>
@@ -512,6 +525,32 @@
 
 			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
 			<button type="submit" class="btn btn-warning"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Connexion</button>
+		</form>
+	  </div>
+	</div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="modal-animateur" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Confirmation d'un nouvel animateur</h4>
+	  </div>
+	  <div class="modal-body">
+		
+		<p>Êtes-vous certain de vouloir transformer le joueur «<?php echo $player['firstname'].' '.$player['lastname']; ?>» en animateur?</p>
+
+	  </div>
+	  <div class="modal-footer">
+		<form method="post" action="/inscriptions/admin/players/upgrade/">
+			<input name="submitaction" type="hidden" value="upgrade">
+			<input name="id" type="hidden" value="<?php echo $player['id']; ?>">
+
+			<button type="button" data-dismiss="modal" class="btn btn-default">Annuler</button>
+			<button type="submit" class="btn btn-warning"><i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp;Transformer</button>
 		</form>
 	  </div>
 	</div><!-- /.modal-content -->

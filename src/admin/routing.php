@@ -88,6 +88,11 @@ switch ($script_url) {
         echo $players->lock();
     break;
 
+    case '/inscriptions/admin/players/upgrade/' :
+        $players = new players();
+        echo $players->upgrade();
+    break;
+
     case '/inscriptions/admin/players/connectas/' :
         $players = new players();
         echo $players->connectas();

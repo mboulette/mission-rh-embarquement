@@ -110,10 +110,14 @@ class events extends dataObject
 	}
 
 	public function currentlyOpen() {
+        
+        if (!isset($_SESSION['player']['admin'])) $_SESSION['player']['admin'] = 0;
+
         $sql = '
         SELECT *
         FROM '.$this->objectName.'
-        WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end	
+        WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end
+        AND events.animateur <= '.$_SESSION['player']['admin'].'
         ORDER BY inscription_begin DESC
         LIMIT 1
         ';
@@ -428,6 +432,7 @@ class events extends dataObject
             'inscription_end' => $_POST['inscription_end'],
             'credits' => json_encode($_POST['credits']),
             'date_event' => $_POST['date_event'],
+            'animateur' => $_POST['animateur'],
         );
 
         if (is_numeric($events['id'])) {

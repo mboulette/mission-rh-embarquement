@@ -244,6 +244,33 @@ class players extends dataObject
 
     }
 
+    public function upgrade() {
+        if (!isset($_POST['submitaction'])) {
+            return $this->getAdminList();
+        }
+
+
+        if (isset($_POST['id'])) {
+
+            $current = $this->getOne($_POST['id']);
+
+            $player = array('id' => $_POST['id']);
+            $player['admin'] = 1;
+            $player['combinaison'] = 1;
+
+            $this->update($player);
+
+            $_SESSION['message'] = array(
+                'type' => 'danger',
+                'body' => 'Le joueur «'.$current['firstname'].' '.$current['lastname'].'» a été transformé en animateur!'
+            );
+
+        }
+
+        $_POST['submitaction'] = 'display';
+        return $this->display();
+    }
+
     public function send() {
         
         if (!isset($_POST['submitaction']) || $_POST['submitaction'] != 'send') {

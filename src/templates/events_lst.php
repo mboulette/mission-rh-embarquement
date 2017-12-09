@@ -15,6 +15,9 @@
 
 					<div class="row">
 						<?php foreach ($eventsList as $gn) { ?>						
+							
+							<?php if ($gn['animateur'] > $_SESSION['player']['admin']) continue; ?>
+
 							<?php $date_event = new DateTime($gn['date_event']); ?>
 
 							<div class="col-md-6 card-conteiner">

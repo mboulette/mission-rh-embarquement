@@ -230,27 +230,6 @@
 								</div>
 							</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 						  </div>
 						</div>
 					  </div>
@@ -331,6 +310,8 @@
 											</div>
 											';
 										}
+
+										if ($_SESSION['player']['admin'] > 0) $option['mandatory'] = 0;
 
 										echo '
 											<div class="col-sm-3">
@@ -539,6 +520,28 @@
 	  <div class="modal-footer">
 		<button type="button" data-dismiss="modal" class="btn btn-default btn-lg">Annuler</button>
 		<button type="button" class="btn btn-warning btn-lg" id="payment"><i class="fa fa-usd"></i> &nbsp;Payer</button>
+	  </div>
+	</div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="combinaisons_details" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Détails sur les combinaisons</h4>
+	  </div>
+	  <div class="modal-body">
+	
+		<p>Les combinaisons ne sont pas des vêtements ajustés, nous sommes donc confiant que les tailles offertes conviendront à la majorité des personnes. Par contre, pour ceux qui mesurent plus de 5 pieds et 11 pouces ou qui ont un surplus de poids important, choisissez l'option Taille-plus et contactez l'équipe par courriel à l'adresse <a href='mailto:info@verslesetoiles.org' target='_blank'>info@verslesetoiles.org</a> afin que nous ciblions vos besoins.</p>
+ 		<p>Si vous êtes incertain que la taille «Adulte» vous convient, vous pouvez prendre cette simple mesure : Mettez le bout du galon à mesurer sur votre épaule puis passez-le entre vos jambes pour le ramener sur votre épaule. Assurez-vous que le gallon passe sur votre nombril pour l'estimation du tour de taille. Si cette donnée dépasse les 76 pouces, vous serez certainement mieux avec la Taille-plus.</p>
+ 		<p>Nous souhaitons aussi organiser prochainement un événement ou vous pourrez rencontrer l'animation et essayer des combinaisons de différentes taille. Les dates seront dévoilées bientôt, suivez-nous sur Facebook.</p>
+
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-default btn-lg">Fermer</button>
 	  </div>
 	</div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
