@@ -70,6 +70,7 @@ class events extends dataObject
                 'ressources_lst' => $ressources_lst,
                 'levels' => $ressources_factory->getLevels(),
                 'credits' => $credits,
+                'nbInscriptionCorpo' => $this->nbInscriptionCorpo($current_event['id']),
 			));
 		}
 
@@ -215,7 +216,6 @@ class events extends dataObject
 			'amount' => $amount,
             'credits' => $_POST['credits'],
 		);
-
 
 		$transaction_api = new \SquareConnect\Api\TransactionApi();
 		$request_body = array (

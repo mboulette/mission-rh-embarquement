@@ -28,6 +28,24 @@
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						  <div class="panel-body">
 							<div class="row">
+								<div class="col-md-12">
+									<strong>Nombre d'inscription par corporation : </strong>
+									<?php
+									
+									foreach ($nbInscriptionCorpo as $corpo) {
+										echo '<span class="label label-default">'.$corpo['name'].' : ';
+										echo $corpo['nbInscriptions'].'/12</span> &nbsp;' ;
+									}
+									?>
+								</div>							
+							</div>
+							<div class="row">
+								&nbsp;
+							</div>
+							<div class="row">
+								
+
+
 								<?php
 								$lock_character = 0;
 								foreach ($characters_lst as $char) {
@@ -52,17 +70,19 @@
 											$corpo_ressource_name = $ressource['name'];
 										}
 									}
+
+									$nbInscriptions = search_array($nbInscriptionCorpo, 'id', $char['corporation']['id'])['nbInscriptions'] ;
 									?>
 
 
 									<div class="col-md-6 card-conteiner">
 										<label style="width:100%">
-											<div class="card card-character <?php if ($char['dead'] > 0 || ($char['rank']<$lock_character)) echo 'disabled'; ?>">
+											<div class="card card-character <?php if ($char['dead'] > 0 || ($char['rank']<$lock_character)  || ( $nbInscriptions > 11 )) echo 'disabled'; ?>">
 												<div class="row">
 													<div class="col-xs-2">																								
 														<?php if ($char['dead'] > 0) { ?>
 															<img src="/inscriptions/img/ico-dead.svg.php?fill=d9534f" style="margin-bottom:4px; width:24px;">
-														<?php } elseif (($char['rank']<$lock_character)) { ?>
+														<?php } elseif (($char['rank']<$lock_character) || ( $nbInscriptions > 11 )) { ?>
 														<?php } else { ?>
 															<input type="radio"
 															data-group='character'
@@ -93,11 +113,18 @@
 														</div>
 
 													</div>
-													
 												</div>
+
+												<?php
+												if (  $nbInscriptions > 11 ) {
+													?>
+													<div class="alert alert-danger text-center" style="margin-top:10px;">Désolé les inscriptions sont complètes pour cette corporation</div>
+													<?php
+												}
+												?>
 												<?php if ($char['dead'] > 0) { ?>
 													<div class="ribbon ribbon-danger"><span>Grade <?php echo $char['rank']; ?></span></div>
-												<?php } elseif (($char['rank']-$lock_character)<0) { ?>
+												<?php } elseif (($char['rank']-$lock_character)<0  || ( $nbInscriptions > 11 ) ) { ?>
 													<div class="ribbon"><span>Grade <?php echo $char['rank']; ?></span></div>
 												<?php } else { ?>
 													<div class="ribbon ribbon-success"><span>Grade <?php echo $char['rank']; ?></span></div>
