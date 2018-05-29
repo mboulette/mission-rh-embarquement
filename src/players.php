@@ -79,6 +79,29 @@ class players extends dataObject
 	}
 
 
+    public function oldPlayers($id) {
+
+        $sql = '
+        SELECT players.id
+        FROM `players`
+        WHERE players.id IN (select id_player from inscriptions)
+        AND players.id=?
+        ';
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('i', $id);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+
+        return $array[0]['id'] == $id;
+
+    }
+
+
     //****************************************************************************************************
     //** ADMIN
     //****************************************************************************************************

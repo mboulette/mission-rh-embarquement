@@ -16,7 +16,11 @@
 					<div class="row">
 						<?php foreach ($eventsList as $gn) { ?>						
 							
-							<?php if ($gn['animateur'] > $_SESSION['player']['admin']) continue; ?>
+							<?php 
+							if (  ($gn['animateur'] > $_SESSION['player']['admin'])  && ($gn['animateur'] != 4)  ) continue;
+							if (  ($gn['animateur'] == 4)  && (!$oldPlayers)  ) continue;
+							?>
+
 
 							<?php $date_event = new DateTime($gn['date_event']); ?>
 

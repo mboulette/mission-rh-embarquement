@@ -403,6 +403,15 @@
 						</div>
 						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						  <div class="panel-body">
+							
+
+							<div class="alert alert-danger" role="alert">
+								<p>Veuillez notez que les inscriptions et tous les achats sont non remboursable une fois la date limite d'inscription à une activité dépassée (<?php echo $current['inscription_end'] ?>)</p>
+
+								<p>Certaines cartes de crédit prennent quelques heures avant de fonctionner dans notre système. Si vous avez créé votre carte il y a quelques minutes et que vous éprouvez des problèmes de paiement, merci de patienter 2 heures et de réessayer.</p>
+							</div>
+
+
 							<div class="row">
 								<?php if (!is_null($cards_lst)) { ?>
 								<?php foreach ($cards_lst as $card) { ?>

@@ -87,9 +87,12 @@ class events extends dataObject
 			$event['isRegistered'] = $this->isRegistered($event['id']);
             $event['nbInscriptionCorpo'] = $this->nbInscriptionCorpo($event['id']);
 		}
+
+        $players_factory = new players();
+        $old_players = $players_factory->oldPlayers($_SESSION['player']['id']);
 		
 		$template = get_template('navbar', array('active_menu' => 'events'));
-		$template .= get_template('events_lst', array('eventsList' => $events_list));
+		$template .= get_template('events_lst', array('eventsList' => $events_list, 'oldPlayers' => $old_players));
 
 		return render($template);
 
@@ -114,14 +117,32 @@ class events extends dataObject
         
         if (!isset($_SESSION['player']['admin'])) $_SESSION['player']['admin'] = 0;
 
-        $sql = '
-        SELECT *
-        FROM '.$this->objectName.'
-        WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end
-        AND events.animateur <= '.$_SESSION['player']['admin'].'
-        ORDER BY inscription_begin DESC
-        LIMIT 1
-        ';
+        $players_factory = new players();
+        $old_players = $players_factory->oldPlayers($_SESSION['player']['id']);
+
+        if ( $old_players ) {
+            
+            $sql = '
+            SELECT *
+            FROM '.$this->objectName.'
+            WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end
+            AND (events.animateur = 4 OR events.animateur <= '.$_SESSION['player']['admin'].')
+            ORDER BY inscription_begin DESC
+            LIMIT 1
+            ';
+
+        } else {
+            
+            $sql = '
+            SELECT *
+            FROM '.$this->objectName.'
+            WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end
+            AND events.animateur <= '.$_SESSION['player']['admin'].'
+            ORDER BY inscription_begin DESC
+            LIMIT 1
+            ';
+
+        }
 
         $stmt = $this->db->prepare($sql);
 
