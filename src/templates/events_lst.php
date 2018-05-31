@@ -27,7 +27,6 @@
 							<div class="col-md-6 card-conteiner">
 								<div class="card card-event <?php if ($gn['isActive'] != 'Ouvert' || $gn['isRegistered'] != 0) echo 'disabled' ?>">
 									
-									<form action="/inscriptions/events/register" method="post">
 										<div class="row">
 											<div class="col-xs-3 col-sm-3">
 												
@@ -62,9 +61,17 @@
 												<hr>
 												<p><?php echo $gn['synopsis']; ?></p>
 												<p>
-													<input type="hidden" name="id_event" value="<?php echo $gn['id']; ?>">
 													<?php if ($gn['isActive'] == 'Ouvert' && $gn['isRegistered'] == 0) { ?>
-														<button type="submit" class="btn btn-warning"><i class="fa fa-shopping-cart"></i> &nbsp;Participer</button>
+														<form action="/inscriptions/events/register" method="post">
+															<input type="hidden" name="id_event" value="<?php echo $gn['id']; ?>">
+															<button type="submit" class="btn btn-warning"><i class="fa fa-shopping-cart"></i> &nbsp;Participer</button>
+														</form>
+													<?php }?>
+													<?php if ($gn['isRegistered'] == 1) { ?>
+														<form action="/inscriptions/events/sheet" method="post">
+															<input type="hidden" name="id_event" value="<?php echo $gn['id']; ?>">
+															<button type="submit" class="btn btn-primary"><i class="fa fa-id-card-o"></i> &nbsp;Feuille de personnage</button>
+														</form>
 													<?php }?>
 													<?php if ($gn['link'] != '' && $gn['link'] != NULL) { ?>
 														<a target="_blank" class="btn btn-default" href="<?php echo $gn['link']; ?>"><i class="fa fa-search "></i> &nbsp;Détails</a>
@@ -94,8 +101,6 @@
 										<?php } else { ?>
 											<div class="ribbon"><span><?php echo $gn['isActive']; ?></span></div>
 										<?php } ?>
-									</form>
-
 								</div>
 							</div>
 

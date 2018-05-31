@@ -80,6 +80,11 @@ switch ($script_url) {
         echo $card->erase();
     break;
 
+    case '/inscriptions/events/sheet/' :
+        $event = new events();
+        echo $event->displayCharacterSheet();
+    break;
+
     default :
 
         /*************************************************************/

@@ -9,6 +9,57 @@ class events extends dataObject
 	}
 
 
+    public function displayCharacterSheet() {
+        
+
+        if (!isset($_POST['id_event'])) {
+            return $this->getList();
+        }
+
+        $inscription_factory = new inscriptions();
+        $inscriptions = $inscription_factory->getList(array(
+            'id_player' => $_SESSION['player']['id'],
+            'id_event' => $_POST['id_event'],
+        ));
+        $inscription = $inscriptions[0];
+
+        $event = $this->getOne($_POST['id_event']);
+
+        $player_factory = new players();
+        $player = $player_factory->getOne($inscription['id_player']);
+
+        $character_factory = new characters();
+        $character = $character_factory->getOne($inscription['id_character']);
+
+        $skills_factory = new skills();
+        $character['skill'] = $skills_factory->getOne($character['id_skill']);
+
+        $feats_factory = new feats();
+        $feats_lst = $feats_factory->getAll();
+
+        $tmp_feats = json_decode($character['feats'], true);
+        $character['feats'] = [];
+        foreach ($feats_lst as $feat) {
+            if ( in_array($feat['id'], $tmp_feats) ) {
+                $character['feats'][] = $feat;
+            }
+        }
+
+        $ressources_factory = new ressources();
+        $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
+
+        $template = get_template('navbar', array('active_menu' => 'events'));
+        $template .= get_template('character_sheet', array(
+            'event' => $event,
+            'inscription' => $inscription,
+            'player' => $player,
+            'character' => $character,
+        ));
+
+        return render($template);
+
+    }
+
 	public function register() {
 		if (isset($_POST['save'])) $this->save();
 
