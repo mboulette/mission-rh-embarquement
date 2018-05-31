@@ -232,6 +232,10 @@ class events extends dataObject
 		$current_event = $this->getOne($_POST['id_event']);
         $amount = 0;
 
+        $characters_factory = new characters();
+        $character = $characters_factory->getOne($_POST['id_character']);
+
+
 		$options = array();
         $options_factory = new eventOptions();
         $options_lst = $options_factory->getAll();
@@ -276,6 +280,7 @@ class events extends dataObject
             }
         }
 
+        $health = new health( $character['health_points'] );
 
 		$inscription_factory = new inscriptions();
 		$inscription = array(
@@ -287,6 +292,7 @@ class events extends dataObject
 			'ressources' => json_encode($ressources),
 			'amount' => $amount,
             'credits' => $_POST['credits'],
+            'health_effects' => $health->getPhisicalEffect() . ' ' . $health->getMentalEffect(),
 		);
 
 		$transaction_api = new \SquareConnect\Api\TransactionApi();

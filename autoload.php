@@ -21,6 +21,7 @@ require_once('src/event_options.php');
 require_once('src/cards.php');
 require_once('src/inscriptions.php');
 require_once('src/news.php');
+require_once('src/health.php');
 require_once('src/maintenance.php');
 require_once('src/admin/ressources.php');
 require_once('src/admin/recipes.php');
