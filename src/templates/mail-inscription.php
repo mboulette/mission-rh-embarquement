@@ -36,11 +36,13 @@
 </p>
 
 <h3>Talents</h3>
+<p>
 <?php
 foreach ($character['feats'] as $feats) {
 	echo '<strong>- </strong>'.$feats['name'].'<br />';
 }
 ?>
+</p>
 
 <h3>Bilan de santé</h3>
 <p>
@@ -49,7 +51,8 @@ foreach ($character['feats'] as $feats) {
 	<strong>Effet:</strong> <?php echo $inscription['health_effects'] ?>
 <p>
 
-<h2>Options</h2>
+<h3>Options</h3>
+<p>
 <?php
 foreach (json_decode($inscription['options'], true) as $option) {
 	echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'];
@@ -63,6 +66,7 @@ foreach (json_decode($inscription['options'], true) as $option) {
 	echo '<br />';
 }
 ?>
+</p>
 
 <h3>Ressources</h3>
 <?php

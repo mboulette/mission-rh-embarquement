@@ -91,15 +91,16 @@
 											}
 											?>
 										</div>
-										
-										<?php if ($gn['isActive'] == 'Ouvert') { ?>
-											<?php if ($gn['isRegistered'] > 0) { ?>
-												<div class="ribbon ribbon-success"><span>INSCRIT</span></div>
-											<?php } else { ?>
+											
+
+										<?php if ($gn['isRegistered'] > 0) { ?>
+											<div class="ribbon ribbon-success"><span>INSCRIT</span></div>
+										<?php } else { ?>									
+											<?php if ($gn['isActive'] == 'Ouvert') { ?>
 												<div class="ribbon ribbon-warning"><span><?php echo $gn['isActive']; ?></span></div>												
-											<?php } ?>	
-										<?php } else { ?>
-											<div class="ribbon"><span><?php echo $gn['isActive']; ?></span></div>
+											<?php } else { ?>
+												<div class="ribbon"><span><?php echo $gn['isActive']; ?></span></div>
+											<?php } ?>
 										<?php } ?>
 								</div>
 							</div>
