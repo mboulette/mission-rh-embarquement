@@ -93,6 +93,7 @@
 															data-credits="<?php echo $char_credits; ?>"
 															data-skill="<?php echo $char['id_skill']; ?>"
 															data-ressource="<?php echo $corpo_ressource_name; ?>"
+															data-multiplier="<?php echo $char['credits_multiplier']; ?>"
 															value="<?php echo $char['id']; ?>">
 
 															<i class="fa fa-square-o fa-3x"></i>

@@ -226,7 +226,12 @@ class characters extends dataObject
 					$old_dir = realpath('.').'/'.$GLOBALS['attachments_path_characters'].$character['id'];
 					$new_dir = realpath('.').'/'.$GLOBALS['attachments_path_characters'].$id;
 
-					rename($old_dir, $new_dir);
+					if (file_exists(old_dir)) {
+						rename($old_dir, $new_dir);						
+					} else {
+						mkdir($new_dir);
+					}
+
 
 					$_SESSION['message'] = array(
 						'type' => 'success',
@@ -291,6 +296,9 @@ class characters extends dataObject
 			$character['corporation']	= $this->corporation->getOne($character['id_corporation']);
 			$character['race']			= $this->race->getOne($character['id_race']);
 			$character['profession']	= $this->profession->getOne($character['id_profession']);
+
+			$health = new health( $character['health_points'] );
+			$character['credits_multiplier'] = $health->getCreditsMultiplicator();
 		}
 
 		return $characters_list;
