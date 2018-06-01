@@ -48,12 +48,15 @@ class events extends dataObject
         $ressources_factory = new ressources();
         $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
 
+        $health = new health( $character['health_points'] );
+
         $template = get_template('navbar', array('active_menu' => 'events'));
         $template .= get_template('character_sheet', array(
             'event' => $event,
             'inscription' => $inscription,
             'player' => $player,
             'character' => $character,
+            'appellation' => $health->getLabel(),
         ));
 
         return render($template);
@@ -377,7 +380,15 @@ class events extends dataObject
         $ressources_factory = new ressources();
         $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
 
-        $email_template = get_template('mail-inscription', array('player' => $player, 'inscription' => $inscription, 'event' => $event, 'character' => $character));
+        $health = new health( $character['health_points'] );
+
+        $email_template = get_template('mail-inscription', array(
+            'player' => $player,
+            'inscription' => $inscription,
+            'event' => $event,
+            'character' => $character,
+            'appellation' => $health->getLabel(),
+        ));
 
         $mail = new PHPMailer;
 
@@ -694,6 +705,8 @@ class events extends dataObject
         $ressources_factory = new ressources();
         $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
 
+        $health = new health( $character['health_points'] );
+
         $template = get_template('navbar', array('active_menu' => 'admin-attendees'));
         $template .= get_template('attendees_see', array(
             'event' => $event,
@@ -701,6 +714,7 @@ class events extends dataObject
             'player' => $player,
             'character' => $character,
             'inscriptions' => $inscriptions,
+            'appellation' => $health->getLabel(),
         ), 'admin/');
 
         return render($template);
@@ -746,11 +760,14 @@ class events extends dataObject
                 }
             }
 
+            $health = new health( $inscription['character']['health_points'] );
+            $inscription['appellation'] = $health->getLabel();
+
             $inscription['character']['corporation']['ressource'] = $ressources_factory->getOne($inscription['character']['corporation']['ressource_id']);
 
         }
 
-        
+
         $template .= get_template('attendees_prnt', array(
             'event' => $event,
             'inscriptions' => $inscriptions,
@@ -796,7 +813,15 @@ class events extends dataObject
         $ressources_factory = new ressources();
         $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);
 
-        $email_template = get_template('mail-inscription', array('player' => $player, 'inscription' => $inscription, 'event' => $event, 'character' => $character));
+        $health = new health( $character['health_points'] );
+
+        $email_template = get_template('mail-inscription', array(
+            'player' => $player,
+            'inscription' => $inscription,
+            'event' => $event,
+            'character' => $character,
+            'appellation' => $health->getLabel(),
+        ));
 
         $mail = new PHPMailer;
 
