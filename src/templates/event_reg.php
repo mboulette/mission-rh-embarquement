@@ -407,7 +407,7 @@
 							
 
 							<div class="alert alert-danger" role="alert">
-								<p>Veuillez notez que les inscriptions et tous les achats sont non remboursable une fois la date limite d'inscription à une activité dépassée (<?php echo $current['inscription_end'] ?>)</p>
+								<p>Veuillez noter qu'aucun remboursement pour les frais d'inscription ni d'achat de crédit ne pourra être accordé. Il est cependant possible de déplacer l'inscription payée pour une activité subséquente à l'intérieur de la même année, dans la mesure où la demande de report d'inscription est transmise par courriel au info@verslesetoiles.org avant 20h le vendredi précédent l’activité (1 semaine avant).</p>
 
 								<p>Certaines cartes de crédit prennent quelques heures avant de fonctionner dans notre système. Si vous avez créé votre carte il y a quelques minutes et que vous éprouvez des problèmes de paiement, merci de patienter 2 heures et de réessayer.</p>
 							</div>
