@@ -20,7 +20,7 @@
 				</div>
 				<div class="col-xs-10">
 					<p><strong>Description :</strong> <?php echo str_cut($corpo['description'], 500); ?></p>
-					<p><strong>Modificateur de santé :</strong> <?php echo str_cut($corpo['malus'], 1000); ?></p>
+					<p><strong>Bonus :</strong> <?php echo str_cut($corpo['malus'], 1000); ?></p>
 					<p><strong>Ressource primaire :</strong> Les membres de cette corporation reçoivent automatiquement 2 ressources «<a class="text-warning" data-container="body" data-toggle="tooltip" data-placement="top" title="<?php echo $corpo['ressource']['description']; ?>"><?php echo $corpo['ressource']['name']; ?></a>» gratuitement lors de chaque inscription.</p>
 					<?php if ($corpo['link'] != '' && $corpo['link'] != NULL) { ?>
 						<a target="_blank" class="btn btn-default" href="<?php echo $corpo['link']; ?>"><i class="fa fa-search "></i> &nbsp;Plus d'informations</a>

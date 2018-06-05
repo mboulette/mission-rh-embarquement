@@ -60,7 +60,7 @@
 					<hr>
 
 					<div class="form-group">
-						<label for="malus" class="col-sm-3 control-label">Malus de départ</label>
+						<label for="malus" class="col-sm-3 control-label">Bonus de départ</label>
 						<div class="col-sm-8">
 							<textarea class="form-control" rows="6" id="malus" name="malus" placeholder="Modificateur de santé" required maxlength="1000"><?php echo $corporations['malus']; ?></textarea>
 						</div>
