@@ -9,6 +9,60 @@ class events extends dataObject
 	}
 
 
+    public function displayCharacterSheet() {
+        
+
+        if (!isset($_POST['id_event'])) {
+            return $this->getList();
+        }
+
+        $inscription_factory = new inscriptions();
+        $inscriptions = $inscription_factory->getList(array(
+            'id_player' => $_SESSION['player']['id'],
+            'id_event' => $_POST['id_event'],
+        ));
+        $inscription = $inscriptions[0];
+
+        $event = $this->getOne($_POST['id_event']);
+
+        $player_factory = new players();
+        $player = $player_factory->getOne($inscription['id_player']);
+
+        $character_factory = new characters();
+        $character = $character_factory->getOne($inscription['id_character']);
+
+        $skills_factory = new skills();
+        $character['skill'] = $skills_factory->getOne($character['id_skill']);
+
+        $feats_factory = new feats();
+        $feats_lst = $feats_factory->getAll();
+
+        $tmp_feats = json_decode($character['feats'], true);
+        $character['feats'] = [];
+        foreach ($feats_lst as $feat) {
+            if ( in_array($feat['id'], $tmp_feats) ) {
+                $character['feats'][] = $feat;
+            }
+        }
+
+        $ressources_factory = new ressources();
+        $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
+
+        $health = new health( $character['health_points'] );
+
+        $template = get_template('navbar', array('active_menu' => 'events'));
+        $template .= get_template('character_sheet', array(
+            'event' => $event,
+            'inscription' => $inscription,
+            'player' => $player,
+            'character' => $character,
+            'appellation' => $health->getLabel(),
+        ));
+
+        return render($template);
+
+    }
+
 	public function register() {
 		if (isset($_POST['save'])) $this->save();
 
@@ -87,9 +141,12 @@ class events extends dataObject
 			$event['isRegistered'] = $this->isRegistered($event['id']);
             $event['nbInscriptionCorpo'] = $this->nbInscriptionCorpo($event['id']);
 		}
+
+        $players_factory = new players();
+        $old_players = $players_factory->oldPlayers($_SESSION['player']['id']);
 		
 		$template = get_template('navbar', array('active_menu' => 'events'));
-		$template .= get_template('events_lst', array('eventsList' => $events_list));
+		$template .= get_template('events_lst', array('eventsList' => $events_list, 'oldPlayers' => $old_players));
 
 		return render($template);
 
@@ -114,14 +171,32 @@ class events extends dataObject
         
         if (!isset($_SESSION['player']['admin'])) $_SESSION['player']['admin'] = 0;
 
-        $sql = '
-        SELECT *
-        FROM '.$this->objectName.'
-        WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end
-        AND events.animateur <= '.$_SESSION['player']['admin'].'
-        ORDER BY inscription_begin DESC
-        LIMIT 1
-        ';
+        $players_factory = new players();
+        $old_players = $players_factory->oldPlayers($_SESSION['player']['id']);
+
+        if ( $old_players ) {
+            
+            $sql = '
+            SELECT *
+            FROM '.$this->objectName.'
+            WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end
+            AND (events.animateur = 4 OR events.animateur <= '.$_SESSION['player']['admin'].')
+            ORDER BY inscription_begin DESC
+            LIMIT 1
+            ';
+
+        } else {
+            
+            $sql = '
+            SELECT *
+            FROM '.$this->objectName.'
+            WHERE "'.date("Y-m-d H:i:s").'" > inscription_begin AND "'.date("Y-m-d H:i:s").'" < inscription_end
+            AND events.animateur <= '.$_SESSION['player']['admin'].'
+            ORDER BY inscription_begin DESC
+            LIMIT 1
+            ';
+
+        }
 
         $stmt = $this->db->prepare($sql);
 
@@ -159,6 +234,10 @@ class events extends dataObject
 	public function save() {
 		$current_event = $this->getOne($_POST['id_event']);
         $amount = 0;
+
+        $characters_factory = new characters();
+        $character = $characters_factory->getOne($_POST['id_character']);
+
 
 		$options = array();
         $options_factory = new eventOptions();
@@ -204,6 +283,7 @@ class events extends dataObject
             }
         }
 
+        $health = new health( $character['health_points'] );
 
 		$inscription_factory = new inscriptions();
 		$inscription = array(
@@ -215,6 +295,7 @@ class events extends dataObject
 			'ressources' => json_encode($ressources),
 			'amount' => $amount,
             'credits' => $_POST['credits'],
+            'health_effects' => $health->getPhisicalEffect() . ' ' . $health->getMentalEffect(),
 		);
 
 		$transaction_api = new \SquareConnect\Api\TransactionApi();
@@ -299,7 +380,15 @@ class events extends dataObject
         $ressources_factory = new ressources();
         $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
 
-        $email_template = get_template('mail-inscription', array('player' => $player, 'inscription' => $inscription, 'event' => $event, 'character' => $character));
+        $health = new health( $character['health_points'] );
+
+        $email_template = get_template('mail-inscription', array(
+            'player' => $player,
+            'inscription' => $inscription,
+            'event' => $event,
+            'character' => $character,
+            'appellation' => $health->getLabel(),
+        ));
 
         $mail = new PHPMailer;
 
@@ -616,6 +705,8 @@ class events extends dataObject
         $ressources_factory = new ressources();
         $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);        
 
+        $health = new health( $character['health_points'] );
+
         $template = get_template('navbar', array('active_menu' => 'admin-attendees'));
         $template .= get_template('attendees_see', array(
             'event' => $event,
@@ -623,6 +714,7 @@ class events extends dataObject
             'player' => $player,
             'character' => $character,
             'inscriptions' => $inscriptions,
+            'appellation' => $health->getLabel(),
         ), 'admin/');
 
         return render($template);
@@ -668,11 +760,14 @@ class events extends dataObject
                 }
             }
 
+            $health = new health( $inscription['character']['health_points'] );
+            $inscription['appellation'] = $health->getLabel();
+
             $inscription['character']['corporation']['ressource'] = $ressources_factory->getOne($inscription['character']['corporation']['ressource_id']);
 
         }
 
-        
+
         $template .= get_template('attendees_prnt', array(
             'event' => $event,
             'inscriptions' => $inscriptions,
@@ -718,7 +813,15 @@ class events extends dataObject
         $ressources_factory = new ressources();
         $character['corporation']['ressource'] = $ressources_factory->getOne($character['corporation']['ressource_id']);
 
-        $email_template = get_template('mail-inscription', array('player' => $player, 'inscription' => $inscription, 'event' => $event, 'character' => $character));
+        $health = new health( $character['health_points'] );
+
+        $email_template = get_template('mail-inscription', array(
+            'player' => $player,
+            'inscription' => $inscription,
+            'event' => $event,
+            'character' => $character,
+            'appellation' => $health->getLabel(),
+        ));
 
         $mail = new PHPMailer;
 

@@ -41,6 +41,7 @@
 				$player = $inscription['player'];
 				$character = $inscription['character'];
 				$details = $inscription['details'];
+				$appellation = $inscription['appellation'];
 				?>
 
 				<div class="panel-heading">
@@ -72,6 +73,13 @@
 								<strong>Courriel :</strong> <?php echo $player['email'];?><br />
 							</p>
 
+							<h3>Bilan de santé</h3>
+							<p>
+								<strong>Cote :</strong> <?php echo $character['health_points'];?> / 100<br />
+								<strong>Appellation:</strong> <?php echo $appellation ?><br />
+								<strong>Effet:</strong> <?php echo $inscription['inscription']['health_effects'] ?>
+							<p>
+
 						</div>
 						<div class="col-xs-3" >
 
@@ -82,7 +90,6 @@
 								<strong>Race :</strong> <?php echo $character['race']['name'];?><br />
 								<strong>Profession :</strong> <?php echo $character['profession']['name'];?><br />
 								<strong>Grade :</strong> <?php echo $character['rank'];?><br />
-								<strong>Bilan de santé :</strong> <?php echo $character['health_points'];?> / 100<br />
 								<br />
 								<strong>Habiletés :</strong> <?php echo $character['skill']['name'];?><br />
 								<?php echo $character['skill']['description'];?>
