@@ -76,6 +76,8 @@
 								<option value="1" <?php if ($events['animateur'] == 1) echo 'selected';?>>Animateurs</option>
 								<option value="2" <?php if ($events['animateur'] == 2) echo 'selected';?>>Scénaristes</option>
 								<option value="3" <?php if ($events['animateur'] == 3) echo 'selected';?>>Admin</option>
+
+								<option value="4" <?php if ($events['animateur'] == 4) echo 'selected';?>>Joueurs déjà venus</option>
 							</select>
 						</div>
 					</div>					

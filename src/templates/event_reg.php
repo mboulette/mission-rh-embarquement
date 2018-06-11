@@ -93,6 +93,7 @@
 															data-credits="<?php echo $char_credits; ?>"
 															data-skill="<?php echo $char['id_skill']; ?>"
 															data-ressource="<?php echo $corpo_ressource_name; ?>"
+															data-multiplier="<?php echo $char['credits_multiplier']; ?>"
 															value="<?php echo $char['id']; ?>">
 
 															<i class="fa fa-square-o fa-3x"></i>
@@ -403,6 +404,15 @@
 						</div>
 						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						  <div class="panel-body">
+							
+
+							<div class="alert alert-danger" role="alert">
+								<p>Veuillez noter qu'aucun remboursement pour les frais d'inscription ni d'achat de crédit ne pourra être accordé. Il est cependant possible de déplacer l'inscription payée pour une activité subséquente à l'intérieur de la même année, dans la mesure où la demande de report d'inscription est transmise par courriel au info@verslesetoiles.org avant 20h le vendredi précédent l’activité (1 semaine avant).</p>
+
+								<p>Certaines cartes de crédit prennent quelques heures avant de fonctionner dans notre système. Si vous avez créé votre carte il y a quelques minutes et que vous éprouvez des problèmes de paiement, merci de patienter 2 heures et de réessayer.</p>
+							</div>
+
+
 							<div class="row">
 								<?php if (!is_null($cards_lst)) { ?>
 								<?php foreach ($cards_lst as $card) { ?>

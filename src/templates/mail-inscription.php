@@ -30,20 +30,29 @@
 	<strong>Profession :</strong> <?php echo $character['profession']['name'];?><br />
 	<strong>Corporation :</strong> <?php echo $character['corporation']['name'];?><br />
 	<strong>Grade :</strong> <?php echo $character['rank'];?><br />
-	<strong>Bilan de santé :</strong> <?php echo $character['health_points'];?> / 100<br />
 	<br />
 	<strong>Habiletés :</strong> <?php echo $character['skill']['name'];?><br />
 	<?php echo $character['skill']['description'];?>
 </p>
 
 <h3>Talents</h3>
+<p>
 <?php
 foreach ($character['feats'] as $feats) {
 	echo '<strong>- </strong>'.$feats['name'].'<br />';
 }
 ?>
+</p>
 
-<h2>Options</h2>
+<h3>Bilan de santé</h3>
+<p>
+	<strong>Cote :</strong> <?php echo $character['health_points'];?> / 100<br />
+	<strong>Appellation:</strong> <?php echo $appellation ?><br />
+	<strong>Effet:</strong> <?php echo $inscription['health_effects'] ?>
+<p>
+
+<h3>Options</h3>
+<p>
 <?php
 foreach (json_decode($inscription['options'], true) as $option) {
 	echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'];
@@ -57,6 +66,7 @@ foreach (json_decode($inscription['options'], true) as $option) {
 	echo '<br />';
 }
 ?>
+</p>
 
 <h3>Ressources</h3>
 <?php

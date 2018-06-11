@@ -242,7 +242,7 @@ switch ($_REQUEST['action']) {
         $helper = $fb->getRedirectLoginHelper();
 
         try {
-            $accessToken = $helper->getAccessToken();
+            $accessToken = $helper->getAccessToken($GLOBALS['app_url'].'/auth?action=facebook');
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();

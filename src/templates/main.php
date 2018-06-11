@@ -103,7 +103,7 @@
     <script src="/inscriptions/js/bootstrap-numberpicker.js"></script>
     <script src="/inscriptions/js/fileinput.min.js"></script>
     <script src="/inscriptions/js/fileinput.fr.js"></script>
-    <script src="/inscriptions/js/app.js?v3"></script>
+    <script src="/inscriptions/js/app.js?v4"></script>
     <script src="/inscriptions/js/avatar.js"></script>
     <script src="/inscriptions/js/daterangepicker-load.js"></script>
   </body>

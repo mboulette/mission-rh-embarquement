@@ -542,7 +542,7 @@ $(function() {
 		$('input[name=id_character].radio_card').on('click', function(){
 			var profession = $(this).data('profession');
 			var rank = $(this).data('rank');
-			var credits = $(this).data('credits');
+			var credits = Math.round($(this).data('credits') * $(this).data('multiplier'));
 			var skill = parseInt($(this).data('skill'));
 
 			$('.ressource_price').addClass('hidden');
