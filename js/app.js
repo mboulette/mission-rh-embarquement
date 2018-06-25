@@ -39,8 +39,13 @@ $(function() {
 
 	if ($('.marquee').length > 0) {
 		setInterval(function(){
-			$( ".marquee-content div:first" ).slideUp( "slow", function() {
-				$('.marquee-content div:first').appendTo('.marquee-content:first').show();
+			
+			$('.marquee').each(function ( index ) {
+
+				$(this).find('.marquee-content div:first').slideUp( "slow", function() {
+					$(this).appendTo( $(this).parent() ).show();
+				});
+
 			});
 
 		}, 5000);
