@@ -77,7 +77,7 @@
 							<p>
 								<strong>Cote :</strong> <?php echo $character['health_points'];?> / 100<br />
 								<strong>Appellation:</strong> <?php echo $appellation ?><br />
-								<strong>Effet:</strong> <?php echo $inscription['health_effects'] ?>
+								<strong>Effet:</strong> <?php echo $inscription['inscription']['health_effects'] ?>
 							<p>
 
 						</div>
