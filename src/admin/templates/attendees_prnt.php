@@ -36,117 +36,135 @@
 
 
 		<?php foreach ($inscriptions as $inscription) { ?>
-			<div class="panel panel-default" style="page-break-inside: avoid;">
-				<?php
-				$player = $inscription['player'];
-				$character = $inscription['character'];
-				$details = $inscription['details'];
-				$appellation = $inscription['appellation'];
-				?>
 
-				<div class="panel-heading">
-					<?php echo $inscription['player_name'];?>
-					<small>- <?php echo $inscription['character_name'];?></small>
+			<?php
+			$player = $inscription['player'];
+			$character = $inscription['character'];
+			$details = $inscription['details'];
+			$appellation = $inscription['appellation'];
+			?>
+
+			<div style="page-break-inside: avoid;">
+				<div class="panel panel-default" >
+					<div class="panel-body">
+						<h1><?php echo $inscription['player_name'];?></h1>
+					</div>
 				</div>
-				<div class="panel-body">
+				<div class="panel panel-default" >
+					<div class="panel-heading">
+						<h2>
+							<?php echo $inscription['player_name'];?>
+							<small>- <?php echo $inscription['character_name'];?></small>
+						</h2>
+					</div>
+					<div class="panel-body">
 
-					<div class="row">
-						<div class="col-xs-4" >
+						<div class="row">
+							<div class="col-xs-4" >
 
-							<?php
-							$inscription_created = new DateTime($inscription['date_created']);
-							$inscription_updated = new DateTime($inscription['date_updated']);
-							?>
-							<h3>Inscription</h3>
-							<p>
-								<strong>Transaction :</strong> <?php echo $inscription['code'];?><br />
-								<strong>Date d'inscription :</strong> <?php echo $inscription_created->format('Y-m-d H:i');?><br />
-								<strong>Date mis à jour :</strong> <?php echo $inscription_updated->format('Y-m-d H:i');?><br />
-								<strong>Total :</strong> <?php echo number_format($inscription['total'], 2);?> $<br />
-							</p>
+								<?php
+								$inscription_created = new DateTime($inscription['date_created']);
+								$inscription_updated = new DateTime($inscription['date_updated']);
+								?>
+								<h3>Inscription</h3>
+								<p>
+									<strong>Transaction :</strong> <?php echo $inscription['code'];?><br />
+									<strong>Date d'inscription :</strong> <?php echo $inscription_created->format('Y-m-d H:i');?><br />
+									<strong>Date mis à jour :</strong> <?php echo $inscription_updated->format('Y-m-d H:i');?><br />
+									<strong>Total :</strong> <?php echo number_format($inscription['total'], 2);?> $<br />
+								</p>
 
-							<h3>Joueur</h3>
-							<p>
-								<strong>Nom :</strong> <?php echo $player['firstname'].'  '.$player['lastname'];?><br />
-								<strong>Date de naissance :</strong> <?php echo substr($player['birthday'], 0, 10);?><br />
-								<strong>Sexe :</strong> <?php echo $player['gender'];?><br />
-								<strong>Courriel :</strong> <?php echo $player['email'];?><br />
-							</p>
+								<h3>Joueur</h3>
+								<p>
+									<strong>Nom :</strong> <?php echo $player['firstname'].'  '.$player['lastname'];?><br />
+									<strong>Date de naissance :</strong> <?php echo substr($player['birthday'], 0, 10);?><br />
+									<strong>Sexe :</strong> <?php echo $player['gender'];?><br />
+									<strong>Courriel :</strong> <?php echo $player['email'];?><br />
+								</p>
+							</div>
+							<div class="col-xs-4" >
 
-							<h3>Bilan de santé</h3>
-							<p>
-								<strong>Cote :</strong> <?php echo $character['health_points'];?> / 100<br />
-								<strong>Appellation:</strong> <?php echo $appellation ?><br />
-								<strong>Effet:</strong> <?php echo $inscription['inscription']['health_effects'] ?>
-							<p>
-
-						</div>
-						<div class="col-xs-3" >
-
-							<h3>Personnage</h3>
-							<p>
-								<strong>Nom :</strong> <?php echo $character['name'];?><br />
-								<strong>Corporation :</strong> <?php echo $character['corporation']['name'];?><br />
-								<strong>Race :</strong> <?php echo $character['race']['name'];?><br />
-								<strong>Profession :</strong> <?php echo $character['profession']['name'];?><br />
-								<strong>Grade :</strong> <?php echo $character['rank'];?><br />
-								<br />
-								<strong>Habiletés :</strong> <?php echo $character['skill']['name'];?><br />
-								<?php echo $character['skill']['description'];?>
-							</p>
+								<h3>Personnage</h3>
+								<p>
+									<strong>Nom :</strong> <?php echo $character['name'];?><br />
+									<strong>Corporation :</strong> <?php echo $character['corporation']['name'];?><br />
+									<strong>Race :</strong> <?php echo $character['race']['name'];?><br />
+									<strong>Profession :</strong> <?php echo $character['profession']['name'];?><br />
+									<strong>Grade :</strong> <?php echo $character['rank'];?><br />
+									<br />
+									<strong>Habiletés :</strong> <?php echo $character['skill']['name'];?><br />
+									<?php echo $character['skill']['description'];?>
+								</p>
 
 
-							<h3>Talents</h3>
-							<?php
-							foreach ($character['feats'] as $feats) {
-								echo '<strong>- </strong>'.$feats['name'].'<br />';
-							}
-							?>
+								<h3>Talents</h3>
+								<?php
+								foreach ($character['feats'] as $feats) {
+									echo '<strong>- </strong>'.$feats['name'].'<br />';
+								}
+								?>
 
-						</div>
-						<div class="col-xs-5" >
-							
-							<h3>Options</h3>
-							<?php
-							foreach (json_decode($inscription['details'][0]['options'], true) as $option) {
-								echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'];
+							</div>
+							<div class="col-xs-4" >
+								
+								<h3>Options</h3>
+								<?php
+								foreach (json_decode($inscription['details'][0]['options'], true) as $option) {
+									echo '<strong>'.$option['qty']. ' x </strong>'.$option['name'];
 
-								foreach ($option as $key => $value) {
-									if ($key != 'name' && $key != 'qty' && $key != 'total'  && $key != 'price') {
-										echo '&nbsp;<span class="label label-default">'.$key.':'.$value.'</span>';
+									foreach ($option as $key => $value) {
+										if ($key != 'name' && $key != 'qty' && $key != 'total'  && $key != 'price') {
+											echo '&nbsp;<span class="label label-default">'.$key.':'.$value.'</span>';
+										}
+									}
+
+									echo '<br />';
+								}
+								?>
+
+
+								<h3>Ressources</h3>
+								<?php
+
+								$corpo_ressource = true;
+
+								foreach (json_decode($inscription['details'][0]['ressources'], true) as $ressource) {
+									if ($character['corporation']['ressource']['name'] == $ressource['name']) {
+										echo '<strong>'.($ressource['qty']+2). ' x '.$ressource['name'].'</strong><br />';
+										$corpo_ressource = false;
+									} else {
+										echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';									
 									}
 								}
 
-								echo '<br />';
-							}
-							?>
-
-
-							<h3>Ressources</h3>
-							<?php
-
-							$corpo_ressource = true;
-
-							foreach (json_decode($inscription['details'][0]['ressources'], true) as $ressource) {
-								if ($character['corporation']['ressource']['name'] == $ressource['name']) {
-									echo '<strong>'.($ressource['qty']+2). ' x '.$ressource['name'].'</strong><br />';
-									$corpo_ressource = false;
-								} else {
-									echo '<strong>'.$ressource['qty']. ' x </strong>'.$ressource['name'].'<br />';									
+								if ($corpo_ressource) {
+									echo '<strong>2 x '.$character['corporation']['ressource']['name'].'</strong><br />';
 								}
-							}
 
-							if ($corpo_ressource) {
-								echo '<strong>2 x '.$character['corporation']['ressource']['name'].'</strong><br />';
-							}
-
-							echo '<strong>'.$inscription['details'][0]['credits']. ' x </strong>Crédits restants<br />';
-							?>
+								echo '<strong>'.$inscription['details'][0]['credits']. ' x </strong>Crédits restants<br />';
+								?>
 
 
+							</div>
 						</div>
-					</div>
+						<div class="row">
+							<div class="col-xs-8" >
 
+								<h3>Bilan de santé</h3>
+								<p>
+									<strong>Cote :</strong> <?php echo $character['health_points'];?> / 100<br />
+									<strong>Appellation:</strong> <?php echo $appellation ?><br />
+									<strong>Effet:</strong>
+									<?php 
+									$effects = trim( $inscription['inscription']['health_effects'] );
+									echo ($effects == '' ? 'Aucun' : $effects);
+									?>
+								<p>
+
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
 		<?php } ?>
